@@ -1,4 +1,4 @@
-package treIRad;
+package treIRad.TreIRad;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -30,8 +30,8 @@ public class Game {
     public void setIcons() {
         try {
 
-            Image playerImg = ImageIO.read(new File("images/red.jpg"));
-            Image aiImg = ImageIO.read(new File("images/yellow.jpg"));
+            Image playerImg = ImageIO.read(new File("/src/images/red.jpg"));
+            Image aiImg = ImageIO.read(new File("/src/images/yellow.jpg"));
 
 
             playerIcon = new ImageIcon(playerImg);
