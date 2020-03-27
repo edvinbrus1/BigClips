@@ -17,8 +17,6 @@ public class Control {
             game = new Game();
         }
 
-
-
         public void logic(JButton jb, int i){
             gui.deactivateButton(jb);
             game.changeTurn();
@@ -27,9 +25,7 @@ public class Control {
             boolean win = game.checkWin();
             gui.winPopUp(win);
             gui.setButtonImage(jb, game.setImage(turn));
-
-
-
+            
         }
 
 
