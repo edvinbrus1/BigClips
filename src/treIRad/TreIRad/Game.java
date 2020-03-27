@@ -29,7 +29,6 @@ public class Game {
 
     }
 
-
     //Borde kanske flyttas till gui??
     public void setIcons() {
         try {
