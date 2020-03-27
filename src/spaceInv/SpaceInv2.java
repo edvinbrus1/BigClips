@@ -87,7 +87,7 @@ public class SpaceInv2 extends Application{
 
     //Method for selecting the image of the players ship
     public ImageView player(){
-        ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream("/images/ship.png")));
+        ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream("images/ship.png")));
         imageView.setLayoutX(225);
         imageView.setLayoutY(650);
         imageView.setFitHeight(50);
