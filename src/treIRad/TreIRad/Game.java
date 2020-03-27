@@ -19,6 +19,9 @@ public class Game {
 
 
 
+
+
+
     public Game(){
         rand = new Random();
         turn = rand.nextInt(2)+1;
