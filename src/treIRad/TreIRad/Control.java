@@ -19,6 +19,7 @@ public class Control {
 
 
 
+        //Test comment
         public void logic(JButton jb, int i){
             gui.deactivateButton(jb);
             game.changeTurn();
