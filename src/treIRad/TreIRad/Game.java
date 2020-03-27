@@ -16,6 +16,12 @@ public class Game {
     ImageIcon aiIcon;
     int[][] board = {{0,0,0},{0,0,0},{0,0,0}};
 
+
+
+
+
+
+
     public Game(){
         rand = new Random();
         turn = rand.nextInt(2)+1;
