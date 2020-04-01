@@ -122,22 +122,22 @@ public class SpaceInvaders extends Application{
     public void invadersFiring(){
         int getInvaderFiringIndex = rand(0, invaders.size() - 1);
         iShot.add(projectile(invaders.get(getInvaderFiringIndex).getLayoutX() + 25, invaders.get(getInvaderFiringIndex).getLayoutY() + 25));
-        root.getChildren().add((Node) iShot.get(iShot.size() -1));
+        root.getChildren().add(iShot.get(iShot.size() -1));
     }
 
     //Method for adding invaders
     public void addInvaders(){
         for(int i = 0, w = 40; i < 6; i++, w += 70){
             invaders.add(invader(w, 50));
-            root.getChildren().add((Node) invaders.get(i));
+            root.getChildren().add(invaders.get(i));
         }
         for (int i = 0, w = 40; i < 6; i++, w += 70){
             invaders.add(invader(w, 120));
-            root.getChildren().add((Node) invaders.get(i + 12));
+            root.getChildren().add(invaders.get(i + 12));
         }
         for(int i = 0, w = 40; i < 6; i++, w+= 70){
             invaders.add(invader(w, 190));
-            root.getChildren().add((Node) invaders.get(i + 12));
+            root.getChildren().add(invaders.get(i + 12));
         }
     }
 
@@ -248,7 +248,7 @@ public class SpaceInvaders extends Application{
                     root.getChildren().remove(pShot.get(i));
                     pShot.remove(i);
                     numPoints += 100;
-                    points.setText("Points: " + String.valueOf(numPoints));
+                    points.setText("Points: " + numPoints);
                 }
             }
         }
@@ -263,7 +263,7 @@ public class SpaceInvaders extends Application{
             &&((iShot.get(i).getLayoutY() < player.getLayoutY() + 50))))){
                 player.setLayoutX(225);
                 numLives -= 1;
-                lives.setText("Lives: " + String.valueOf(numLives));
+                lives.setText("Lives: " + numLives);
             }
         }
     }
