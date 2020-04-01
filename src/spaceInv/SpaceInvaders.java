@@ -1,6 +1,5 @@
 package spaceInv;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,55 +102,15 @@ public class SpaceInvaders extends Application{
         stage.show();
     }
 
-    //Method for selecting the image of the players ship
-    public ImageView player(){
-        ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream("/resources/ship.png")));
-        imageView.setLayoutX(225);
-        imageView.setLayoutY(650);
-        imageView.setFitHeight(50);
-        imageView.setFitWidth(50);
-        return imageView;
-    }
-
     //Method for controlling the game updates
     public void gameUpdate(){
         invaderFiringUpdate();
         playerFiringUpdate();
         playerKilled();
-        invaderkilled();
+        invaderKilled();
         invadersMovement();
         gameWon();
         gameLost();
-
-
-    }
-
-    //Method for creating the projectiles
-    public Circle projectile(double x, double y) {
-        Circle c = new Circle();
-        c.setFill(Color.AQUAMARINE);
-        c.setLayoutX(x);
-        c.setLayoutY(y);c.setRadius(3);
-        return c;
-    }
-
-    //Method for firing projectiles
-    public void playerFiring(double x){
-        pShot.add(projectile((x + 25), 650));
-        root.getChildren().add(pShot.get(pShot.size() - 1));
-    }
-
-    //Method for updating the game when the player fires
-    private void playerFiringUpdate(){
-        if(!pShot.isEmpty()){
-            for(int i = 0; i < pShot.size(); i++){
-                pShot.get(i).setLayoutY(pShot.get(i).getLayoutY() - 3);
-                if(pShot.get(i).getLayoutY()<=0){
-                    root.getChildren().remove(pShot.get(i));
-                    pShot.remove(i);
-                }
-            }
-        }
     }
 
     //One of the methods for controlling when the monsters will fire
@@ -199,7 +158,7 @@ public class SpaceInvaders extends Application{
             }
         }
 
-        if(dotR.getLayoutX() <= 20){
+        if(dotR.getLayoutX() <= -20){
             toRight = true;
             for(int i = 0; i < invaders.size(); i++){
                 invaders.get(i).setLayoutY(invaders.get(i).getLayoutY() + 8);
@@ -213,14 +172,54 @@ public class SpaceInvaders extends Application{
         dotR.setLayoutX(dotR.getLayoutX() + velocity);
     }
 
-    //Method for selecting the image to be used for the invaders
-    public ImageView invader(double x, double y){
-        ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream("/resources/invader.png")));
-        imageView.setLayoutX(x);
-        imageView.setLayoutY(y);
+    //Method for selecting the image of the players ship
+    public ImageView player(){
+        ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream("/resources/ship.png")));
+        imageView.setLayoutX(225);
+        imageView.setLayoutY(650);
         imageView.setFitHeight(50);
         imageView.setFitWidth(50);
         return imageView;
+    }
+
+    
+    //Method for selecting the image to be used for the invaders
+    public ImageView invader(double x, double y){
+        ImageView i = new ImageView(new Image(getClass().getResourceAsStream("resources/inv.png")));
+        i.setLayoutX(x);
+        i.setLayoutY(y);
+        i.setFitHeight(50);
+        i.setFitWidth(50);
+        return i;
+    }
+
+    //Method for creating the projectiles
+    public Circle projectile(double x, double y) {
+        Circle c = new Circle();
+        c.setFill(Color.AQUAMARINE);
+        c.setLayoutX(x);
+        c.setLayoutY(y);
+        c.setRadius(3);
+        return c;
+    }
+
+    //Method for firing projectiles
+    public void playerFiring(double x){
+        pShot.add(projectile((x + 25), 650));
+        root.getChildren().add(pShot.get(pShot.size() - 1));
+    }
+
+    //Method for updating the game when the player fires
+    private void playerFiringUpdate(){
+        if(!pShot.isEmpty()){
+            for(int i = 0; i < pShot.size(); i++){
+                pShot.get(i).setLayoutY(pShot.get(i).getLayoutY() - 3);
+                if(pShot.get(i).getLayoutY()<=0){
+                    root.getChildren().remove(pShot.get(i));
+                    pShot.remove(i);
+                }
+            }
+        }
     }
 
     //Method for updating the game when an invader fires
@@ -237,7 +236,7 @@ public class SpaceInvaders extends Application{
     }
 
     //Method for what happens when a invader is killed
-    private void invaderkilled(){
+    private void invaderKilled(){
         for(int i = 0; i < pShot.size(); i++){
             for(int j = 0; j < invaders.size(); j++){
                 if(((pShot.get(i).getLayoutX() > invaders.get(j).getLayoutX())
