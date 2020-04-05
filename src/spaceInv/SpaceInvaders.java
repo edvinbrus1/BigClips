@@ -129,15 +129,15 @@ public class SpaceInvaders extends Application{
     public void addInvaders(){
         for(int i = 0, w = 40; i < 6; i++, w += 70){
             invaders.add(invader(w, 50));
-            root.getChildren().add(invaders.get(i));
+            root.getChildren().add((Node)invaders.get(i));
         }
         for (int i = 0, w = 40; i < 6; i++, w += 70){
             invaders.add(invader(w, 120));
-            root.getChildren().add(invaders.get(i + 12));
+            root.getChildren().add((Node)invaders.get(i + 6));
         }
         for(int i = 0, w = 40; i < 6; i++, w+= 70){
             invaders.add(invader(w, 190));
-            root.getChildren().add(invaders.get(i + 12));
+            root.getChildren().add((Node)invaders.get(i + 12));
         }
     }
 
@@ -174,18 +174,18 @@ public class SpaceInvaders extends Application{
 
     //Method for selecting the image of the players ship
     public ImageView player(){
-        ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream("/resources/ship.png")));
-        imageView.setLayoutX(225);
-        imageView.setLayoutY(650);
-        imageView.setFitHeight(50);
-        imageView.setFitWidth(50);
-        return imageView;
+        ImageView i = new ImageView(new Image(getClass().getResourceAsStream("/resources/ship.png")));
+        i.setLayoutX(225);
+        i.setLayoutY(650);
+        i.setFitHeight(50);
+        i.setFitWidth(50);
+        return i;
     }
 
     
     //Method for selecting the image to be used for the invaders
     public ImageView invader(double x, double y){
-        ImageView i = new ImageView(new Image(getClass().getResourceAsStream("resources/inv.png")));
+        ImageView i = new ImageView(new Image(getClass().getResourceAsStream("/resources/inv.png")));
         i.setLayoutX(x);
         i.setLayoutY(y);
         i.setFitHeight(50);
