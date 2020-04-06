@@ -13,21 +13,30 @@ public class Control {
 
         public Control(){
 
-            gui= new GUI(this);
             game = new Game();
+            gui= new GUI(this);
+
+
         }
 
 
-        public void logic(JButton jb, int i){
-            gui.deactivateButton(jb);
-            game.changeTurn();
-            int turn = game.getTurn();
-            game.setBoard(i);
-            boolean win = game.checkWin();
-            gui.winPopUp(win);
-            gui.setButtonImage(jb, game.setImage(turn));
-            
-        }
+        public void playerMove(JButton jb, int i){
+        //    if (game.getTurn()==1) {
 
+                gui.deactivateButton(jb);
+                game.changeTurn();
+                int turn = game.getTurn();
+                game.setBoard(i);
+                gui.winPopUp(game.checkWin());
+                gui.setButtonImage(jb, game.setImage(turn));
+            }
+
+     //       aiMove();
+ //       }
+
+        public void aiMove(){
+     //       game.aiMove();
+
+        }
 
 }

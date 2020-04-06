@@ -51,11 +51,16 @@ public class GUI extends JFrame{
     }
 
 
-    public void winPopUp(boolean win){
-        if (win){
-            JOptionPane.showMessageDialog(null,"WIN");
+    public void winPopUp(Winner win){
+        if (win==Winner.Player){
+            JOptionPane.showMessageDialog(null,"Congratulations!");
+        }
+        else if (win==Winner.Ai){
+            JOptionPane.showMessageDialog(null,"Shameful loss");
         }
     }
+
+
 
 
     public void deactivateButton(JButton jb){
@@ -72,39 +77,39 @@ public class GUI extends JFrame{
 
         public void actionPerformed(ActionEvent e) {
             if (e.getSource()==jb1){
-                control.logic(jb1, 1);
+                control.playerMove(jb1, 1);
 
             }
             if (e.getSource()==jb2){
-                control.logic(jb2,2);
+                control.playerMove(jb2,2);
             }
 
             if (e.getSource()==jb3){
-                control.logic(jb3,3);
+                control.playerMove(jb3,3);
 
             }
             if (e.getSource()==jb4){
-                control.logic(jb4,4);
+                control.playerMove(jb4,4);
 
             }
             if (e.getSource()==jb5){
-                control.logic(jb5,5);
+                control.playerMove(jb5,5);
 
             }
             if (e.getSource()==jb6){
-                control.logic(jb6,6);
+                control.playerMove(jb6,6);
 
             }
             if (e.getSource()==jb7){
-                control.logic(jb7,7);
+                control.playerMove(jb7,7);
 
             }
             if (e.getSource()==jb8){
-                control.logic(jb8,8);
+                control.playerMove(jb8,8);
 
             }
             if (e.getSource()==jb9){
-                control.logic(jb9,9);
+                control.playerMove(jb9,9);
 
             }
 
