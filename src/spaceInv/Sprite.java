@@ -5,6 +5,8 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+//Class that is used for testing a different method for creating the projectiles
+//Created by Edvin
 public class Sprite {
 
     private double positionX;
@@ -22,12 +24,14 @@ public class Sprite {
         this.velocityY = 0;
     }
 
+    //Method for setting the image to be used.
     public void setImage(Image image){
         this.image = image;
         this.width = image.getWidth();
         this.height = image.getHeight();
     }
 
+    //Method for setting the image to be returned
     public void setImage(String filename){
         Image image = new Image(getClass().getResource(filename).toExternalForm());
         Image toReturn = new Image(filename, image.getWidth()/3, image.getHeight()/3, true, false);

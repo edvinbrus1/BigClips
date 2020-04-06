@@ -22,7 +22,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-
+//Created by Edvin
 public class SpaceInvaders extends Application{
 
     AnimationTimer timer;
