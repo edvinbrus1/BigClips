@@ -325,6 +325,7 @@ public class SpaceInvaders extends Application{
         return false;
     }
 
+
     //Method for getting the shield groups TEST
     private Group getShieldGroup(int x){
         if(x <= 180){
