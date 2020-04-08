@@ -56,7 +56,11 @@ public class GUI extends JFrame{
             JOptionPane.showMessageDialog(null,"WIN");
         }
     }
+<<<<<<< Updated upstream
 
+=======
+    
+>>>>>>> Stashed changes
 
     public void deactivateButton(JButton jb){
         jb.setEnabled(false);
