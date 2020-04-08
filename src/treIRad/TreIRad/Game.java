@@ -19,12 +19,9 @@ public class Game {
 
 
 
-
-
-
     public Game(){
         rand = new Random();
-        turn = rand.nextInt(2)+1;
+        turn = rand.nextInt(2)+1;       // 1 is player, 2 is Ai
         setIcons();
 
     }
@@ -47,21 +44,19 @@ public class Game {
 
     //Byter vems tur det är
     public void changeTurn(){
-        if (turn==2){
+        if (turn==2){       //Change current turn from Ai to player
             turn=1;
         }
-        else if (turn==1){
+        else if (turn==1){     //Changes current turn from player to AI
             turn=2;
         }
 
     }
 
-
     //Returns current turn
     public int getTurn(){
         return turn;
     }
-
 
 
     //Returnerar aktuell spelares icon
@@ -72,57 +67,70 @@ public class Game {
         return aiIcon;
     }
 
+    public void playerWon(){
+    //    checkWin(1,3);
+    }
+    public void aiWon(){
+   //     checkWin(10,30);
+    }
 
     //Söker genom board arrayen för att se om en spelare har 3 markörer i rad
-    public boolean checkWin(){
+    public Winner checkWin(){
 
-    Boolean win = false;
     int a=0, b=0;
 
-        for (int i =0;i<board.length;i++){
+        for (int i =0;i<3;i++){
 
             a=0;
             b=0;
-            for (int j=0;j<board[i].length;j++){
-                if (board[i][j]==1){
+            for (int j=0;j<3;j++){
+                    if (board[i][j]==1){
                     a+=board[i][j];
                 }
                 if (board[i][j]==10){
                     b+=board[i][j];
                 }
-             if (a==3 || b==30){
-                 win=true;
-
+             if (a==3) {
+                 return Winner.Player;
+             }
+             if (b==30){
+                 return Winner.Ai;
              }
          }}
 
         for (int j=0;j<3;j++){
             a=0;
             b=0;
-            for (int i=0;i<board.length;i++){
+            for (int i=0;i<3;i++){
                 if (board[i][j]==1){
                     a+=board[i][j];
                 }
                 if (board[i][j]==10){
                     b+=board[i][j];
                 }
-                if (a==3 || b==30){
-                    win=true;
-
+                if (a==3) {
+                    return Winner.Player;
+                }
+                if (b==30){
+                    return Winner.Ai;
                 }
             }
         }
 
-    if (board[0][0]+board[1][1]+board[2][2]==3||board[0][0]+board[1][1]+board[2][2]==30){
-        win=true;
+    if (board[0][0]+board[1][1]+board[2][2]==3){
+        return Winner.Player;
+    }
+    if(board[0][0]+board[1][1]+board[2][2]==30){
+        return Winner.Ai;
+    }
+    if (board[2][0]+board[1][1]+board[0][2]==3){
+        return Winner.Player;
+    }
+    if (board[2][0]+board[1][1]+board[0][2]==30){
+        return Winner.Ai;
     }
 
-    else if (board[2][0]+board[1][1]+board[0][2]==3||board[2][0]+board[1][1]+board[0][2]==30){
-            win=true;
-        }
-
-    return win;
-
+    return Winner.None;
     }
 
     //Ändrar värden i board array beroende på vems tur det är
@@ -164,5 +172,45 @@ public class Game {
 
     }
 
+    public void aiFirstMove(){
+        for (int i=0;i<board.length;i++){
+            for (int j=0;j<board[i].length;j++){
+
+            }
+        }
+    }
+
+
+    private double infinity = Double.POSITIVE_INFINITY;
+    private double negInfinity =Double.NEGATIVE_INFINITY;
+
+    public void bestMove(){
+
+
+        for(int i=0; i<3;i++) {
+            for (int j=0;j<3;j++){
+
+                //Checks if square is empty
+                if (board[i][j]==0){
+                    //Sets square to Ai's value
+                    board[i][j]=10;
+                    int score = minimax(board,0,false);
+                    board[i][j] = 0;
+        //            if (score>bestScore){
+        //                bestScore = score;
+                        board[i][j]=10;
+                    }
+                }
+            }
+        }
+
+
+    public int minimax(int[][]board, int depth, Boolean isMaximizing){
+
+        if (!(checkWin()==Winner.None)){
+
+        }
+        return 0;
+    }
 
 }
