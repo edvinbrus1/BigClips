@@ -21,7 +21,8 @@ public class Game {
 
     public Game(){
         rand = new Random();
-        turn = rand.nextInt(2)+1;       // 1 is player, 2 is Ai
+        turn=2;
+        //  turn = rand.nextInt(2)+1;       // 1 is player, 2 is Ai
         setIcons();
 
     }
@@ -60,8 +61,8 @@ public class Game {
 
 
     //Returnerar aktuell spelares icon
-    public ImageIcon setImage(int i){
-        if (i==1){
+    public ImageIcon setImage(){
+        if (getTurn()==1){
             return playerIcon;
         }
         return aiIcon;
@@ -180,37 +181,96 @@ public class Game {
         }
     }
 
+    public Winner checkDraw() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if ( board[i][j]==0){
+                    return Winner.None;
+                }
+            }
+        }
+        if (checkWin()==Winner.None){
+            return Winner.Draw;
+        }
+        return Winner.None;
+    }
+    public double[] bestMove(){
 
-    private double infinity = Double.POSITIVE_INFINITY;
-    private double negInfinity =Double.NEGATIVE_INFINITY;
+        double bestScore = Double.NEGATIVE_INFINITY;
+        double move[]= new double[2];
+        int row=0, col=0;
 
-    public void bestMove(){
-
-
-        for(int i=0; i<3;i++) {
-            for (int j=0;j<3;j++){
+        for(int i=0; i<3 ;i++) {
+            for (int j = 0; j < 3; j++) {
 
                 //Checks if square is empty
-                if (board[i][j]==0){
+                if (board[i][j] == 0) {
                     //Sets square to Ai's value
-                    board[i][j]=10;
-                    int score = minimax(board,0,false);
+                    board[i][j] = 10;
+                    double score = minimax(board, 0, false);
                     board[i][j] = 0;
-        //            if (score>bestScore){
-        //                bestScore = score;
-                        board[i][j]=10;
+                    if (score > bestScore) {
+                        bestScore = score;
+                        row=i;
+                        col=j;
+                        move[0]=i;
+                        move[1]=j;
                     }
                 }
             }
         }
-
-
-    public int minimax(int[][]board, int depth, Boolean isMaximizing){
-
-        if (!(checkWin()==Winner.None)){
-
-        }
-        return 0;
+        board[row][col]=10;
+        changeTurn();
+        return move;
     }
 
+
+
+    public double minimax(int[][]board, int depth, Boolean isMaximizing){
+        Winner result = checkWin();
+        if ((result==Winner.Player)){
+            System.out.println("player");
+            return -10;
+        }
+
+        if ((result==Winner.Ai)){
+            System.out.println("Ai");
+            return 10;
+        }
+
+        if (checkDraw()==Winner.Draw){
+            return 0;
+        }
+
+
+        if (isMaximizing){
+            double bestScore= Double.NEGATIVE_INFINITY;
+            for (int i=0;i<3;i++){
+                for (int j=0;j<3;j++){
+                    if (board[i][j]==0){
+                        board[i][j]=10;
+                        double score = minimax(board, depth+1, false );
+                        board[i][j]=0;
+                        bestScore= Math.max(score,bestScore);
+                        }
+                    }
+                }
+            return bestScore;
+            }else{
+                double bestScore = Double.POSITIVE_INFINITY;
+                for (int i=0; i<3; i++){
+                    for (int j=0; j<3; j++){
+                        if (board[i][j]==0){
+                            board[i][j]=1;
+                            double score = minimax(board, depth+1, true);
+                            board[i][j] = 0;
+                            bestScore= Math.min(score,bestScore);
+                        }
+                    }
+                }
+            return bestScore;
+        }
+    }
 }
+
+

@@ -53,10 +53,10 @@ public class GUI extends JFrame{
 
     public void winPopUp(Winner win){
         if (win==Winner.Player){
-            JOptionPane.showMessageDialog(null,"Congratulations!");
+            JOptionPane.showMessageDialog(null,"Player wins!");
         }
         else if (win==Winner.Ai){
-            JOptionPane.showMessageDialog(null,"Shameful loss");
+            JOptionPane.showMessageDialog(null,"Computer wins!");
         }
     }
 
@@ -72,6 +72,42 @@ public class GUI extends JFrame{
         jb.setDisabledIcon(icon);
     }
 
+
+    public void setJb1(ImageIcon icon) {
+        jb1.setIcon(icon);
+    }
+
+    public void setJb2(ImageIcon icon) {
+        jb2.setIcon(icon);
+    }
+
+    public void setJb3(ImageIcon icon) {
+        jb3.setIcon(icon);
+    }
+
+    public void setJb4(ImageIcon icon) {
+        jb4.setIcon(icon);
+    }
+
+    public void setJb5(ImageIcon icon) {
+        jb5.setIcon(icon);
+    }
+
+    public void setJb6(ImageIcon icon) {
+        jb6.setIcon(icon);
+    }
+
+    public void setJb7(ImageIcon icon) {
+        jb7.setIcon(icon);
+    }
+
+    public void setJb8(ImageIcon icon) {
+        jb8.setIcon(icon);
+    }
+
+    public void setJb9(ImageIcon icon) {
+        jb9.setIcon(icon);
+    }
 
     private class Listener implements ActionListener{
 
