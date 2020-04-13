@@ -16,8 +16,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -54,11 +56,13 @@ public class SpaceInvaders extends Application{
     @Override
     public void start(Stage stage) throws Exception {
         lives = new Text("Lives: 3");
+        lives.setFont(new Font("04b03", 24));
         lives.setLayoutX(20);
         lives.setLayoutY(30);
         lives.setFill(Color.WHITE);
 
         points = new Text("Points: 0");
+        points.setFont(new Font("Sans Serif", 24));
         points.setLayoutX(350);
         points.setLayoutY(30);
         points.setFill(Color.WHITE);
@@ -83,7 +87,7 @@ public class SpaceInvaders extends Application{
         timer.start();
 
         //Timeline for the invaders firing
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event ->{
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event ->{
             if(!invaders.isEmpty()){
                 invadersFiring();
             }
@@ -93,15 +97,16 @@ public class SpaceInvaders extends Application{
 
         //Creating the map for the game
         Scene scene = new Scene(root, 500,700);
-        scene.setFill(Color.BLACK);
+        Image img = new Image("https://i.imgur.com/5IDCYYW.png");
+        scene.setFill(new ImagePattern(img));
 
         //methods for moving the player
         scene.setOnKeyPressed(e ->{
             if(e.getCode() == KeyCode.RIGHT){
-                player.setLayoutX(player.getLayoutX() + 5);
+                player.setLayoutX(player.getLayoutX() + 10);
             }
             if(e.getCode() == KeyCode.LEFT){
-                player.setLayoutX(player.getLayoutX() - 5);
+                player.setLayoutX(player.getLayoutX() - 10);
             }
             if(e.getCode() == KeyCode.SPACE){
                 playerFiring(player.getLayoutX());
@@ -283,7 +288,7 @@ public class SpaceInvaders extends Application{
     public void gameWon(){
         if(invaders.isEmpty()){
             Text text = new Text();
-            //TODO find a good font to use here
+            text.setFont(Font.font("Sans Serif", 30));
             text.setX(180);
             text.setY(300);
             text.setFill(Color.YELLOWGREEN);
@@ -299,7 +304,7 @@ public class SpaceInvaders extends Application{
     public void gameLost(){
         if(numLives <= 0){
             Text text = new Text();
-            //TODO find a good font to use here
+            text.setFont(Font.font("Sans Serif", 50));
             text.setX(180);
             text.setY(300);
             text.setFill(Color.RED);
