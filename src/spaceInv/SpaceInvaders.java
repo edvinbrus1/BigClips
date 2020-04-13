@@ -288,7 +288,7 @@ public class SpaceInvaders extends Application{
     public void gameWon(){
         if(invaders.isEmpty()){
             Text text = new Text();
-            text.setFont(Font.font("Sans Serif", 30));
+            text.setFont(Font.font("Sans Serif", 50));
             text.setX(180);
             text.setY(300);
             text.setFill(Color.YELLOWGREEN);
@@ -307,10 +307,8 @@ public class SpaceInvaders extends Application{
             text.setFont(Font.font("Sans Serif", 50));
             text.setX(180);
             text.setY(300);
-            text.setFill(Color.RED);
-            text.setStrokeWidth(3);
-            text.setStroke(Color.MAROON);
-            text.setText("LOST");
+            text.setFill(Color.INDIANRED);
+            text.setText("GAME OVER");
             root.getChildren().add(text);
             timer.stop();
         }
