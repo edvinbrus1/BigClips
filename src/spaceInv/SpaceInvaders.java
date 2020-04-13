@@ -64,10 +64,6 @@ public class SpaceInvaders extends Application{
         points.setFill(Color.WHITE);
         root.getChildren().addAll(lives, points, shieldGroup, secondShield,
                 thirdShield);
-
-        //Testing some shields might get deleted later
-        setShields();
-
         dotR.setLayoutX(0);
 
         //Creating player
@@ -76,9 +72,7 @@ public class SpaceInvaders extends Application{
 
         //Creating invaders
         addInvaders();
-
-        //Test method for shields
-        setShields();
+        
 
         timer = new AnimationTimer() {
             @Override
@@ -127,37 +121,6 @@ public class SpaceInvaders extends Application{
         invadersMovement();
         gameWon();
         gameLost();
-    }
-
-    //Method for setting the shields
-    private void setShields(){
-        for(int x = 0, i = 0; x < 550; x += 3*SPACE, i++){
-            Shield shield = new Shield();
-            int[][] shieldMatrix = shield.getShield();
-            Group group = getShieldGroup(x);
-            renderShield(x, shield, shieldMatrix, group);
-        }
-    }
-
-    //Method for rendering the shield/shields
-    private void renderShield(int startingX, Shield shield, int[][] shieldMatrix, Group group){
-        shield.setLocationX(0);
-        shield.setLocationY(550);
-        shields.add(shield);
-        group.getChildren().clear();
-
-        for(int i = 0, y = 550; i < shieldMatrix.length; i++, y+= rectangleSize){
-            for(int j = 0, x = startingX; j < shieldMatrix[0].length && x <= 550 + SPACE; j++, x += rectangleSize){
-                if(shieldMatrix[i][j] != 0){
-                    Rectangle rect = new Rectangle();
-                    rect.setFill(shield.getColor());
-                    rect.setWidth(rectangleSize);
-                    rect.setHeight(rectangleSize);
-                    rect.relocate(x,y);
-                    group.getChildren().add(rect);
-                }
-            }
-        }
     }
 
     //One of the methods for controlling when the monsters will fire
@@ -299,43 +262,6 @@ public class SpaceInvaders extends Application{
                     points.setText("Points: " + numPoints);
                 }
             }
-        }
-    }
-
-    //Test method for what will happen if a shield is hit
-    private boolean shieldHit(Sprite projectile){
-        for(Shield shield : shields){
-            int[][] matrix = shield.getShield();
-            for(int row = 0; row < matrix.length; row ++){
-                for(int j = 0; j < matrix[0].length; j++){
-                    if(matrix[row][j] != 0){
-                        if(projectile.getPositionX() >= shield.getLocationX() - 5 &&
-                            projectile.getPositionX() <= shield.getLocationX() + j * rectangleSize + 5 &&
-                            projectile.getPositionY() >= shield.getLocationY() - 5 &&
-                            projectile.getPositionY() <= shield.getLocationY() + row * rectangleSize + 5){
-                           shield.deleteDestroyedParts(row,j);
-                           Group group = getShieldGroup((int)shield.getLocationX());
-                           renderShield((int)(shield.getLocationX()), shield,matrix,group);
-                           return true;
-                        }
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-
-    //Method for getting the shield groups TEST
-    private Group getShieldGroup(int x){
-        if(x <= 180){
-            return shieldGroup;
-        }else if(x <= 300){
-            return secondShield;
-        }else if(x <= 420){
-            return thirdShield;
-        }else{
-            return fourthShield;
         }
     }
 
