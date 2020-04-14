@@ -212,7 +212,7 @@ public class SpaceInvaders extends Application{
     public Circle
     projectile(double x, double y) {
         Circle c = new Circle();
-        c.setFill(Color.AQUAMARINE);
+        c.setFill(Color.LIGHTYELLOW);
         c.setLayoutX(x);
         c.setLayoutY(y);
         c.setRadius(3);
