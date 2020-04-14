@@ -200,7 +200,7 @@ public class SpaceInvaders extends Application{
     
     //Method for selecting the image to be used for the invaders
     public ImageView invader(double x, double y){
-        ImageView i = new ImageView(new Image(getClass().getResourceAsStream("/resources/inv.png")));
+        ImageView i = new ImageView(new Image(getClass().getResourceAsStream("/resources/inv3.png")));
         i.setLayoutX(x);
         i.setLayoutY(y);
         i.setFitHeight(50);
@@ -292,8 +292,6 @@ public class SpaceInvaders extends Application{
             text.setX(180);
             text.setY(300);
             text.setFill(Color.YELLOWGREEN);
-            text.setStrokeWidth(3);
-            text.setStroke(Color.GOLD);
             text.setText("WIN");
             root.getChildren().add(text);
             timer.stop();
