@@ -1,4 +1,4 @@
-package spaceInv;
+package spaceInvaders;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,18 +8,16 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -32,7 +30,6 @@ public class SpaceInvaders extends Application{
     private List<ImageView> invaders = new ArrayList<ImageView>();
     private List<Circle> iShot = new ArrayList<Circle>();
     private List<Circle> pShot = new ArrayList<Circle>();
-    private List<Shield> shields = new ArrayList<Shield>();
     private ImageView player;
     private Circle dotR = new Circle();
     private boolean toRight = true;
@@ -55,7 +52,7 @@ public class SpaceInvaders extends Application{
     @Override
     public void start(Stage stage) throws Exception {
         lives = new Text("Lives: 3");
-        lives.setFont(new Font("04b03", 24));
+        lives.setFont(new Font("Sans Serif", 24));
         lives.setLayoutX(20);
         lives.setLayoutY(30);
         lives.setFill(Color.WHITE);
@@ -304,7 +301,7 @@ public class SpaceInvaders extends Application{
                     invaders.remove(j);
                     root.getChildren().remove(pShot.get(i));
                     pShot.remove(i);
-                    numPoints += 100;
+                    numPoints += 50;
                     points.setText("Points: " + numPoints);
                 }
             }
@@ -329,7 +326,7 @@ public class SpaceInvaders extends Application{
     public void gameWon(){
         if(invaders.isEmpty()){
             Text text = new Text();
-            text.setFont(Font.font("Sans Serif", 50));
+            text.setFont(Font.font("Sans Serif", FontWeight.BOLD,50));
             text.setX(180);
             text.setY(300);
             text.setFill(Color.YELLOWGREEN);
@@ -343,7 +340,7 @@ public class SpaceInvaders extends Application{
     public void gameLost(){
         if(numLives <= 0){
             Text text = new Text();
-            text.setFont(Font.font("Sans Serif", 50));
+            text.setFont(Font.font("Sans Serif", FontWeight.BOLD,50));
             text.setX(180);
             text.setY(300);
             text.setFill(Color.INDIANRED);
