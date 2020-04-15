@@ -29,23 +29,22 @@ public class SpaceInvaders extends Application{
 
     AnimationTimer timer;
     Pane root = new Pane();
-    List<ImageView> invaders = new ArrayList<ImageView>();
-    List<Circle> iShot = new ArrayList<Circle>();
-    List<Circle> pShot = new ArrayList<Circle>();
-    List<Shield> shields = new ArrayList<Shield>();
-    ImageView player;
-    Circle dotR = new Circle();
-    boolean toRight = true;
-    Text lives;
-    Text points;
-    int numPoints = 0;
-    int numLives = 3;
-    private int SPACE = 40;
-    private int rectangleSize = 8;
-    private Group shieldGroup = new Group();
-    private Group secondShield = new Group();
-    private Group thirdShield = new Group();
-    private Group fourthShield = new Group();
+    private List<ImageView> invaders = new ArrayList<ImageView>();
+    private List<Circle> iShot = new ArrayList<Circle>();
+    private List<Circle> pShot = new ArrayList<Circle>();
+    private List<Shield> shields = new ArrayList<Shield>();
+    private ImageView player;
+    private Circle dotR = new Circle();
+    private boolean toRight = true;
+    private Text lives;
+    private Text points;
+    private int numPoints = 0;
+    private int numLives = 3;
+
+    //Variables for smoother movement test
+    private static final double W = 500, H = 700;
+    boolean goLeft, goRight;
+
 
     //Main method for starting the game
     public static void main(String[] args){
@@ -66,8 +65,7 @@ public class SpaceInvaders extends Application{
         points.setLayoutX(350);
         points.setLayoutY(30);
         points.setFill(Color.WHITE);
-        root.getChildren().addAll(lives, points, shieldGroup, secondShield,
-                thirdShield);
+        root.getChildren().addAll(lives, points);
         dotR.setLayoutX(0);
 
         //Creating player
@@ -100,21 +98,64 @@ public class SpaceInvaders extends Application{
         Image img = new Image("https://i.imgur.com/5IDCYYW.png");
         scene.setFill(new ImagePattern(img));
 
+        //Testing smoother movement
+        moveShipTo(W/2, 0);
+
         //methods for moving the player
         scene.setOnKeyPressed(e ->{
-            if(e.getCode() == KeyCode.RIGHT){
-                player.setLayoutX(player.getLayoutX() + 10);
-            }
-            if(e.getCode() == KeyCode.LEFT){
-                player.setLayoutX(player.getLayoutX() - 10);
-            }
-            if(e.getCode() == KeyCode.SPACE){
-                playerFiring(player.getLayoutX());
+           switch(e.getCode()){
+               case LEFT: goLeft = true;break;
+               case RIGHT: goRight = true;break;
+               case SPACE: playerFiring(player.getLayoutX());break;
+           }
+        });
+
+        scene.setOnKeyReleased(e ->{
+            switch(e.getCode()){
+                case LEFT: goLeft = false;break;
+                case RIGHT: goRight = false;break;
             }
         });
         stage.setScene(scene);
         stage.setTitle("Space Invaders Test");
         stage.show();
+
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                int dx = 0, dy = 0;
+
+                if(goLeft) dx -= 10;
+                if(goRight)dx += 10;
+
+                moveShipBy(dx,dy);
+            }
+        };
+        timer.start();
+    }
+
+    private void moveShipBy(int dx, int dy){
+        if(dx == 0 && dy == 0) return;
+
+        final double cx = player.getBoundsInLocal().getWidth() / 2;
+        final double cy = player.getBoundsInLocal().getHeight() / 2;
+
+        double x = cx + player.getLayoutX() + dx;
+        double y = cy + player.getLayoutY() + dy;
+
+        moveShipTo(x,y);
+    }
+
+    private void moveShipTo(double x, double y){
+        final double cx = player.getBoundsInLocal().getWidth() / 2;
+        final double cy = player.getBoundsInLocal().getHeight() / 2;
+
+        if(x - cx >= 0 &&
+           x + cx <= W &&
+           y - cy >= 0 &&
+           y + cy <= H){
+            player.relocate(x-cx, y-cy);
+        }
     }
 
     //Method for controlling the game updates
