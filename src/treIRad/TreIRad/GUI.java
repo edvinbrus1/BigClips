@@ -51,13 +51,8 @@ public class GUI extends JFrame{
     }
 
 
-    public void winPopUp(Winner win){
-        if (win==Winner.Player){
-            JOptionPane.showMessageDialog(null,"Player wins!");
-        }
-        else if (win==Winner.Ai){
-            JOptionPane.showMessageDialog(null,"Computer wins!");
-        }
+    public void winPopUp(String str){
+        JOptionPane.showMessageDialog(null,str);
     }
 
 
@@ -70,43 +65,69 @@ public class GUI extends JFrame{
     public void setButtonImage(JButton jb, ImageIcon icon){
         jb.setIcon(icon);
         jb.setDisabledIcon(icon);
+        jb.setEnabled(false);
     }
 
 
     public void setJb1(ImageIcon icon) {
         jb1.setIcon(icon);
+        jb1.setDisabledIcon(icon);
+        jb1.setEnabled(false);
+
     }
 
     public void setJb2(ImageIcon icon) {
         jb2.setIcon(icon);
+        jb2.setDisabledIcon(icon);
+        jb2.setEnabled(false);
+
     }
 
     public void setJb3(ImageIcon icon) {
         jb3.setIcon(icon);
+        jb3.setDisabledIcon(icon);
+        jb3.setEnabled(false);
+
     }
 
     public void setJb4(ImageIcon icon) {
         jb4.setIcon(icon);
+        jb4.setDisabledIcon(icon);
+        jb4.setEnabled(false);
+
     }
 
     public void setJb5(ImageIcon icon) {
         jb5.setIcon(icon);
+        jb5.setDisabledIcon(icon);
+        jb5.setEnabled(false);
+
     }
 
     public void setJb6(ImageIcon icon) {
         jb6.setIcon(icon);
+        jb6.setDisabledIcon(icon);
+        jb6.setEnabled(false);
+
     }
 
     public void setJb7(ImageIcon icon) {
         jb7.setIcon(icon);
+        jb7.setDisabledIcon(icon);
+        jb7.setEnabled(false);
+
     }
 
     public void setJb8(ImageIcon icon) {
         jb8.setIcon(icon);
+        jb8.setDisabledIcon(icon);
+        jb8.setEnabled(false);
     }
 
     public void setJb9(ImageIcon icon) {
         jb9.setIcon(icon);
+        jb9.setDisabledIcon(icon);
+        jb9.setEnabled(false);
     }
 
     private class Listener implements ActionListener{

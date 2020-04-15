@@ -17,16 +17,6 @@ public class Game {
     int[][] board = {{0,0,0},{0,0,0},{0,0,0}};
 
 
-
-
-    public Game(){
-        rand = new Random();
-        turn=2;
-        //  turn = rand.nextInt(2)+1;       // 1 is player, 2 is Ai
-        setIcons();
-
-    }
-
     //Borde kanske flyttas till gui??
     public void setIcons() {
         try {
@@ -43,23 +33,6 @@ public class Game {
     }
 
 
-    //Byter vems tur det är
-    public void changeTurn(){
-        if (turn==2){       //Change current turn from Ai to player
-            turn=1;
-        }
-        else if (turn==1){     //Changes current turn from player to AI
-            turn=2;
-        }
-
-    }
-
-    //Returns current turn
-    public int getTurn(){
-        return turn;
-    }
-
-
     //Returnerar aktuell spelares icon
     public ImageIcon setImage(){
         if (getTurn()==1){
@@ -68,36 +41,61 @@ public class Game {
         return aiIcon;
     }
 
-    public void playerWon(){
-    //    checkWin(1,3);
-    }
-    public void aiWon(){
-   //     checkWin(10,30);
+
+    public Game(){
+        rand = new Random();
+        setIcons();
+
     }
 
-    //Söker genom board arrayen för att se om en spelare har 3 markörer i rad
+    //Randomises which player starts first
+    public void randomiseTurn(){
+        turn = rand.nextInt(2)+1;       // 1 is player, 2 is Ai
+    }
+
+
+
+    //Changes turns
+    public void changeTurn(){
+        if (turn==2){       //Change current turn from Ai to player
+            turn=1;
+        }
+        else if (turn==1){     //Changes current turn from player to AI
+            turn=2;
+        }
+    }
+
+    //Returns current turn
+    public int getTurn(){
+        return turn;
+    }
+
+
+
+
+    //Searches through the board to see if anyone has won by having 3 pieces in a row either vertically, horizontally or diagonally.
     public Winner checkWin(){
 
     int a=0, b=0;
 
         for (int i =0;i<3;i++){
-
             a=0;
             b=0;
             for (int j=0;j<3;j++){
-                    if (board[i][j]==1){
+                if (board[i][j]==1){
                     a+=board[i][j];
                 }
                 if (board[i][j]==10){
                     b+=board[i][j];
                 }
-             if (a==3) {
+                if (a==3) {
                  return Winner.Player;
              }
-             if (b==30){
+                if (b==30){
                  return Winner.Ai;
              }
-         }}
+             }
+        }
 
         for (int j=0;j<3;j++){
             a=0;
@@ -136,12 +134,12 @@ public class Game {
 
     //Ändrar värden i board array beroende på vems tur det är
     public void setBoard(int position){
-            int value=1;
 
+            int value=1;
+        //If its AI's turn
         if (getTurn()==2){
             value=10;
         }
-
 
         if (position==1){
             board[0][0]=value;
@@ -170,17 +168,32 @@ public class Game {
         else if (position==9){
             board[2][2]=value;
         }
-
     }
 
-    public void aiFirstMove(){
-        for (int i=0;i<board.length;i++){
-            for (int j=0;j<board[i].length;j++){
+    public void setBoard(int row, int col, int value){
+        board[row][col]=value;
+    }
 
+
+    public double[] aiFirstMove(){
+        double[] move = new double[2];
+        int row, col;
+        boolean bool=true;
+            while (bool) {
+                row = rand.nextInt(3);
+                col = rand.nextInt(3);
+
+                if(board[row][col]==0){
+                    move[0]=row;
+                    move[1]=col;
+                    board[row][col]=10;
+                    bool=false;
+                }
             }
-        }
+        return move;
     }
 
+    //Checks if game is a draw
     public Winner checkDraw() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -194,6 +207,13 @@ public class Game {
         }
         return Winner.None;
     }
+
+    public int[][] getBoard(){
+        return board;
+    }
+
+/*
+
     public double[] bestMove(){
 
         double bestScore = Double.NEGATIVE_INFINITY;
@@ -219,29 +239,26 @@ public class Game {
                 }
             }
         }
-        board[row][col]=10;
-        changeTurn();
+        setBoard(row,col,10);
         return move;
     }
 
 
-
     public double minimax(int[][]board, int depth, Boolean isMaximizing){
+
         Winner result = checkWin();
+
         if ((result==Winner.Player)){
-            System.out.println("player");
             return -10;
         }
 
         if ((result==Winner.Ai)){
-            System.out.println("Ai");
             return 10;
         }
 
         if (checkDraw()==Winner.Draw){
             return 0;
         }
-
 
         if (isMaximizing){
             double bestScore= Double.NEGATIVE_INFINITY;
@@ -252,25 +269,32 @@ public class Game {
                         double score = minimax(board, depth+1, false );
                         board[i][j]=0;
                         bestScore= Math.max(score,bestScore);
-                        }
                     }
                 }
+            }
             return bestScore;
-            }else{
-                double bestScore = Double.POSITIVE_INFINITY;
-                for (int i=0; i<3; i++){
-                    for (int j=0; j<3; j++){
-                        if (board[i][j]==0){
-                            board[i][j]=1;
-                            double score = minimax(board, depth+1, true);
-                            board[i][j] = 0;
-                            bestScore= Math.min(score,bestScore);
-                        }
+        }else{
+            double bestScore = Double.POSITIVE_INFINITY;
+            for (int i=0; i<3; i++){
+                for (int j=0; j<3; j++){
+                    if (board[i][j]==0){
+
+                        board[i][j]=1;
+                        double score = minimax(board, depth+1, true);
+                        board[i][j] = 0;
+                        bestScore= Math.min(score,bestScore);
                     }
                 }
+            }
             return bestScore;
         }
     }
+
+
+
+ */
+
+
 }
 
 
