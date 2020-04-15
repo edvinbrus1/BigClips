@@ -1,4 +1,4 @@
-package spaceInv;
+package spaceInvaders;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,16 +8,16 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -27,23 +27,21 @@ public class SpaceInvaders extends Application{
 
     AnimationTimer timer;
     Pane root = new Pane();
-    List<ImageView> invaders = new ArrayList<ImageView>();
-    List<Circle> iShot = new ArrayList<Circle>();
-    List<Circle> pShot = new ArrayList<Circle>();
-    List<Shield> shields = new ArrayList<Shield>();
-    ImageView player;
-    Circle dotR = new Circle();
-    boolean toRight = true;
-    Text lives;
-    Text points;
-    int numPoints = 0;
-    int numLives = 3;
-    private int SPACE = 40;
-    private int rectangleSize = 8;
-    private Group shieldGroup = new Group();
-    private Group secondShield = new Group();
-    private Group thirdShield = new Group();
-    private Group fourthShield = new Group();
+    private List<ImageView> invaders = new ArrayList<ImageView>();
+    private List<Circle> iShot = new ArrayList<Circle>();
+    private List<Circle> pShot = new ArrayList<Circle>();
+    private ImageView player;
+    private Circle dotR = new Circle();
+    private boolean toRight = true;
+    private Text lives;
+    private Text points;
+    private int numPoints = 0;
+    private int numLives = 3;
+
+    //Variables for smoother movement test
+    private static final double W = 500, H = 700;
+    boolean goLeft, goRight;
+
 
     //Main method for starting the game
     public static void main(String[] args){
@@ -54,20 +52,17 @@ public class SpaceInvaders extends Application{
     @Override
     public void start(Stage stage) throws Exception {
         lives = new Text("Lives: 3");
+        lives.setFont(new Font("Sans Serif", 24));
         lives.setLayoutX(20);
         lives.setLayoutY(30);
         lives.setFill(Color.WHITE);
 
         points = new Text("Points: 0");
+        points.setFont(new Font("Sans Serif", 24));
         points.setLayoutX(350);
         points.setLayoutY(30);
         points.setFill(Color.WHITE);
-        root.getChildren().addAll(lives, points, shieldGroup, secondShield,
-                thirdShield);
-
-        //Testing some shields might get deleted later
-        setShields();
-
+        root.getChildren().addAll(lives, points);
         dotR.setLayoutX(0);
 
         //Creating player
@@ -76,9 +71,7 @@ public class SpaceInvaders extends Application{
 
         //Creating invaders
         addInvaders();
-
-        //Test method for shields
-        setShields();
+        
 
         timer = new AnimationTimer() {
             @Override
@@ -89,7 +82,7 @@ public class SpaceInvaders extends Application{
         timer.start();
 
         //Timeline for the invaders firing
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event ->{
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event ->{
             if(!invaders.isEmpty()){
                 invadersFiring();
             }
@@ -99,23 +92,67 @@ public class SpaceInvaders extends Application{
 
         //Creating the map for the game
         Scene scene = new Scene(root, 500,700);
-        scene.setFill(Color.BLACK);
+        Image img = new Image("https://i.imgur.com/5IDCYYW.png");
+        scene.setFill(new ImagePattern(img));
+
+        //Testing smoother movement
+        moveShipTo(W/2, 0);
 
         //methods for moving the player
         scene.setOnKeyPressed(e ->{
-            if(e.getCode() == KeyCode.RIGHT){
-                player.setLayoutX(player.getLayoutX() + 5);
-            }
-            if(e.getCode() == KeyCode.LEFT){
-                player.setLayoutX(player.getLayoutX() - 5);
-            }
-            if(e.getCode() == KeyCode.SPACE){
-                playerFiring(player.getLayoutX());
+           switch(e.getCode()){
+               case LEFT: goLeft = true;break;
+               case RIGHT: goRight = true;break;
+               case SPACE: playerFiring(player.getLayoutX());break;
+           }
+        });
+
+        scene.setOnKeyReleased(e ->{
+            switch(e.getCode()){
+                case LEFT: goLeft = false;break;
+                case RIGHT: goRight = false;break;
             }
         });
         stage.setScene(scene);
         stage.setTitle("Space Invaders Test");
         stage.show();
+
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                int dx = 0, dy = 0;
+
+                if(goLeft) dx -= 10;
+                if(goRight)dx += 10;
+
+                moveShipBy(dx,dy);
+            }
+        };
+        timer.start();
+    }
+
+    private void moveShipBy(int dx, int dy){
+        if(dx == 0 && dy == 0) return;
+
+        final double cx = player.getBoundsInLocal().getWidth() / 2;
+        final double cy = player.getBoundsInLocal().getHeight() / 2;
+
+        double x = cx + player.getLayoutX() + dx;
+        double y = cy + player.getLayoutY() + dy;
+
+        moveShipTo(x,y);
+    }
+
+    private void moveShipTo(double x, double y){
+        final double cx = player.getBoundsInLocal().getWidth() / 2;
+        final double cy = player.getBoundsInLocal().getHeight() / 2;
+
+        if(x - cx >= 0 &&
+           x + cx <= W &&
+           y - cy >= 0 &&
+           y + cy <= H){
+            player.relocate(x-cx, y-cy);
+        }
     }
 
     //Method for controlling the game updates
@@ -127,37 +164,6 @@ public class SpaceInvaders extends Application{
         invadersMovement();
         gameWon();
         gameLost();
-    }
-
-    //Method for setting the shields
-    private void setShields(){
-        for(int x = 0, i = 0; x < 550; x += 3*SPACE, i++){
-            Shield shield = new Shield();
-            int[][] shieldMatrix = shield.getShield();
-            Group group = getShieldGroup(x);
-            renderShield(x, shield, shieldMatrix, group);
-        }
-    }
-
-    //Method for rendering the shield/shields
-    private void renderShield(int startingX, Shield shield, int[][] shieldMatrix, Group group){
-        shield.setLocationX(0);
-        shield.setLocationY(550);
-        shields.add(shield);
-        group.getChildren().clear();
-
-        for(int i = 0, y = 550; i < shieldMatrix.length; i++, y+= rectangleSize){
-            for(int j = 0, x = startingX; j < shieldMatrix[0].length && x <= 550 + SPACE; j++, x += rectangleSize){
-                if(shieldMatrix[i][j] != 0){
-                    Rectangle rect = new Rectangle();
-                    rect.setFill(shield.getColor());
-                    rect.setWidth(rectangleSize);
-                    rect.setHeight(rectangleSize);
-                    rect.relocate(x,y);
-                    group.getChildren().add(rect);
-                }
-            }
-        }
     }
 
     //One of the methods for controlling when the monsters will fire
@@ -232,7 +238,7 @@ public class SpaceInvaders extends Application{
     
     //Method for selecting the image to be used for the invaders
     public ImageView invader(double x, double y){
-        ImageView i = new ImageView(new Image(getClass().getResourceAsStream("/resources/inv.png")));
+        ImageView i = new ImageView(new Image(getClass().getResourceAsStream("/resources/inva.png")));
         i.setLayoutX(x);
         i.setLayoutY(y);
         i.setFitHeight(50);
@@ -244,7 +250,7 @@ public class SpaceInvaders extends Application{
     public Circle
     projectile(double x, double y) {
         Circle c = new Circle();
-        c.setFill(Color.AQUAMARINE);
+        c.setFill(Color.LIGHTYELLOW);
         c.setLayoutX(x);
         c.setLayoutY(y);
         c.setRadius(3);
@@ -295,47 +301,10 @@ public class SpaceInvaders extends Application{
                     invaders.remove(j);
                     root.getChildren().remove(pShot.get(i));
                     pShot.remove(i);
-                    numPoints += 100;
+                    numPoints += 50;
                     points.setText("Points: " + numPoints);
                 }
             }
-        }
-    }
-
-    //Test method for what will happen if a shield is hit
-    private boolean shieldHit(Sprite projectile){
-        for(Shield shield : shields){
-            int[][] matrix = shield.getShield();
-            for(int row = 0; row < matrix.length; row ++){
-                for(int j = 0; j < matrix[0].length; j++){
-                    if(matrix[row][j] != 0){
-                        if(projectile.getPositionX() >= shield.getLocationX() - 5 &&
-                            projectile.getPositionX() <= shield.getLocationX() + j * rectangleSize + 5 &&
-                            projectile.getPositionY() >= shield.getLocationY() - 5 &&
-                            projectile.getPositionY() <= shield.getLocationY() + row * rectangleSize + 5){
-                           shield.deleteDestroyedParts(row,j);
-                           Group group = getShieldGroup((int)shield.getLocationX());
-                           renderShield((int)(shield.getLocationX()), shield,matrix,group);
-                           return true;
-                        }
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-
-    //Method for getting the shield groups TEST
-    private Group getShieldGroup(int x){
-        if(x <= 180){
-            return shieldGroup;
-        }else if(x <= 300){
-            return secondShield;
-        }else if(x <= 420){
-            return thirdShield;
-        }else{
-            return fourthShield;
         }
     }
 
@@ -357,12 +326,10 @@ public class SpaceInvaders extends Application{
     public void gameWon(){
         if(invaders.isEmpty()){
             Text text = new Text();
-            //TODO find a good font to use here
+            text.setFont(Font.font("Sans Serif", FontWeight.BOLD,50));
             text.setX(180);
             text.setY(300);
             text.setFill(Color.YELLOWGREEN);
-            text.setStrokeWidth(3);
-            text.setStroke(Color.GOLD);
             text.setText("WIN");
             root.getChildren().add(text);
             timer.stop();
@@ -373,13 +340,11 @@ public class SpaceInvaders extends Application{
     public void gameLost(){
         if(numLives <= 0){
             Text text = new Text();
-            //TODO find a good font to use here
+            text.setFont(Font.font("Sans Serif", FontWeight.BOLD,50));
             text.setX(180);
             text.setY(300);
-            text.setFill(Color.RED);
-            text.setStrokeWidth(3);
-            text.setStroke(Color.MAROON);
-            text.setText("LOST");
+            text.setFill(Color.INDIANRED);
+            text.setText("GAME OVER");
             root.getChildren().add(text);
             timer.stop();
         }
