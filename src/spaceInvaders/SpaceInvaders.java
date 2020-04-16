@@ -28,10 +28,10 @@ public class SpaceInvaders extends Application{
     AnimationTimer timer;
     Pane root = new Pane();
     private List<ImageView> invaders = new ArrayList<ImageView>();
-    private List<Circle> iShot = new ArrayList<Circle>();
-    private List<Circle> pShot = new ArrayList<Circle>();
+    private List<Circle> invaderProjectile = new ArrayList<Circle>();
+    private List<Circle> playerProjectile = new ArrayList<Circle>();
     private ImageView player;
-    private Circle dotR = new Circle();
+    private Circle projectile = new Circle();
     private boolean toRight = true;
     private Text lives;
     private Text points;
@@ -63,7 +63,7 @@ public class SpaceInvaders extends Application{
         points.setLayoutY(30);
         points.setFill(Color.WHITE);
         root.getChildren().addAll(lives, points);
-        dotR.setLayoutX(0);
+        projectile.setLayoutX(0);
 
         //Creating player
         player = player();
@@ -82,7 +82,7 @@ public class SpaceInvaders extends Application{
         timer.start();
 
         //Timeline for the invaders firing
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event ->{
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.7), event ->{
             if(!invaders.isEmpty()){
                 invadersFiring();
             }
@@ -92,7 +92,7 @@ public class SpaceInvaders extends Application{
 
         //Creating the map for the game
         Scene scene = new Scene(root, 500,700);
-        Image img = new Image("https://i.imgur.com/5IDCYYW.png");
+        Image img = new Image("https://3.bp.blogspot.com/-6xyJ92jKRjg/XD930UNULaI/AAAAAAAAAuM/jfz5tKgvmxYKj-YAtmhFM-s-JcGC1k7DQCKgBGAs/w1242-h2688-c/abstract-space-8-4k.jpg");
         scene.setFill(new ImagePattern(img));
 
         //Testing smoother movement
@@ -114,7 +114,7 @@ public class SpaceInvaders extends Application{
             }
         });
         stage.setScene(scene);
-        stage.setTitle("Space Invaders Test");
+        stage.setTitle("Space Invaders");
         stage.show();
 
         AnimationTimer timer = new AnimationTimer() {
@@ -131,6 +131,7 @@ public class SpaceInvaders extends Application{
         timer.start();
     }
 
+    //Methods used for smoother movement of the ship
     private void moveShipBy(int dx, int dy){
         if(dx == 0 && dy == 0) return;
 
@@ -143,6 +144,7 @@ public class SpaceInvaders extends Application{
         moveShipTo(x,y);
     }
 
+    //Methods used for smoother movement of the ship
     private void moveShipTo(double x, double y){
         final double cx = player.getBoundsInLocal().getWidth() / 2;
         final double cy = player.getBoundsInLocal().getHeight() / 2;
@@ -174,8 +176,8 @@ public class SpaceInvaders extends Application{
     //Method for the controlling the invaders projectiles
     public void invadersFiring(){
         int getInvaderFiringIndex = rand(0, invaders.size() - 1);
-        iShot.add(projectile(invaders.get(getInvaderFiringIndex).getLayoutX() + 25, invaders.get(getInvaderFiringIndex).getLayoutY() + 25));
-        root.getChildren().add(iShot.get(iShot.size() -1));
+        invaderProjectile.add(projectile(invaders.get(getInvaderFiringIndex).getLayoutX() + 25, invaders.get(getInvaderFiringIndex).getLayoutY() + 25));
+        root.getChildren().add(invaderProjectile.get(invaderProjectile.size() -1));
     }
 
     //Method for adding invaders
@@ -204,14 +206,14 @@ public class SpaceInvaders extends Application{
         else
             velocity = -0.6;
 
-        if(dotR.getLayoutX() >= 40){
+        if(projectile.getLayoutX() >= 40){
             toRight = false;
             for(int i = 0; i < invaders.size(); i++){
                 invaders.get(i).setLayoutY(invaders.get(i).getLayoutY() + 8);
             }
         }
 
-        if(dotR.getLayoutX() <= -20){
+        if(projectile.getLayoutX() <= -20){
             toRight = true;
             for(int i = 0; i < invaders.size(); i++){
                 invaders.get(i).setLayoutY(invaders.get(i).getLayoutY() + 8);
@@ -222,12 +224,12 @@ public class SpaceInvaders extends Application{
             invaders.get(i).setLayoutX(invaders.get(i).getLayoutX() + velocity);
         }
 
-        dotR.setLayoutX(dotR.getLayoutX() + velocity);
+        projectile.setLayoutX(projectile.getLayoutX() + velocity);
     }
 
     //Method for selecting the image of the players ship
     public ImageView player(){
-        ImageView i = new ImageView(new Image(getClass().getResourceAsStream("/resources/ship.png")));
+        ImageView i = new ImageView(new Image(getClass().getResourceAsStream("/resources/ship2.png")));
         i.setLayoutX(225);
         i.setLayoutY(650);
         i.setFitHeight(50);
@@ -259,18 +261,18 @@ public class SpaceInvaders extends Application{
 
     //Method for firing projectiles
     public void playerFiring(double x){
-        pShot.add(projectile((x + 25), 650));
-        root.getChildren().add(pShot.get(pShot.size() - 1));
+        playerProjectile.add(projectile((x + 25), 650));
+        root.getChildren().add(playerProjectile.get(playerProjectile.size() - 1));
     }
 
     //Method for updating the game when the player fires
     private void playerFiringUpdate(){
-        if(!pShot.isEmpty()){
-            for(int i = 0; i < pShot.size(); i++){
-                pShot.get(i).setLayoutY(pShot.get(i).getLayoutY() - 3);
-                if(pShot.get(i).getLayoutY()<=0){
-                    root.getChildren().remove(pShot.get(i));
-                    pShot.remove(i);
+        if(!playerProjectile.isEmpty()){
+            for(int i = 0; i < playerProjectile.size(); i++){
+                playerProjectile.get(i).setLayoutY(playerProjectile.get(i).getLayoutY() - 3);
+                if(playerProjectile.get(i).getLayoutY()<=0){
+                    root.getChildren().remove(playerProjectile.get(i));
+                    playerProjectile.remove(i);
                 }
             }
         }
@@ -278,12 +280,12 @@ public class SpaceInvaders extends Application{
 
     //Method for updating the game when an invader fires
     private void invaderFiringUpdate(){
-        if(!iShot.isEmpty()){
-            for(int i = 0; i < iShot.size(); i++){
-                iShot.get(i).setLayoutY(iShot.get(i).getLayoutY() + 3);
-                if(iShot.get(i).getLayoutY() <= 0){
-                    root.getChildren().remove(iShot.get(i));
-                    iShot.remove(i);
+        if(!invaderProjectile.isEmpty()){
+            for(int i = 0; i < invaderProjectile.size(); i++){
+                invaderProjectile.get(i).setLayoutY(invaderProjectile.get(i).getLayoutY() + 3);
+                if(invaderProjectile.get(i).getLayoutY() <= 0){
+                    root.getChildren().remove(invaderProjectile.get(i));
+                    invaderProjectile.remove(i);
                 }
             }
         }
@@ -291,16 +293,16 @@ public class SpaceInvaders extends Application{
 
     //Method for what happens when a invader is killed
     private void invaderKilled(){
-        for(int i = 0; i < pShot.size(); i++){
+        for(int i = 0; i < playerProjectile.size(); i++){
             for(int j = 0; j < invaders.size(); j++){
-                if(((pShot.get(i).getLayoutX() > invaders.get(j).getLayoutX())
-                &&((pShot.get(i).getLayoutX() < invaders.get(j).getLayoutX() + 50))
-                &&((pShot.get(i).getLayoutY() > invaders.get(j).getLayoutY())
-                &&((pShot.get(i).getLayoutY() < invaders.get(j).getLayoutY() + 50))))){
+                if(((playerProjectile.get(i).getLayoutX() > invaders.get(j).getLayoutX())
+                &&((playerProjectile.get(i).getLayoutX() < invaders.get(j).getLayoutX() + 50))
+                &&((playerProjectile.get(i).getLayoutY() > invaders.get(j).getLayoutY())
+                &&((playerProjectile.get(i).getLayoutY() < invaders.get(j).getLayoutY() + 50))))){
                     root.getChildren().remove(invaders.get(j));
                     invaders.remove(j);
-                    root.getChildren().remove(pShot.get(i));
-                    pShot.remove(i);
+                    root.getChildren().remove(playerProjectile.get(i));
+                    playerProjectile.remove(i);
                     numPoints += 50;
                     points.setText("Points: " + numPoints);
                 }
@@ -310,11 +312,11 @@ public class SpaceInvaders extends Application{
 
     //Method for what happens when the player is killed
     private void playerKilled(){
-        for(int i = 0; i < iShot.size(); i++){
-            if(((iShot.get(i).getLayoutX() > player.getLayoutX())
-            &&((iShot.get(i).getLayoutX() < player.getLayoutX() + 50))
-            &&((iShot.get(i).getLayoutY() > player.getLayoutY())
-            &&((iShot.get(i).getLayoutY() < player.getLayoutY() + 50))))){
+        for(int i = 0; i < invaderProjectile.size(); i++){
+            if(((invaderProjectile.get(i).getLayoutX() > player.getLayoutX())
+            &&((invaderProjectile.get(i).getLayoutX() < player.getLayoutX() + 50))
+            &&((invaderProjectile.get(i).getLayoutY() > player.getLayoutY())
+            &&((invaderProjectile.get(i).getLayoutY() < player.getLayoutY() + 50))))){
                 player.setLayoutX(225);
                 numLives -= 1;
                 lives.setText("Lives: " + numLives);
