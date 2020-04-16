@@ -229,7 +229,7 @@ public class SpaceInvaders extends Application{
 
     //Method for selecting the image of the players ship
     public ImageView player(){
-        ImageView i = new ImageView(new Image(getClass().getResourceAsStream("/resources/ship3.png")));
+        ImageView i = new ImageView(new Image(getClass().getResourceAsStream("/resources/ship2.png")));
         i.setLayoutX(225);
         i.setLayoutY(650);
         i.setFitHeight(50);
