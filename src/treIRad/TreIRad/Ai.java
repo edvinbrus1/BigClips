@@ -29,7 +29,7 @@ public class Ai {
                 if (board[i][j] == 0) {
                     //Sets square to Ai's value
                     board[i][j] = 10;
-                    double score = minimax(board, 0, false);
+                    double score = minimax(board, -1, false); //-1 seemingly makes it harder
                     board[i][j] = 0;
                     if (score > bestScore) {
                         bestScore = score;
