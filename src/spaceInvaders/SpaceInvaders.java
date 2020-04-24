@@ -3,6 +3,7 @@ package spaceInvaders;
 import java.util.ArrayList;
 import java.util.List;
 
+import bigClips.BigClipsMenu;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
@@ -52,13 +53,14 @@ public class SpaceInvaders extends Application{
     @Override
     public void start(Stage stage) throws Exception {
         lives = new Text("Lives: 3");
-        lives.setFont(new Font("Sans Serif", 24));
+        lives.setFont(Font.loadFont(BigClipsMenu.class.getResource("/resources/JourneyPS3.ttf")
+                .toExternalForm(),20));
         lives.setLayoutX(20);
         lives.setLayoutY(30);
         lives.setFill(Color.WHITE);
 
         points = new Text("Points: 0");
-        points.setFont(new Font("Sans Serif", 24));
+        points.setFont(Font.font("JourneyPS3", 20));
         points.setLayoutX(350);
         points.setLayoutY(30);
         points.setFill(Color.WHITE);
@@ -328,10 +330,10 @@ public class SpaceInvaders extends Application{
     public void gameWon(){
         if(invaders.isEmpty()){
             Text text = new Text();
-            text.setFont(Font.font("Sans Serif", FontWeight.BOLD,50));
+            text.setFont(Font.font("JourneyPS3", FontWeight.BOLD,100));
             text.setX(180);
             text.setY(300);
-            text.setFill(Color.YELLOWGREEN);
+            text.setFill(Color.YELLOW);
             text.setText("WIN");
             root.getChildren().add(text);
             timer.stop();
@@ -342,7 +344,7 @@ public class SpaceInvaders extends Application{
     public void gameLost(){
         if(numLives <= 0){
             Text text = new Text();
-            text.setFont(Font.font("Sans Serif", FontWeight.BOLD,50));
+            text.setFont(Font.font("JourneyPS3", FontWeight.BOLD,100));
             text.setX(180);
             text.setY(300);
             text.setFill(Color.INDIANRED);
