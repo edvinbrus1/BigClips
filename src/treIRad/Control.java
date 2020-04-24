@@ -1,4 +1,4 @@
-package treIRad.TreIRad;
+package treIRad;
 
 import javax.swing.*;
 
@@ -7,7 +7,7 @@ public class Control {
     private GUI gui;
     private Game game;
     private Ai ai;
-    int turn;
+    private int turn;
 
 
     public static void main(String[]args){
@@ -27,7 +27,7 @@ public class Control {
         //Handles logic for first turn in the game. Randomises who starts. If Ai then calls Ai method for making a turn
         public void firstTurn(){
             game.randomiseTurn();
-            if (game.getTurn()==2){  //2 is the value for Ai turn
+            if (game.getTurn()==Turn.Ai){  //2 is the value for Ai turn
                 aiMove();
             }
         }
@@ -50,7 +50,6 @@ public class Control {
             }
             gui.winPopUp(str);
             System.exit(0);
-
         }
 
         public void playerMove(JButton jb, int i){

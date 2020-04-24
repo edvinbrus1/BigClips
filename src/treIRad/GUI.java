@@ -1,4 +1,4 @@
-package treIRad.TreIRad;
+package treIRad;
 
 import javax.swing.*;
 import java.awt.*;

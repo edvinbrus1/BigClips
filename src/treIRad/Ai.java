@@ -1,4 +1,4 @@
-package treIRad.TreIRad;
+package treIRad;
 
 public class Ai {
 

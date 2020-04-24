@@ -1,20 +1,19 @@
-package treIRad.TreIRad;
+package treIRad;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Random;
 
 public class Game {
-    int turn;
-    Random rand;
-    ImageIcon playerIcon;
-    ImageIcon aiIcon;
-    int[][] board = {{0,0,0},{0,0,0},{0,0,0}};
+    private int turn;
+    private Random rand;
+    private ImageIcon playerIcon;
+    private ImageIcon aiIcon;
+    private int[][] board = {{0,0,0},{0,0,0},{0,0,0}};
+    private Turn currentTurn;
 
 
     //Borde kanske flyttas till gui??
@@ -23,7 +22,6 @@ public class Game {
 
             Image playerImg = ImageIO.read(new File("images/red.jpg"));
             Image aiImg = ImageIO.read(new File("images/yellow.jpg"));
-
 
             playerIcon = new ImageIcon(playerImg);
             aiIcon = new ImageIcon(aiImg);
@@ -35,7 +33,7 @@ public class Game {
 
     //Returnerar aktuell spelares icon
     public ImageIcon setImage(){
-        if (getTurn()==1){
+        if (getTurn()==Turn.Player){
             return playerIcon;
         }
         return aiIcon;
@@ -50,24 +48,29 @@ public class Game {
 
     //Randomises which player starts first
     public void randomiseTurn(){
-        turn = rand.nextInt(2)+1;       // 1 is player, 2 is Ai
+        int turn = rand.nextInt(2)+1;       // 1 is player, 2 is Ai
+        if (turn==1){
+            currentTurn=Turn.Player;
+        }
+        else
+            currentTurn=Turn.Ai;
     }
 
 
 
     //Changes turns
     public void changeTurn(){
-        if (turn==2){       //Change current turn from Ai to player
-            turn=1;
+        if (currentTurn==Turn.Ai){       //Change current turn from Ai to player
+            currentTurn=Turn.Player;
         }
-        else if (turn==1){     //Changes current turn from player to AI
-            turn=2;
+        else if (currentTurn==Turn.Player){     //Changes current turn from player to AI
+            currentTurn=Turn.Ai;
         }
     }
 
     //Returns current turn
-    public int getTurn(){
-        return turn;
+    public Turn getTurn(){
+        return currentTurn;
     }
 
 
@@ -137,7 +140,7 @@ public class Game {
 
             int value=1;
         //If its AI's turn
-        if (getTurn()==2){
+        if (getTurn()==Turn.Ai){
             value=10;
         }
 
@@ -211,88 +214,6 @@ public class Game {
     public int[][] getBoard(){
         return board;
     }
-
-/*
-
-    public double[] bestMove(){
-
-        double bestScore = Double.NEGATIVE_INFINITY;
-        double move[]= new double[2];
-        int row=0, col=0;
-
-        for(int i=0; i<3 ;i++) {
-            for (int j = 0; j < 3; j++) {
-
-                //Checks if square is empty
-                if (board[i][j] == 0) {
-                    //Sets square to Ai's value
-                    board[i][j] = 10;
-                    double score = minimax(board, 0, false);
-                    board[i][j] = 0;
-                    if (score > bestScore) {
-                        bestScore = score;
-                        row=i;
-                        col=j;
-                        move[0]=i;
-                        move[1]=j;
-                    }
-                }
-            }
-        }
-        setBoard(row,col,10);
-        return move;
-    }
-
-
-    public double minimax(int[][]board, int depth, Boolean isMaximizing){
-
-        Winner result = checkWin();
-
-        if ((result==Winner.Player)){
-            return -10;
-        }
-
-        if ((result==Winner.Ai)){
-            return 10;
-        }
-
-        if (checkDraw()==Winner.Draw){
-            return 0;
-        }
-
-        if (isMaximizing){
-            double bestScore= Double.NEGATIVE_INFINITY;
-            for (int i=0;i<3;i++){
-                for (int j=0;j<3;j++){
-                    if (board[i][j]==0){
-                        board[i][j]=10;
-                        double score = minimax(board, depth+1, false );
-                        board[i][j]=0;
-                        bestScore= Math.max(score,bestScore);
-                    }
-                }
-            }
-            return bestScore;
-        }else{
-            double bestScore = Double.POSITIVE_INFINITY;
-            for (int i=0; i<3; i++){
-                for (int j=0; j<3; j++){
-                    if (board[i][j]==0){
-
-                        board[i][j]=1;
-                        double score = minimax(board, depth+1, true);
-                        board[i][j] = 0;
-                        bestScore= Math.min(score,bestScore);
-                    }
-                }
-            }
-            return bestScore;
-        }
-    }
-
-
-
- */
 
 
 }
