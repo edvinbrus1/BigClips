@@ -1,4 +1,4 @@
-package bigClips;
+package bigClips.startMenuTest;
 
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Pane;

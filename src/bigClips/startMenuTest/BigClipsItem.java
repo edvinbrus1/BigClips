@@ -1,4 +1,4 @@
-package bigClips;
+package bigClips.startMenuTest;
 
 import javafx.beans.binding.Bindings;
 import javafx.scene.effect.BoxBlur;

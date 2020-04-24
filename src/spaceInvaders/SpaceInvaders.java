@@ -3,7 +3,7 @@ package spaceInvaders;
 import java.util.ArrayList;
 import java.util.List;
 
-import bigClips.BigClipsMenu;
+import bigClips.startMenuTest.BigClipsMenu;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;

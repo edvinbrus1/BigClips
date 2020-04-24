@@ -1,4 +1,4 @@
-package bigClips;
+package bigClips.startMenuTest;
 
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
