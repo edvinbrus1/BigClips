@@ -1,9 +1,12 @@
 package treIRad;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 public class GUI extends JFrame{
 
@@ -18,6 +21,9 @@ public class GUI extends JFrame{
     private JButton jb7 = new JButton("7");
     private JButton jb8 = new JButton("8");
     private JButton jb9 = new JButton("9");
+
+    private ImageIcon playerIcon;
+    private ImageIcon aiIcon;
 
 
     public GUI (Control control){
@@ -43,130 +49,126 @@ public class GUI extends JFrame{
         jb8.addActionListener(listener);
         jb9.addActionListener(listener);
 
+        setIcons();
         setSize(700,700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Tre på i rad");
         setVisible(true);
 
+
+    }
+
+    //Sets icons for each player
+    public void setIcons() {
+        try {
+
+            Image playerImg = ImageIO.read(new File("images/spaceship.png"));
+            Image aiImg = ImageIO.read(new File("images/ufo.png"));
+
+            playerIcon = new ImageIcon(playerImg);
+            aiIcon = new ImageIcon(aiImg);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
 
+    //Returns current players icon
+    public ImageIcon getImageIcon(Turn turn){
+        if (turn==Turn.Player){
+            return playerIcon;
+        }
+        return aiIcon;
+    }
+
+    //Pop up window that displays an inputted message
     public void winPopUp(String str){
         JOptionPane.showMessageDialog(null,str);
     }
 
 
+    //Takes an int value which represesnts a button and an enum which shows whos turn it is.
+    // Then sets the current players imageicon on the button and then disables that button
+    public void setJb(int i, Turn turn){
+        JButton jb = new JButton("");
+
+        //int value is transformed to the matching JButton inside the switch statement
+        switch (i) {
+            case 1:
+                jb = jb1;
+                break;
+            case 2:
+                jb=jb2;
+                break;
+            case 3:
+                jb=jb3;
+                break;
+            case 4:
+                jb=jb4;
+                break;
+            case 5:
+                jb=jb5;
+                break;
+            case 6:
+                jb=jb6;
+                break;
+            case 7:
+                jb=jb7;
+                break;
+            case 8:
+                jb=jb8;
+                break;
+            case 9:
+                jb=jb9;
+                break;
+        }
 
 
-    public void deactivateButton(JButton jb){
+        jb.setIcon(getImageIcon(turn));
+        jb.setDisabledIcon(getImageIcon(turn));
         jb.setEnabled(false);
-    }
 
-    public void setButtonImage(JButton jb, ImageIcon icon){
-        jb.setIcon(icon);
-        jb.setDisabledIcon(icon);
-        jb.setEnabled(false);
-    }
-
-
-    public void setJb1(ImageIcon icon) {
-        jb1.setIcon(icon);
-        jb1.setDisabledIcon(icon);
-        jb1.setEnabled(false);
 
     }
 
-    public void setJb2(ImageIcon icon) {
-        jb2.setIcon(icon);
-        jb2.setDisabledIcon(icon);
-        jb2.setEnabled(false);
-
-    }
-
-    public void setJb3(ImageIcon icon) {
-        jb3.setIcon(icon);
-        jb3.setDisabledIcon(icon);
-        jb3.setEnabled(false);
-
-    }
-
-    public void setJb4(ImageIcon icon) {
-        jb4.setIcon(icon);
-        jb4.setDisabledIcon(icon);
-        jb4.setEnabled(false);
-
-    }
-
-    public void setJb5(ImageIcon icon) {
-        jb5.setIcon(icon);
-        jb5.setDisabledIcon(icon);
-        jb5.setEnabled(false);
-
-    }
-
-    public void setJb6(ImageIcon icon) {
-        jb6.setIcon(icon);
-        jb6.setDisabledIcon(icon);
-        jb6.setEnabled(false);
-
-    }
-
-    public void setJb7(ImageIcon icon) {
-        jb7.setIcon(icon);
-        jb7.setDisabledIcon(icon);
-        jb7.setEnabled(false);
-
-    }
-
-    public void setJb8(ImageIcon icon) {
-        jb8.setIcon(icon);
-        jb8.setDisabledIcon(icon);
-        jb8.setEnabled(false);
-    }
-
-    public void setJb9(ImageIcon icon) {
-        jb9.setIcon(icon);
-        jb9.setDisabledIcon(icon);
-        jb9.setEnabled(false);
-    }
 
     private class Listener implements ActionListener{
 
         public void actionPerformed(ActionEvent e) {
             if (e.getSource()==jb1){
-                control.playerMove(jb1, 1);
+                control.playerMove( 1);
 
             }
             if (e.getSource()==jb2){
-                control.playerMove(jb2,2);
+                control.playerMove(2);
             }
 
             if (e.getSource()==jb3){
-                control.playerMove(jb3,3);
+                control.playerMove(3);
 
             }
             if (e.getSource()==jb4){
-                control.playerMove(jb4,4);
+                control.playerMove(4);
 
             }
             if (e.getSource()==jb5){
-                control.playerMove(jb5,5);
+                control.playerMove(5);
 
             }
             if (e.getSource()==jb6){
-                control.playerMove(jb6,6);
+                control.playerMove(6);
 
             }
             if (e.getSource()==jb7){
-                control.playerMove(jb7,7);
+                control.playerMove(7);
 
             }
             if (e.getSource()==jb8){
-                control.playerMove(jb8,8);
+                control.playerMove(8);
 
             }
             if (e.getSource()==jb9){
-                control.playerMove(jb9,9);
+                control.playerMove(9);
 
             }
 

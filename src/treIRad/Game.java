@@ -8,41 +8,13 @@ import java.io.IOException;
 import java.util.Random;
 
 public class Game {
-    private int turn;
+
     private Random rand;
-    private ImageIcon playerIcon;
-    private ImageIcon aiIcon;
     private int[][] board = {{0,0,0},{0,0,0},{0,0,0}};
     private Turn currentTurn;
 
-
-    //Borde kanske flyttas till gui??
-    public void setIcons() {
-        try {
-
-            Image playerImg = ImageIO.read(new File("images/red.jpg"));
-            Image aiImg = ImageIO.read(new File("images/yellow.jpg"));
-
-            playerIcon = new ImageIcon(playerImg);
-            aiIcon = new ImageIcon(aiImg);
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-
-
-    //Returnerar aktuell spelares icon
-    public ImageIcon setImage(){
-        if (getTurn()==Turn.Player){
-            return playerIcon;
-        }
-        return aiIcon;
-    }
-
-
     public Game(){
         rand = new Random();
-        setIcons();
 
     }
 

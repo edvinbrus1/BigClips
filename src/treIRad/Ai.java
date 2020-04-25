@@ -2,8 +2,9 @@ package treIRad;
 
 public class Ai {
 
-    //Algoritmerna för Ai i den här klassen är hämtade från https://editor.p5js.org/codingtrain/sketches/0zyUhZdJD
-    //Justeringar har gjorts för att de ska fungera med den här implementationen av 3 i rad.
+    //The below algorithms are taken from https://editor.p5js.org/codingtrain/sketches/0zyUhZdJD
+    //Adjustements have been made in both methods to ensure that they work properly with this version
+    //of tic tac toe / tre i rad.
 
 
     private Game game;
@@ -11,8 +12,6 @@ public class Ai {
 
     public Ai(Game game){
         this.game=game;
- //       board=game.getBoard();
-
     }
 
     public double[] bestMove(){

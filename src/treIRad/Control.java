@@ -1,7 +1,5 @@
 package treIRad;
 
-import javax.swing.*;
-
 public class Control {
 
     private GUI gui;
@@ -52,14 +50,13 @@ public class Control {
             System.exit(0);
         }
 
-        public void playerMove(JButton jb, int i){
-                gui.deactivateButton(jb);
-                game.setBoard(i);
-                gui.setButtonImage(jb, game.setImage());
-                game.changeTurn();
-                checkResult();
-                aiMove();
-            }
+        public void playerMove(int i){
+            gui.setJb(i, game.getTurn());
+            game.setBoard(i);
+            game.changeTurn();
+            checkResult();
+            aiMove();
+        }
 
 
         //Updates the GUI with the Ai's move
@@ -67,49 +64,53 @@ public class Control {
 
             double[] move;
 
+            //If its the Ais first turn, calls on the firstmove method to randomise it
             if (turn<1){
                 move=game.aiFirstMove();
                 turn++;
             }
+            //Calls method which calculates which is the best move to make
             else {
                 move = ai.bestMove();
             }
 
+            //Transforms the Ais move to an int which is then sent to the gui
             if (move[0] == 0) {
                 if (move[1] == 0) {
-                    gui.setJb1(game.setImage());
+                    gui.setJb(1,game.getTurn());
                 }
                 if (move[1] == 1) {
-                    gui.setJb2(game.setImage());
+                    gui.setJb(2,game.getTurn());
                 }
                 if (move[1] == 2) {
-                    gui.setJb3(game.setImage());
+                    gui.setJb(3,game.getTurn());
                 }
             }
             if (move[0] == 1) {
                 if (move[1] == 0) {
-                    gui.setJb4(game.setImage());
+                    gui.setJb(4,game.getTurn());
                 }
                 if (move[1] == 1) {
-                    gui.setJb5(game.setImage());
+                    gui.setJb(5,game.getTurn());
                 }
                 if (move[1] == 2) {
-                    gui.setJb6(game.setImage());
+                    gui.setJb(6,game.getTurn());
                 }
             }
             if (move[0] == 2) {
                 if (move[1] == 0) {
-                    gui.setJb7(game.setImage());
+                    gui.setJb(7,game.getTurn());
                 }
                 if (move[1] == 1) {
-                    gui.setJb8(game.setImage());
+                    gui.setJb(8,game.getTurn());
                 }
                 if (move[1] == 2) {
-                    gui.setJb9(game.setImage());
+                    gui.setJb(9,game.getTurn());
                 }
 
             }
-          //  gui.winPopUp(game.checkWin());
+
+            //Calls on methods to check if the game is over and to change current turn
             checkResult();
             game.changeTurn();
         }
