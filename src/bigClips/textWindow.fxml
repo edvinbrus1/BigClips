@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bigClips.Controller">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bigClips.Controller">
    <children>
       <ImageView fitHeight="618.0" fitWidth="1093.0" layoutX="-292.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="file:/C:/Users/Edvin/Desktop/UISkiss.png" />
+            <Image url="@../resources/BCBackground.png" />
          </image>
       </ImageView>
       <TextFlow layoutX="15.0" layoutY="16.0" prefHeight="526.0" prefWidth="771.0">
