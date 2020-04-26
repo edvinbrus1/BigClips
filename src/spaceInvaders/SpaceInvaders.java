@@ -3,7 +3,6 @@ package spaceInvaders;
 import java.util.ArrayList;
 import java.util.List;
 
-import bigClips.startMenuTest.BigClipsMenu;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
@@ -53,7 +52,7 @@ public class SpaceInvaders extends Application{
     @Override
     public void start(Stage stage) throws Exception {
         lives = new Text("Lives: 3");
-        lives.setFont(Font.loadFont(BigClipsMenu.class.getResource("/resources/JourneyPS3.ttf")
+        lives.setFont(Font.loadFont(SpaceInvaders.class.getResource("/resources/JourneyPS3.ttf")
                 .toExternalForm(),20));
         lives.setLayoutX(20);
         lives.setLayoutY(30);
