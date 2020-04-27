@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import spaceInvaders.SpaceInvaders;
 
 import java.io.IOException;
 
@@ -22,6 +23,6 @@ public class StartUI extends Application {
     }
 
     public static void main(String[] args){
-        launch(args);
+        SpaceInvaders.launch(args);
     }
 }

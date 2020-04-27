@@ -3,6 +3,7 @@ package spaceInvaders;
 import java.util.ArrayList;
 import java.util.List;
 
+import bigClips.StartUI;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
@@ -45,7 +46,7 @@ public class SpaceInvaders extends Application{
 
     //Main method for starting the game
     public static void main(String[] args){
-        launch();
+        StartUI.launch(args);
     }
 
     //JavaFX method for creating the stage
