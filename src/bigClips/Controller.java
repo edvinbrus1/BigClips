@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import spaceInvaders.SpaceInvaders;
+import treIRad.TreIRad.Control;
 
 
 import java.awt.*;
@@ -50,5 +51,50 @@ public class Controller {
                }
            }
        });
+    }
+
+    @FXML
+    public void fgwContClicked(MouseEvent mouseEvent) throws IOException{
+        Parent secondTextWindow = FXMLLoader.load(getClass().getResource("secondTextWindow.fxml"));
+
+        Scene secondTextWindowScene = new Scene(secondTextWindow);
+
+        Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        window.setScene(secondTextWindowScene);
+        window.show();
+    }
+
+    @FXML
+    public void secondTWPClicked(MouseEvent mouseEvent) throws IOException{
+        Parent secondGameWindow = FXMLLoader.load(getClass().getResource("secondGameWindow.fxml"));
+
+        Scene secondGameWindowScene = new Scene(secondGameWindow);
+
+        Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        window.setScene(secondGameWindowScene);
+        window.show();
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                new Control().run();
+            }
+        });
+    }
+
+    @FXML
+    public void sgwContClicked(MouseEvent mouseEvent) throws IOException{
+        Parent resultWindow = FXMLLoader.load(getClass().getResource("resultWindow"));
+
+        Scene resultWindowScene = new Scene(resultWindow);
+
+        Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        window.setScene(resultWindowScene);
+        window.show();
+    }
+
+    @FXML
+    public void gameExitClicked(MouseEvent mouseEvent) throws IOException{
+        Platform.exit();
     }
 }

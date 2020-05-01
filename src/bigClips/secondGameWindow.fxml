@@ -13,7 +13,7 @@
             <Image url="@../resources/BCBackground.png" />
          </image>
       </ImageView>
-      <Text fx:id="btnCont1" fill="LIME" layoutX="621.0" layoutY="583.0" onMouseClicked="#fgwContClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="CONTINUE&gt;">
+      <Text fx:id="btnCont2" fill="LIME" layoutX="621.0" layoutY="583.0" onMouseClicked="#sgwContClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="CONTINUE&gt;">
          <font>
             <Font name="Consolas Bold" size="36.0" />
          </font>
