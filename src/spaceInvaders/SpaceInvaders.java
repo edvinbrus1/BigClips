@@ -24,7 +24,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 //Created by Edvin
-public class SpaceInvaders extends Application{
+public class SpaceInvaders extends Application implements Runnable{
 
     AnimationTimer timer;
     Pane root = new Pane();
@@ -352,5 +352,10 @@ public class SpaceInvaders extends Application{
             root.getChildren().add(text);
             timer.stop();
         }
+    }
+
+    @Override
+    public void run() {
+        launch();
     }
 }

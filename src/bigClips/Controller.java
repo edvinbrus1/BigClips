@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 import spaceInvaders.SpaceInvaders;
 
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 
 public class Controller {
@@ -37,5 +39,16 @@ public class Controller {
         Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
         window.setScene(firstGameScene);
         window.show();
+
+       Platform.runLater(new Runnable() {
+           @Override
+           public void run() {
+               try {
+                   new SpaceInvaders().start(new Stage());
+               } catch (Exception e) {
+                   e.printStackTrace();
+               }
+           }
+       });
     }
 }
