@@ -55,7 +55,6 @@ public class GUI extends JFrame{
         setTitle("Tre på i rad");
         setVisible(true);
 
-
     }
 
     //Sets icons for each player
@@ -128,6 +127,38 @@ public class GUI extends JFrame{
         jb.setDisabledIcon(getImageIcon(turn));
         jb.setEnabled(false);
 
+    }
+
+    public void resetGui(){
+        jb1.setIcon(null);
+        jb2.setIcon(null);
+        jb3.setIcon(null);
+        jb4.setIcon(null);
+        jb5.setIcon(null);
+        jb6.setIcon(null);
+        jb7.setIcon(null);
+        jb8.setIcon(null);
+        jb9.setIcon(null);
+
+        jb1.setDisabledIcon(null);
+        jb2.setDisabledIcon(null);
+        jb3.setDisabledIcon(null);
+        jb4.setDisabledIcon(null);
+        jb5.setDisabledIcon(null);
+        jb6.setDisabledIcon(null);
+        jb7.setDisabledIcon(null);
+        jb8.setDisabledIcon(null);
+        jb9.setDisabledIcon(null);
+
+        jb1.setEnabled(true);
+        jb2.setEnabled(true);
+        jb3.setEnabled(true);
+        jb4.setEnabled(true);
+        jb5.setEnabled(true);
+        jb6.setEnabled(true);
+        jb7.setEnabled(true);
+        jb8.setEnabled(true);
+        jb9.setEnabled(true);
 
     }
 

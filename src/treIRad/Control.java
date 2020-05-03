@@ -18,18 +18,23 @@ public class Control {
 
         public Control(){
             rand = new Random();
-            turn=0;
-       //     rndTurn = randomize(2);
-            game = new Game();
-            ai = new Ai(game);
             gui= new GUI(this);
-            firstTurn();
+            resetGame();
+       //     turn=0;
+       //     rndTurn = randomize(2);
+       //     game = new Game();
+       //     ai = new Ai(game);
+       //     firstTurn();
 
         }
 
         //Resets the board and starts the game over
         public void resetGame(){
-
+            turn=0;
+            game = new Game();
+            ai = new Ai(game);
+            firstTurn();
+            gui.resetGui();
         }
 
         public void randomize(int bound){
@@ -57,7 +62,7 @@ public class Control {
             if (game.checkWin()==Winner.None) {
                 if (game.checkDraw() == Winner.Draw) {
                     str = "An eye for an eye makes the whole world blind...";
-                } else return;
+                } else return;  //If no one has won yet, the method is stopped here
             }
             else if (game.checkWin()==Winner.Ai){
                 str = "Retreat! Live and fight another day...";
@@ -66,7 +71,8 @@ public class Control {
                 str = "This battle is won! But what about the war...";
             }
             gui.winPopUp(str);
-            System.exit(0);
+            resetGame();
+        //    System.exit(0);
         }
 
         //Handles the players move.
