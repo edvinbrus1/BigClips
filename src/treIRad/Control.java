@@ -1,11 +1,15 @@
 package treIRad;
 
+import java.util.Random;
+
 public class Control {
 
     private GUI gui;
     private Game game;
     private Ai ai;
     private int turn;
+    private Random rand;
+    private int maxRandom;
 
 
     public static void main(String[]args){
@@ -13,20 +17,35 @@ public class Control {
         }
 
         public Control(){
-
+            rand = new Random();
+            turn=0;
+       //     rndTurn = randomize(2);
             game = new Game();
             ai = new Ai(game);
             gui= new GUI(this);
-            turn=0;
             firstTurn();
 
+        }
+
+        //Resets the board and starts the game over
+        public void resetGame(){
+
+        }
+
+        public void randomize(int bound){
+            maxRandom = rand.nextInt(bound);
+    //        System.out.println(maxRandom);
         }
 
         //Handles logic for first turn in the game. Randomises who starts. If Ai then calls Ai method for making a turn
         public void firstTurn(){
             game.randomiseTurn();
-            if (game.getTurn()==Turn.Ai){  //2 is the value for Ai turn
+            if (game.getTurn()==Turn.Ai){
+                randomize(3);
                 aiMove();
+            }
+            else {
+                randomize(2);
             }
         }
 
@@ -50,12 +69,13 @@ public class Control {
             System.exit(0);
         }
 
+        //Handles the players move.
         public void playerMove(int i){
-            gui.setJb(i, game.getTurn());
-            game.setBoard(i);
-            game.changeTurn();
-            checkResult();
-            aiMove();
+            gui.setJb(i, game.getTurn()); //Updates the GUI with the players turn
+            game.setBoard(i);       //Updates the board with the players turn.
+            game.changeTurn();      //Changes the current turn to Ai
+            checkResult();          //Checks if the game is over
+            aiMove();               //Prompts the Ai to make its turn
         }
 
 
@@ -65,7 +85,7 @@ public class Control {
             double[] move;
 
             //If its the Ais first turn, calls on the firstmove method to randomise it
-            if (turn<1){
+            if (turn < maxRandom){
                 move=game.aiFirstMove();
                 turn++;
             }

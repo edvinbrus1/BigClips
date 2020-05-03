@@ -150,6 +150,7 @@ public class Game {
     }
 
 
+    //Randomises AI's turn
     public double[] aiFirstMove(){
         double[] move = new double[2];
         int row, col;
