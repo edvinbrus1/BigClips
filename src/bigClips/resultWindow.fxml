@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -22,11 +24,23 @@
          <font>
             <Font name="Consolas Bold" size="50.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
       </Text>
       <Text fill="WHITE" layoutX="345.0" layoutY="355.0" onMouseClicked="#gameExitClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="EXIT">
          <font>
             <Font name="Consolas Bold" size="50.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
       </Text>
    </children>
 </AnchorPane>

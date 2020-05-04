@@ -1,0 +1,9 @@
+@font-face {
+    font-family: JourneyPS3;
+    src: url(JourneyPS3);
+}
+
+.text{
+-fx-font-family: JourneyPS3;
+-fx-font-style: bold;
+}
