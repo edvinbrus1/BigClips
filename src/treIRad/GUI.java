@@ -29,6 +29,7 @@ public class GUI extends JFrame{
     public GUI (Control control){
         this.control=control;
         setLayout(new GridLayout(3,3));
+
         add(jb1);
         add(jb2);
         add(jb3);
@@ -38,6 +39,7 @@ public class GUI extends JFrame{
         add(jb7);
         add(jb8);
         add(jb9);
+
         Listener listener = new Listener();
         jb1.addActionListener(listener);
         jb2.addActionListener(listener);
@@ -121,7 +123,6 @@ public class GUI extends JFrame{
                 jb=jb9;
                 break;
         }
-
 
         jb.setIcon(getImageIcon(turn));
         jb.setDisabledIcon(getImageIcon(turn));

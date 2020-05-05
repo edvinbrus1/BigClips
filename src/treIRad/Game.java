@@ -15,7 +15,6 @@ public class Game {
 
     public Game(){
         rand = new Random();
-
     }
 
     //Randomises which player starts first
@@ -27,8 +26,6 @@ public class Game {
         else
             currentTurn=Turn.Ai;
     }
-
-
 
     //Changes turns
     public void changeTurn(){
@@ -44,9 +41,6 @@ public class Game {
     public Turn getTurn(){
         return currentTurn;
     }
-
-
-
 
     //Searches through the board to see if anyone has won by having 3 pieces in a row either vertically, horizontally or diagonally.
     public Winner checkWin(){

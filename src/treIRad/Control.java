@@ -25,7 +25,6 @@ public class Control {
        //     game = new Game();
        //     ai = new Ai(game);
        //     firstTurn();
-
         }
 
         //Resets the board and starts the game over
@@ -33,8 +32,8 @@ public class Control {
             turn=0;
             game = new Game();
             ai = new Ai(game);
-            firstTurn();
             gui.resetGui();
+            firstTurn();
         }
 
         public void randomize(int bound){
@@ -53,7 +52,6 @@ public class Control {
                 randomize(2);
             }
         }
-
 
         //Checks if someone has won or if the game is a draw
         public void checkResult(){
@@ -88,7 +86,7 @@ public class Control {
         //Updates the GUI with the Ai's move
         public void aiMove() {
 
-            double[] move;
+            double[] move ;
 
             //If its the Ais first turn, calls on the firstmove method to randomise it
             if (turn < maxRandom){
@@ -105,32 +103,32 @@ public class Control {
                 if (move[1] == 0) {
                     gui.setJb(1,game.getTurn());
                 }
-                if (move[1] == 1) {
+                else if (move[1] == 1) {
                     gui.setJb(2,game.getTurn());
                 }
-                if (move[1] == 2) {
+                else if (move[1] == 2) {
                     gui.setJb(3,game.getTurn());
                 }
             }
-            if (move[0] == 1) {
+            else if (move[0] == 1) {
                 if (move[1] == 0) {
                     gui.setJb(4,game.getTurn());
                 }
-                if (move[1] == 1) {
+                else if (move[1] == 1) {
                     gui.setJb(5,game.getTurn());
                 }
-                if (move[1] == 2) {
+                else if (move[1] == 2) {
                     gui.setJb(6,game.getTurn());
                 }
             }
-            if (move[0] == 2) {
+            else if (move[0] == 2) {
                 if (move[1] == 0) {
                     gui.setJb(7,game.getTurn());
                 }
-                if (move[1] == 1) {
+                else if (move[1] == 1) {
                     gui.setJb(8,game.getTurn());
                 }
-                if (move[1] == 2) {
+                else if (move[1] == 2) {
                     gui.setJb(9,game.getTurn());
                 }
 
