@@ -204,9 +204,9 @@ public class SpaceInvaders extends Application implements Runnable{
         double velocity;
 
         if(toRight)
-            velocity = 0.6;
+            velocity = 0.75;
         else
-            velocity = -0.6;
+            velocity = -0.75;
 
         if(projectile.getLayoutX() >= 40){
             toRight = false;
@@ -348,7 +348,7 @@ public class SpaceInvaders extends Application implements Runnable{
             text.setX(180);
             text.setY(300);
             text.setFill(Color.INDIANRED);
-            text.setText("GAME OVER");
+            text.setText("LOST");
             root.getChildren().add(text);
             timer.stop();
         }

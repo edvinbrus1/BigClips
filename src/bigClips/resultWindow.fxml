@@ -17,29 +17,32 @@
       </ImageView>
       <Text fill="WHITE" layoutX="208.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VICTORY">
          <font>
-            <Font name="Consolas Bold" size="100.0" />
+            <Font name="JourneyPS3 Regular" size="100.0" />
          </font>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#000000b1" />
+         </effect>
       </Text>
       <Text fill="WHITE" layoutX="263.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PLAY AGAIN">
          <font>
-            <Font name="Consolas Bold" size="50.0" />
+            <Font name="JourneyPS3 Regular" size="50.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <effect>
-            <DropShadow />
+            <DropShadow blurType="GAUSSIAN" color="#000000b4" />
          </effect>
       </Text>
       <Text fill="WHITE" layoutX="345.0" layoutY="355.0" onMouseClicked="#gameExitClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="EXIT">
          <font>
-            <Font name="Consolas Bold" size="50.0" />
+            <Font name="JourneyPS3 Regular" size="50.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <effect>
-            <DropShadow />
+            <DropShadow blurType="GAUSSIAN" color="#000000b2" />
          </effect>
       </Text>
    </children>

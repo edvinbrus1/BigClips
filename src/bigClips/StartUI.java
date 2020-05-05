@@ -9,6 +9,7 @@ import spaceInvaders.SpaceInvaders;
 
 import java.io.IOException;
 
+//Created by Edvin, starts the main game.
 public class StartUI extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
