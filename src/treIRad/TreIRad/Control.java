@@ -51,7 +51,7 @@ public class Control implements Runnable{
                 str = "This battle is won! But what about the war...";
             }
             gui.winPopUp(str);
-            System.exit(0);
+
 
         }
 
