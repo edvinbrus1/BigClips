@@ -44,7 +44,7 @@ public class GUI extends JFrame{
         jb9.addActionListener(listener);
 
         setSize(700,700);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Tre på i rad");
         setVisible(true);
 
