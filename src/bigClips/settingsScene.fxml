@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bigClips.Controller">
     <children>
@@ -15,38 +14,19 @@
             <Image url="@../resources/BCBackground.png" />
          </image>
         </ImageView>
-        <Text fill="WHITE" layoutX="153.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BIG-CLIPS">
+        <Text fill="WHITE" layoutX="291.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SETTINGS">
             <font>
-                <Font name="Consolas Bold" size="100.0" />
+                <Font name="Consolas Bold" size="50.0" />
             </font>
         </Text>
-        <VBox layoutX="335.0" layoutY="235.0" prefHeight="344.0" prefWidth="313.0">
-            <children>
-                <Text fx:id="btnPlay" fill="WHITE" onMouseClicked="#playClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="PLAY">
-                    <font>
-                        <Font name="Consolas Bold" size="50.0" />
-                    </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-                </Text>
-                <Text fx:id="btnSettings" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="SETTINGS">
-                    <font>
-                        <Font name="Consolas Bold" size="50.0" />
-                    </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-                </Text>
-                <Text fx:id="btnExit" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="EXIT">
-                    <font>
-                        <Font name="Consolas Bold" size="50.0" />
-                    </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-                </Text>
-            </children>
-        </VBox>
+      <TextFlow layoutX="21.0" layoutY="94.0" prefHeight="473.0" prefWidth="759.0">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Space Invaders: To control the ship use the left and right arrow keys and to fire projectiles use SPACEBAR">
+               <font>
+                  <Font name="Consolas Bold" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
     </children>
 </AnchorPane>
