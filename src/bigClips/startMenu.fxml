@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bigClips.Controller">
+    <children>
+        <ImageView fx:id="imageView" fitHeight="808.0" fitWidth="1082.0" layoutX="-281.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/BCBackground.png" />
+         </image>
+        </ImageView>
+        <Text fill="WHITE" layoutX="153.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BIG-CLIPS">
+            <font>
+                <Font name="JourneyPS3 Regular" size="100.0" />
+            </font>
+         <effect>
+            <DropShadow color="#000000b2" />
+         </effect>
+        </Text>
+          <Text fx:id="btnPlay" fill="WHITE" layoutX="335.0" layoutY="288.0" onMouseClicked="#playClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="PLAY">
+              <font>
+                  <Font name="JourneyPS3 Regular" size="50.0" />
+              </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#000000b4" />
+         </effect>
+          </Text>
+          <Text fx:id="btnSettings" fill="WHITE" layoutX="281.0" layoutY="346.0" onMouseClicked="#settingsClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="SETTINGS">
+              <font>
+                  <Font name="JourneyPS3 Regular" size="50.0" />
+              </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#000000b1" />
+         </effect>
+          </Text>
+          <Text fx:id="btnExit" fill="WHITE" layoutX="342.0" layoutY="407.0" onMouseClicked="#startMenuExitClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="EXIT">
+              <font>
+                  <Font name="JourneyPS3 Regular" size="50.0" />
+              </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#000000b4" />
+         </effect>
+          </Text>
+    </children>
+</AnchorPane>

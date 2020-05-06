@@ -3,6 +3,7 @@ package spaceInvaders;
 import java.util.ArrayList;
 import java.util.List;
 
+import bigClips.StartUI;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
@@ -23,7 +24,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 //Created by Edvin
-public class SpaceInvaders extends Application{
+public class SpaceInvaders extends Application implements Runnable{
 
     AnimationTimer timer;
     Pane root = new Pane();
@@ -45,20 +46,21 @@ public class SpaceInvaders extends Application{
 
     //Main method for starting the game
     public static void main(String[] args){
-        launch();
+        StartUI.launch(args);
     }
 
     //JavaFX method for creating the stage
     @Override
     public void start(Stage stage) throws Exception {
         lives = new Text("Lives: 3");
-        lives.setFont(new Font("Sans Serif", 24));
+        lives.setFont(Font.loadFont(SpaceInvaders.class.getResource("/resources/JourneyPS3.ttf")
+                .toExternalForm(),20));
         lives.setLayoutX(20);
         lives.setLayoutY(30);
         lives.setFill(Color.WHITE);
 
         points = new Text("Points: 0");
-        points.setFont(new Font("Sans Serif", 24));
+        points.setFont(Font.font("JourneyPS3", 20));
         points.setLayoutX(350);
         points.setLayoutY(30);
         points.setFill(Color.WHITE);
@@ -202,9 +204,9 @@ public class SpaceInvaders extends Application{
         double velocity;
 
         if(toRight)
-            velocity = 0.6;
+            velocity = 0.75;
         else
-            velocity = -0.6;
+            velocity = -0.75;
 
         if(projectile.getLayoutX() >= 40){
             toRight = false;
@@ -328,10 +330,10 @@ public class SpaceInvaders extends Application{
     public void gameWon(){
         if(invaders.isEmpty()){
             Text text = new Text();
-            text.setFont(Font.font("Sans Serif", FontWeight.BOLD,50));
+            text.setFont(Font.font("JourneyPS3", FontWeight.BOLD,100));
             text.setX(180);
             text.setY(300);
-            text.setFill(Color.YELLOWGREEN);
+            text.setFill(Color.YELLOW);
             text.setText("WIN");
             root.getChildren().add(text);
             timer.stop();
@@ -342,13 +344,18 @@ public class SpaceInvaders extends Application{
     public void gameLost(){
         if(numLives <= 0){
             Text text = new Text();
-            text.setFont(Font.font("Sans Serif", FontWeight.BOLD,50));
+            text.setFont(Font.font("JourneyPS3", FontWeight.BOLD,100));
             text.setX(180);
             text.setY(300);
             text.setFill(Color.INDIANRED);
-            text.setText("GAME OVER");
+            text.setText("LOST");
             root.getChildren().add(text);
             timer.stop();
         }
+    }
+
+    @Override
+    public void run() {
+        launch();
     }
 }

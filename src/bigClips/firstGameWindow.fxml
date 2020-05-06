@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bigClips.Controller">
+   <children>
+      <ImageView fitHeight="611.0" fitWidth="1079.0" layoutX="-271.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/BCBackground.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="btnCont1" fill="#55c5ea" layoutX="662.0" layoutY="586.0" onMouseClicked="#fgwContClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="CONTINUE&gt;">
+         <font>
+            <Font name="JourneyPS3 Regular" size="24.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#000000b2" />
+         </effect>
+      </Text>
+   </children>
+</AnchorPane>

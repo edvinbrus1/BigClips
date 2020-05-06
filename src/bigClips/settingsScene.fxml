@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bigClips.Controller">
+    <children>
+        <ImageView fx:id="imageView" fitHeight="808.0" fitWidth="1082.0" layoutX="-281.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/BCBackground.png" />
+         </image>
+        </ImageView>
+        <Text fill="WHITE" layoutX="291.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: JourneyPS3;" text="SETTINGS">
+            <font>
+                <Font name="Consolas Bold" size="50.0" />
+            </font>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#000000b2" />
+         </effect>
+        </Text>
+      <TextFlow layoutX="14.0" layoutY="114.0" prefHeight="126.0" prefWidth="759.0">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Tre i rad: This game is controlled entirely with the mouse through movement and left clicking              ">
+               <font>
+                  <Font name="JourneyPS3 Regular" size="24.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" color="#000000b2" />
+               </effect>
+            </Text>
+         </children>
+      </TextFlow>
+      <Text fill="WHITE" layoutX="670.0" layoutY="589.0" onMouseClicked="#settingsReturnClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="RETURN">
+         <font>
+            <Font name="JourneyPS3 Regular" size="24.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#000000b2" />
+         </effect>
+      </Text>
+      <TextFlow layoutX="14.0" layoutY="240.0" prefHeight="187.0" prefWidth="759.0">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Space Invaders: To control the ship use the left and right arrow keys and to fire projectiles use SPACEBAR">
+               <font>
+                  <Font name="JourneyPS3 Regular" size="24.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" color="#000000b4" />
+               </effect>
+            </Text>
+         </children>
+      </TextFlow>
+    </children>
+</AnchorPane>

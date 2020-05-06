@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bigClips.Controller">
+   <children>
+      <ImageView fitHeight="618.0" fitWidth="1093.0" layoutX="-292.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/BCBackground.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="208.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VICTORY">
+         <font>
+            <Font name="JourneyPS3 Regular" size="100.0" />
+         </font>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#000000b1" />
+         </effect>
+      </Text>
+      <Text fill="WHITE" layoutX="263.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PLAY AGAIN">
+         <font>
+            <Font name="JourneyPS3 Regular" size="50.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#000000b4" />
+         </effect>
+      </Text>
+      <Text fill="WHITE" layoutX="345.0" layoutY="355.0" onMouseClicked="#gameExitClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="EXIT">
+         <font>
+            <Font name="JourneyPS3 Regular" size="50.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#000000b2" />
+         </effect>
+      </Text>
+   </children>
+</AnchorPane>
