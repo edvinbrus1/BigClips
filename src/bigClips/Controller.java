@@ -133,4 +133,10 @@ public class Controller {
     public void startMenuExitClicked(MouseEvent mouseEvent) throws IOException {
         Platform.exit();
     }
+
+    //Controlling what happens when the user clicks on the try again button in the first game window.
+    @FXML
+    public void fgwTryAgainClicked(MouseEvent mouseEvent) throws IOException {
+        textWindowPlayClicked(mouseEvent);
+    }
 }

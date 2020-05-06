@@ -26,5 +26,16 @@
             <DropShadow blurType="GAUSSIAN" color="#000000b2" />
          </effect>
       </Text>
+      <Text fill="LIME" layoutX="267.0" layoutY="318.0" onMouseClicked="#fgwTryAgainClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="TRY AGAIN">
+         <font>
+            <Font name="JourneyPS3 Regular" size="48.0" />
+         </font>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#000000b4" />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Text>
    </children>
 </AnchorPane>
