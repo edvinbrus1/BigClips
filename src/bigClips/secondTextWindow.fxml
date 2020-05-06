@@ -17,7 +17,7 @@
       </ImageView>
       <TextFlow layoutX="15.0" layoutY="16.0" prefHeight="526.0" prefWidth="771.0">
          <children>
-            <Text fill="#55c5ea" strokeType="OUTSIDE" strokeWidth="0.0" text="This is the second text window which will contain further information about the story and the game. At this point the user will have beat the first game. And after clicking on play another game will start.">
+            <Text fill="LIME" strokeType="OUTSIDE" strokeWidth="0.0" text="This is the second text window which will contain further information about the story and the game. At this point the user will have beat the first game. And after clicking on play another game will start.">
                <font>
                   <Font name="JourneyPS3 Regular" size="24.0" />
                </font>
@@ -27,7 +27,7 @@
             </Text>
          </children>
       </TextFlow>
-      <Text fx:id="secondBTWPlay" fill="#55c5ea" layoutX="720.0" layoutY="589.0" onMouseClicked="#secondTWPClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="PLAY&gt;">
+      <Text fx:id="secondBTWPlay" fill="LIME" layoutX="720.0" layoutY="589.0" onMouseClicked="#secondTWPClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="PLAY&gt;">
          <font>
             <Font name="JourneyPS3 Regular" size="24.0" />
          </font>

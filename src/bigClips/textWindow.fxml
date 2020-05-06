@@ -18,7 +18,7 @@
       </ImageView>
       <TextFlow layoutX="15.0" layoutY="16.0" prefHeight="526.0" prefWidth="771.0">
          <children>
-            <Text fill="#55c5ea" strokeType="OUTSIDE" strokeWidth="0.0" text="This is a test text used for controlling how the layout of the first text window will look Later on this will contain information regarding the story for Big-Clips and will most likely cover the whole screen as far as it is possible. The font will match the sketches within the &quot;designdokument&quot;">
+            <Text fill="LIME" strokeType="OUTSIDE" strokeWidth="0.0" text="This is a test text used for controlling how the layout of the first text window will look Later on this will contain information regarding the story for Big-Clips and will most likely cover the whole screen as far as it is possible. The font will match the sketches within the &quot;designdokument&quot;">
                <font>
                   <Font name="JourneyPS3 Regular" size="24.0" />
                </font>
@@ -28,7 +28,7 @@
             </Text>
          </children>
       </TextFlow>
-      <Text fx:id="btnTextWindowPlay" fill="#55c5ea" layoutX="712.0" layoutY="589.0" onMouseClicked="#textWindowPlayClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="PLAY&gt;">
+      <Text fx:id="btnTextWindowPlay" fill="LIME" layoutX="712.0" layoutY="589.0" onMouseClicked="#textWindowPlayClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="PLAY&gt;">
          <font>
             <Font name="JourneyPS3 Regular" size="24.0" />
          </font>
