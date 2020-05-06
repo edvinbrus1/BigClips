@@ -15,7 +15,6 @@ public class Game {
 
     public Game(){
         rand = new Random();
-
     }
 
     //Randomises which player starts first
@@ -27,8 +26,6 @@ public class Game {
         else
             currentTurn=Turn.Ai;
     }
-
-
 
     //Changes turns
     public void changeTurn(){
@@ -44,9 +41,6 @@ public class Game {
     public Turn getTurn(){
         return currentTurn;
     }
-
-
-
 
     //Searches through the board to see if anyone has won by having 3 pieces in a row either vertically, horizontally or diagonally.
     public Winner checkWin(){
@@ -145,12 +139,18 @@ public class Game {
         }
     }
 
+    //Set method for Ai
     public void setBoard(int row, int col, int value){
         board[row][col]=value;
     }
 
 
+    //Randomises AI's turn
     public double[] aiFirstMove(){
+        if (currentTurn==Turn.Player){
+            System.out.println("first move called when its players turn"); //debugg
+            return null;
+        }
         double[] move = new double[2];
         int row, col;
         boolean bool=true;
@@ -172,16 +172,19 @@ public class Game {
     public Winner checkDraw() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
+                //Checks for empty squares. If at least one is empty then the game can't be over yet
                 if ( board[i][j]==0){
                     return Winner.None;
                 }
             }
         }
+        //If there is no winner and according to above no empty squares, then the game must be a draw.
         if (checkWin()==Winner.None){
             return Winner.Draw;
         }
         return Winner.None;
     }
+
 
     public int[][] getBoard(){
         return board;

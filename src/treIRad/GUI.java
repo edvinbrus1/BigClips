@@ -30,6 +30,7 @@ public class GUI extends JFrame{
         
         this.control=control;
         setLayout(new GridLayout(3,3));
+
         add(jb1);
         add(jb2);
         add(jb3);
@@ -39,6 +40,7 @@ public class GUI extends JFrame{
         add(jb7);
         add(jb8);
         add(jb9);
+
         Listener listener = new Listener();
         jb1.addActionListener(listener);
         jb2.addActionListener(listener);
@@ -55,7 +57,6 @@ public class GUI extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Tre på i rad");
         setVisible(true);
-
 
     }
 
@@ -124,11 +125,42 @@ public class GUI extends JFrame{
                 break;
         }
 
-
         jb.setIcon(getImageIcon(turn));
         jb.setDisabledIcon(getImageIcon(turn));
         jb.setEnabled(false);
 
+    }
+
+    public void resetGui(){
+        jb1.setIcon(null);
+        jb2.setIcon(null);
+        jb3.setIcon(null);
+        jb4.setIcon(null);
+        jb5.setIcon(null);
+        jb6.setIcon(null);
+        jb7.setIcon(null);
+        jb8.setIcon(null);
+        jb9.setIcon(null);
+
+        jb1.setDisabledIcon(null);
+        jb2.setDisabledIcon(null);
+        jb3.setDisabledIcon(null);
+        jb4.setDisabledIcon(null);
+        jb5.setDisabledIcon(null);
+        jb6.setDisabledIcon(null);
+        jb7.setDisabledIcon(null);
+        jb8.setDisabledIcon(null);
+        jb9.setDisabledIcon(null);
+
+        jb1.setEnabled(true);
+        jb2.setEnabled(true);
+        jb3.setEnabled(true);
+        jb4.setEnabled(true);
+        jb5.setEnabled(true);
+        jb6.setEnabled(true);
+        jb7.setEnabled(true);
+        jb8.setEnabled(true);
+        jb9.setEnabled(true);
 
         setIcons();
     }
