@@ -27,6 +27,7 @@ public class GUI extends JFrame{
 
 
     public GUI (Control control){
+        
         this.control=control;
         setLayout(new GridLayout(3,3));
         add(jb1);
@@ -129,6 +130,7 @@ public class GUI extends JFrame{
         jb.setEnabled(false);
 
 
+        setIcons();
     }
 
 
