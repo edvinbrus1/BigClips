@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import spaceInvaders.SpaceInvaders;
-import treIRad.TreIRad.Control;
+import treIRad.Control;
 
 
 import java.awt.*;

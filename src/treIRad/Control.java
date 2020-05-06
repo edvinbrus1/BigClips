@@ -2,7 +2,9 @@ package treIRad;
 
 import java.util.Random;
 
-public class Control {
+import static javafx.application.Application.launch;
+
+public class Control implements Runnable{
 
     private GUI gui;
     private Game game;
@@ -145,6 +147,10 @@ public class Control {
         }
 
 
+    @Override
+    public void run() {
+        launch();
+    }
 }
 
 
