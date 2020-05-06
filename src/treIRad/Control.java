@@ -54,13 +54,13 @@ public class Control {
         }
 
         //Checks if someone has won or if the game is a draw
-        public void checkResult(){
+        public boolean checkResult(){
             String str = "";
 
             if (game.checkWin()==Winner.None) {
                 if (game.checkDraw() == Winner.Draw) {
                     str = "An eye for an eye makes the whole world blind...";
-                } else return;  //If no one has won yet, the method is stopped here
+                } else return false;  //If no one has won yet, the method is stopped here
             }
             else if (game.checkWin()==Winner.Ai){
                 str = "Retreat! Live and fight another day...";
@@ -70,7 +70,8 @@ public class Control {
             }
             gui.winPopUp(str);
             resetGame();
-        //    System.exit(0);
+            return true;
+
         }
 
         //Handles the players move.
@@ -78,8 +79,11 @@ public class Control {
             gui.setJb(i, game.getTurn()); //Updates the GUI with the players turn
             game.setBoard(i);       //Updates the board with the players turn.
             game.changeTurn();      //Changes the current turn to Ai
-            checkResult();          //Checks if the game is over
-            aiMove();               //Prompts the Ai to make its turn
+            if (!checkResult()){    //Checks if the game is over
+
+                aiMove();               //Prompts the Ai to make its turn
+
+            }
         }
 
 
@@ -134,9 +138,10 @@ public class Control {
 
             }
 
-            //Calls on methods to check if the game is over and to change current turn
-            checkResult();
-            game.changeTurn();
+            if (!checkResult()){ //Checks if game is over
+                game.changeTurn();      //Changes turn to player
+
+            }
         }
 
 
