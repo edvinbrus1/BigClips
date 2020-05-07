@@ -224,6 +224,10 @@ public class SpaceInvaders extends Application implements Runnable{
 
         for(int i = 0; i < invaders.size(); i++){
             invaders.get(i).setLayoutX(invaders.get(i).getLayoutX() + velocity);
+
+            if(invaders.get(i).getLayoutY()==560){
+                invadersWon();
+            }
         }
 
         projectile.setLayoutX(projectile.getLayoutX() + velocity);
@@ -331,7 +335,7 @@ public class SpaceInvaders extends Application implements Runnable{
         if(invaders.isEmpty()){
             Text text = new Text();
             text.setFont(Font.font("JourneyPS3", FontWeight.BOLD,100));
-            text.setX(180);
+            text.setX(225);
             text.setY(300);
             text.setFill(Color.YELLOW);
             text.setText("WIN");
@@ -345,13 +349,24 @@ public class SpaceInvaders extends Application implements Runnable{
         if(numLives <= 0){
             Text text = new Text();
             text.setFont(Font.font("JourneyPS3", FontWeight.BOLD,100));
-            text.setX(180);
+            text.setX(125);
             text.setY(300);
             text.setFill(Color.INDIANRED);
             text.setText("LOST");
             root.getChildren().add(text);
             timer.stop();
         }
+    }
+
+    public void invadersWon(){
+        Text text = new Text();
+        text.setFont(Font.font("JourneyPS3", FontWeight.BOLD, 100));
+        text.setX(180);
+        text.setY(300);
+        text.setFill(Color.INDIANRED);
+        text.setText("LOST");
+        root.getChildren().add(text);
+        timer.stop();
     }
 
     @Override
