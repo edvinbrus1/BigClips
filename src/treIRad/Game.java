@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
+//Created by Amir
 public class Game {
 
     private Random rand;

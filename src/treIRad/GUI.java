@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
+//Created by Amir
 public class GUI extends JFrame{
 
     private Control control;
@@ -92,7 +93,7 @@ public class GUI extends JFrame{
     //Takes an int value which represesnts a button and an enum which shows whos turn it is.
     // Then sets the current players imageicon on the button and then disables that button
     public void setJb(int i, Turn turn){
-        JButton jb = new JButton("");
+        JButton jb = new JButton();
 
         //int value is transformed to the matching JButton inside the switch statement
         switch (i) {
@@ -131,6 +132,7 @@ public class GUI extends JFrame{
 
     }
 
+    //Resets the gui to its original, blank state
     public void resetGui(){
         jb1.setIcon(null);
         jb2.setIcon(null);

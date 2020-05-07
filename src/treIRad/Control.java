@@ -4,6 +4,8 @@ import java.util.Random;
 
 import static javafx.application.Application.launch;
 
+//Created by Amir
+
 public class Control implements Runnable{
 
     private GUI gui;
@@ -22,11 +24,7 @@ public class Control implements Runnable{
             rand = new Random();
             gui= new GUI(this);
             resetGame();
-       //     turn=0;
-       //     rndTurn = randomize(2);
-       //     game = new Game();
-       //     ai = new Ai(game);
-       //     firstTurn();
+
         }
 
         //Resets the board and starts the game over
@@ -40,7 +38,6 @@ public class Control implements Runnable{
 
         public void randomize(int bound){
             maxRandom = rand.nextInt(bound);
-    //        System.out.println(maxRandom);
         }
 
         //Handles logic for first turn in the game. Randomises who starts. If Ai then calls Ai method for making a turn
