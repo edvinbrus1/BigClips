@@ -1,8 +1,6 @@
 package bigClips;
 
-import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,9 +11,6 @@ import javafx.stage.Stage;
 import spaceInvaders.SpaceInvaders;
 import treIRad.Control;
 
-
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 
 //Created by Edvin, controls the different javaFX elements and scenes.
