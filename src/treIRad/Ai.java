@@ -5,6 +5,7 @@ public class Ai {
     //The below algorithms are taken from https://editor.p5js.org/codingtrain/sketches/0zyUhZdJD
     //Adjustements have been made in both methods to ensure that they work properly with this version
     //of tic tac toe / tre i rad.
+    //Adjustements by Amir
 
 
     private Game game;
