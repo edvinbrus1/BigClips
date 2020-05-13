@@ -11,10 +11,15 @@ import javafx.stage.Stage;
 import spaceInvaders.SpaceInvaders;
 import treIRad.Control;
 
+import javax.swing.*;
 import java.io.IOException;
+
 
 //Created by Edvin, controls the different javaFX elements and scenes.
 public class Controller {
+
+    private PointManager pm = new PointManager(); //Amir edit
+    private int totalScore = 0; //Amir edit
 
     //Method for controlling what happens when the user presses play within the start menu.
     @FXML
@@ -77,7 +82,7 @@ public class Controller {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                new Control().run();
+                new Control().run(); //Amir edit
             }
         });
     }
@@ -92,6 +97,9 @@ public class Controller {
         Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
         window.setScene(resultWindowScene);
         window.show();
+
+        JOptionPane.showMessageDialog(null,pm.getPoints());     //Amir edit
+
     }
 
     @FXML

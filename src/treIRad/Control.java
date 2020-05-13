@@ -1,5 +1,7 @@
 package treIRad;
 
+import bigClips.PointManager;
+
 import java.util.Random;
 
 import static javafx.application.Application.launch;
@@ -14,13 +16,16 @@ public class Control implements Runnable{
     private int turn;
     private Random rand;
     private int maxRandom;
+    private int score;
 
-
+    /*
     public static void main(String[]args){
             new Control();
         }
+     */
 
         public Control(){
+            score = 0;
             rand = new Random();
             gui= new GUI(this);
             resetGame();
@@ -52,24 +57,35 @@ public class Control implements Runnable{
             }
         }
 
+        public void addScore(int score){
+            this.score+=score;
+        }
+
+        public int getScore(){
+            return score;
+        }
+
         //Checks if someone has won or if the game is a draw
         public boolean checkResult(){
             String str = "";
 
-            if (game.checkWin()==Winner.None) {
-                if (game.checkDraw() == Winner.Draw) {
+            if (game.checkWin()==Winner.None) {     //Checks if there is no winner
+                if (game.checkDraw() == Winner.Draw) {      //Checks if game's a draw
                     str = "An eye for an eye makes the whole world blind...";
+                    addScore(2);  //If its a draw, adds points to total score
                 } else return false;  //If no one has won yet, the method is stopped here
             }
-            else if (game.checkWin()==Winner.Ai){
+            else if (game.checkWin()==Winner.Ai){       //Checks if Ai won
                 str = "Retreat! Live and fight another day...";
+                addScore(-1);    //If Ai won, points are reduced
             }
-            else if (game.checkWin()==Winner.Player){
+            else if (game.checkWin()==Winner.Player){       //Checks if player has won
                 str = "This battle is won! But what about the war...";
+                addScore(5); //Adds points if player won
             }
             gui.winPopUp(str);
             resetGame();
-            return true;
+            return true; //If someone won or it's a draw, returns true
 
         }
 

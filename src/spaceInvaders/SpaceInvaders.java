@@ -3,6 +3,7 @@ package spaceInvaders;
 import java.util.ArrayList;
 import java.util.List;
 
+import bigClips.PointManager;
 import bigClips.StartGame;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
@@ -367,6 +368,11 @@ public class SpaceInvaders extends Application implements Runnable{
         text.setText("LOST");
         root.getChildren().add(text);
         timer.stop();
+    }
+
+    //Amir edit
+    public int getNumPoints(){
+        return numPoints;
     }
 
     @Override
