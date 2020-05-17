@@ -23,7 +23,6 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 //Created by Edvin
 public class SpaceInvaders extends Application implements Runnable {
@@ -347,7 +346,7 @@ public class SpaceInvaders extends Application implements Runnable {
     }
 
     //Method for what happens when a player wins the game
-    public void gameWon(){
+    public void gameWon() {
         if (invaders.isEmpty()) {
             Text text = new Text();
             text.setFont(Font.font("JourneyPS3", FontWeight.BOLD, 100));
@@ -393,10 +392,10 @@ public class SpaceInvaders extends Application implements Runnable {
                 new java.util.TimerTask() {
                     @Override
                     public void run() {
-                        Platform.runLater(()->{
-                        Stage stage = (Stage) lives.getScene().getWindow();
-                        stage.close();
-                    });
+                        Platform.runLater(() -> {
+                            Stage stage = (Stage) lives.getScene().getWindow();
+                            stage.close();
+                        });
                     }
                 },
                 2000
