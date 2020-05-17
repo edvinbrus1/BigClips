@@ -1,9 +1,10 @@
 package spaceInvaders;
 
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-import bigClips.PointManager;
 import bigClips.StartGame;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
@@ -342,6 +343,7 @@ public class SpaceInvaders extends Application implements Runnable{
             text.setText("WIN");
             root.getChildren().add(text);
             timer.stop();
+            printPoints(); //Amir edit
         }
     }
 
@@ -356,6 +358,7 @@ public class SpaceInvaders extends Application implements Runnable{
             text.setText("LOST");
             root.getChildren().add(text);
             timer.stop();
+            printPoints(); //Amir edit
         }
     }
 
@@ -368,11 +371,21 @@ public class SpaceInvaders extends Application implements Runnable{
         text.setText("LOST");
         root.getChildren().add(text);
         timer.stop();
+        printPoints(); //Amir edit
     }
 
     //Amir edit
-    public int getNumPoints(){
-        return numPoints;
+    public void printPoints(){
+
+        try{
+            //"false" makes sure the file is overwritten if program if run multiple times
+            DataOutputStream out = new DataOutputStream(new FileOutputStream("src/resources/SpaceScore.txt",false));
+            out.writeInt(numPoints);
+            out.flush();
+            out.close();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     @Override

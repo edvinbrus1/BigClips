@@ -12,13 +12,12 @@ import spaceInvaders.SpaceInvaders;
 import treIRad.Control;
 
 import javax.swing.*;
-import java.io.IOException;
+import java.io.*;
 
 
 //Created by Edvin, controls the different javaFX elements and scenes.
 public class Controller {
 
-    private PointManager pm = new PointManager(); //Amir edit
     private int totalScore = 0; //Amir edit
 
     //Method for controlling what happens when the user presses play within the start menu.
@@ -31,6 +30,10 @@ public class Controller {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(textScene);
         window.show();
+
+
+
+
     }
 
     //Controlling what happens when a user presses the play button in the first text window
@@ -82,7 +85,7 @@ public class Controller {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                new Control().run(); //Amir edit
+                new Control().run(); //Amir edit, men tror jag ändrade tbx
             }
         });
     }
@@ -98,7 +101,21 @@ public class Controller {
         window.setScene(resultWindowScene);
         window.show();
 
-        JOptionPane.showMessageDialog(null,pm.getPoints());     //Amir edit
+        //Amir edit under
+        //Reads the scores from spaceinvader and tre i rads textfiles
+        DataInputStream input = new DataInputStream(new FileInputStream("src/resources/TreScore.txt"));
+        int TreScore = input.readInt();
+
+        input = new DataInputStream(new FileInputStream("src/resources/SpaceScore.txt"));
+        int SpaceScore = input.readInt();
+
+        input.close();
+        totalScore = SpaceScore + TreScore;
+
+        // behövs kanske inte o visa alla poängen separat också men gjorde det för o se att allt funkade
+
+        JOptionPane.showMessageDialog(null,"total: " + totalScore +"\nTre i rad: " + TreScore
+        + "\nSpace invader: "+ SpaceScore);     // för o testa poängsystem
 
     }
 
@@ -142,4 +159,8 @@ public class Controller {
     public void fgwTryAgainClicked(MouseEvent mouseEvent) throws IOException {
         textWindowPlayClicked(mouseEvent);
     }
+
+
+
+
 }
