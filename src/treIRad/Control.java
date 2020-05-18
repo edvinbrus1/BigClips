@@ -49,12 +49,14 @@ public class Control implements Runnable{
             printScore();
             int input = JOptionPane.showOptionDialog(null,"game over","Game complete", JOptionPane.OK_CANCEL_OPTION,JOptionPane.INFORMATION_MESSAGE, null,null,null);  //test syfte
 
+            //Method for closing the game - Edvin
             if(input == JOptionPane.OK_OPTION){
                 closeGame();
             }
         }
         }
 
+        //Method for closing the game - Edvin
         public void closeGame(){
             gui.dispose();
         }
