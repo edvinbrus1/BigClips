@@ -21,6 +21,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -357,6 +360,7 @@ public class SpaceInvaders extends Application implements Runnable {
             root.getChildren().add(text);
             timer.stop();
             closeGame();
+            printPoints();//Amir edit
         }
     }
 
@@ -372,6 +376,7 @@ public class SpaceInvaders extends Application implements Runnable {
             root.getChildren().add(text);
             timer.stop();
             closeGame();
+            printPoints();//Amir edit
         }
     }
 
@@ -385,6 +390,7 @@ public class SpaceInvaders extends Application implements Runnable {
         root.getChildren().add(text);
         timer.stop();
         closeGame();
+        printPoints(); //Amir edit
     }
 
     public void closeGame() {
@@ -401,6 +407,22 @@ public class SpaceInvaders extends Application implements Runnable {
                 2000
         );
     }
+
+    //Amir edit
+    public void printPoints(){
+
+        try{
+            //"False" makes sure that the file is overwritten if program run multiple times
+            DataOutputStream out = new DataOutputStream(new FileOutputStream("src/resources/SpaceScore.txt", false));
+            out.writeInt(numPoints);
+            out.flush();
+            out.close();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+
 
     @Override
     public void run() {
