@@ -1,5 +1,9 @@
 package treIRad;
 
+import javax.swing.*;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Random;
 
 import static javafx.application.Application.launch;
@@ -14,6 +18,8 @@ public class Control implements Runnable{
     private int turn;
     private Random rand;
     private int maxRandom;
+    private int score;
+    private int rounds;
 
 
     public static void main(String[]args){
@@ -21,19 +27,28 @@ public class Control implements Runnable{
         }
 
         public Control(){
+            score = 0;
             rand = new Random();
             gui= new GUI(this);
+            rounds=0;
             resetGame();
 
         }
 
-        //Resets the board and starts the game over
+        //Resets the board and starts the game over, if less than 10 rounds have been played
         public void resetGame(){
-            turn=0;
+        if (rounds<3) {
+            turn = 0;
             game = new Game();
             ai = new Ai(game);
             gui.resetGui();
             firstTurn();
+            rounds++;
+        }
+        else {
+            printScore();
+            JOptionPane.showMessageDialog(null,"game over");  //test syfte
+        }
         }
 
         public void randomize(int bound){
@@ -42,6 +57,7 @@ public class Control implements Runnable{
 
         //Handles logic for first turn in the game. Randomises who starts. If Ai then calls Ai method for making a turn
         public void firstTurn(){
+
             game.randomiseTurn();
             if (game.getTurn()==Turn.Ai){
                 randomize(3);
@@ -52,24 +68,44 @@ public class Control implements Runnable{
             }
         }
 
+        public void addScore(int score){
+            this.score+=score;
+        }
+
+        public void printScore(){
+            try{
+                //"false" makes sure the file is overwritten if program if run multiple times
+                DataOutputStream out = new DataOutputStream(new FileOutputStream("src/resources/TreScore.txt",false));
+                out.writeInt(score);
+                out.flush();
+                out.close();
+
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+
         //Checks if someone has won or if the game is a draw
         public boolean checkResult(){
             String str = "";
 
-            if (game.checkWin()==Winner.None) {
-                if (game.checkDraw() == Winner.Draw) {
-                    str = "An eye for an eye makes the whole world blind...";
+            if (game.checkWin()==Winner.None) {     //Checks if there is no winner
+                if (game.checkDraw() == Winner.Draw) {      //Checks if game's a draw
+                    str = "5 points";
+                    addScore(5);  //If its a draw, adds points to total score
                 } else return false;  //If no one has won yet, the method is stopped here
             }
-            else if (game.checkWin()==Winner.Ai){
-                str = "Retreat! Live and fight another day...";
+            else if (game.checkWin()==Winner.Ai){       //Checks if Ai won
+                str = "-1 points";
+                addScore(-1);    //If Ai won, points are reduced
             }
-            else if (game.checkWin()==Winner.Player){
-                str = "This battle is won! But what about the war...";
+            else if (game.checkWin()==Winner.Player){       //Checks if player has won
+                str = "10 points";
+                addScore(10); //Adds points if player won
             }
             gui.winPopUp(str);
             resetGame();
-            return true;
+            return true; //If someone won or it's a draw, returns true
 
         }
 

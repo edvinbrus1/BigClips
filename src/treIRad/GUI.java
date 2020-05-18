@@ -23,6 +23,7 @@ public class GUI extends JFrame{
     private JButton jb8 = new JButton("8");
     private JButton jb9 = new JButton("9");
 
+
     private ImageIcon playerIcon;
     private ImageIcon aiIcon;
 
@@ -30,7 +31,11 @@ public class GUI extends JFrame{
     public GUI (Control control){
         
         this.control=control;
+
+
+
         setLayout(new GridLayout(3,3));
+
 
         add(jb1);
         add(jb2);
@@ -59,7 +64,13 @@ public class GUI extends JFrame{
         setTitle("Tre på i rad");
         setVisible(true);
 
+
     }
+
+    public void initGUI(){
+
+    }
+
 
     //Sets icons for each player
     public void setIcons() {
