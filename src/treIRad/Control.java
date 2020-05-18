@@ -47,8 +47,16 @@ public class Control implements Runnable{
         }
         else {
             printScore();
-            JOptionPane.showMessageDialog(null,"game over");  //test syfte
+            int input = JOptionPane.showOptionDialog(null,"game over","Game complete", JOptionPane.OK_CANCEL_OPTION,JOptionPane.INFORMATION_MESSAGE, null,null,null);  //test syfte
+
+            if(input == JOptionPane.OK_OPTION){
+                closeGame();
+            }
         }
+        }
+
+        public void closeGame(){
+            gui.dispose();
         }
 
         public void randomize(int bound){
