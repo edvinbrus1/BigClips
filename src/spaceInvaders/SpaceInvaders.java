@@ -20,7 +20,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -40,11 +39,9 @@ public class SpaceInvaders extends Application implements Runnable {
     private boolean toRight = true;
     private Text lives;
     private Text points;
-    private int numPoints = 0;
-    private int numLives = 3;
-
-    //Variables for smoother movement test
-    private static final double W = 500, H = 700;
+    private int playerPoints = 0;
+    private int playerLives = 3;
+    private static final double W = 600, H = 800;
     boolean goLeft, goRight;
 
 
@@ -65,7 +62,7 @@ public class SpaceInvaders extends Application implements Runnable {
 
         points = new Text("Points: 0");
         points.setFont(Font.font("JourneyPS3", 20));
-        points.setLayoutX(350);
+        points.setLayoutX(450);
         points.setLayoutY(30);
         points.setFill(Color.WHITE);
         root.getChildren().addAll(lives, points);
@@ -101,7 +98,7 @@ public class SpaceInvaders extends Application implements Runnable {
         timeline.play();
 
         //Creating the map for the game
-        Scene scene = new Scene(root, 500, 700);
+        Scene scene = new Scene(root, 600, 800);
         Image img = new Image("https://3.bp.blogspot.com/-6xyJ92jKRjg/XD930UNULaI/AAAAAAAAAuM/jfz5tKgvmxYKj-YAtmhFM-s-JcGC1k7DQCKgBGAs/w1242-h2688-c/abstract-space-8-4k.jpg");
         scene.setFill(new ImagePattern(img));
 
@@ -200,19 +197,23 @@ public class SpaceInvaders extends Application implements Runnable {
         root.getChildren().add(invaderProjectile.get(invaderProjectile.size() - 1));
     }
 
-    //Method for adding invaders
+    //Method for adding invaders each for loop represents one line of invaders.
     public void addInvaders() {
-        for (int i = 0, w = 40; i < 6; i++, w += 70) {
-            invaders.add(invader(w, 50));
+        for (int i = 0, w = 40; i < 6; i++, w += 90) {
+            invaders.add(invader(w, 60));
             root.getChildren().add((Node) invaders.get(i));
         }
-        for (int i = 0, w = 40; i < 6; i++, w += 70) {
-            invaders.add(invader(w, 120));
+        for (int i = 0, w = 40; i < 6; i++, w += 90) {
+            invaders.add(invader(w, 140));
             root.getChildren().add((Node) invaders.get(i + 6));
         }
-        for (int i = 0, w = 40; i < 6; i++, w += 70) {
-            invaders.add(invader(w, 190));
+        for (int i = 0, w = 40; i < 6; i++, w += 90) {
+            invaders.add(invader(w, 200));
             root.getChildren().add((Node) invaders.get(i + 12));
+        }
+        for (int i = 0, w = 40; i < 6; i++, w += 90) {
+            invaders.add(invader(w, 280));
+            root.getChildren().add((Node) invaders.get(i + 18));
         }
     }
 
@@ -225,25 +226,23 @@ public class SpaceInvaders extends Application implements Runnable {
             velocity = 0.75;
         else
             velocity = -0.75;
-
         if (projectile.getLayoutX() >= 40) {
             toRight = false;
             for (int i = 0; i < invaders.size(); i++) {
-                invaders.get(i).setLayoutY(invaders.get(i).getLayoutY() + 8);
+                invaders.get(i).setLayoutY(invaders.get(i).getLayoutY() + 10);
             }
         }
-
         if (projectile.getLayoutX() <= -20) {
             toRight = true;
             for (int i = 0; i < invaders.size(); i++) {
-                invaders.get(i).setLayoutY(invaders.get(i).getLayoutY() + 8);
+                invaders.get(i).setLayoutY(invaders.get(i).getLayoutY() + 10);
             }
         }
-
         for (int i = 0; i < invaders.size(); i++) {
             invaders.get(i).setLayoutX(invaders.get(i).getLayoutX() + velocity);
 
-            if (invaders.get(i).getLayoutY() == 560) {
+            //ends the game game if the invaders gets too close to the player
+            if (invaders.get(i).getLayoutY() == 660) {
                 invadersWon();
             }
         }
@@ -253,39 +252,38 @@ public class SpaceInvaders extends Application implements Runnable {
 
     //Method for selecting the image of the players ship
     public ImageView player() {
-        ImageView i = new ImageView(new Image(getClass().getResourceAsStream("/resources/ship2.png")));
-        i.setLayoutX(225);
-        i.setLayoutY(650);
-        i.setFitHeight(50);
-        i.setFitWidth(50);
-        return i;
+        ImageView playerImg = new ImageView(new Image(getClass().getResourceAsStream("/resources/ship2.png")));
+        playerImg.setLayoutX(300);
+        playerImg.setLayoutY(750);
+        playerImg.setFitHeight(50);
+        playerImg.setFitWidth(50);
+        return playerImg;
     }
 
 
     //Method for selecting the image to be used for the invaders
     public ImageView invader(double x, double y) {
-        ImageView i = new ImageView(new Image(getClass().getResourceAsStream("/resources/inva.png")));
-        i.setLayoutX(x);
-        i.setLayoutY(y);
-        i.setFitHeight(50);
-        i.setFitWidth(50);
-        return i;
+        ImageView invaderImg = new ImageView(new Image(getClass().getResourceAsStream("/resources/inva.png")));
+        invaderImg.setLayoutX(x);
+        invaderImg.setLayoutY(y);
+        invaderImg.setFitHeight(50);
+        invaderImg.setFitWidth(50);
+        return invaderImg;
     }
 
     //Method for creating the projectiles
-    public Circle
-    projectile(double x, double y) {
+    public Circle projectile(double x, double y) {
         Circle c = new Circle();
         c.setFill(Color.LIGHTYELLOW);
         c.setLayoutX(x);
         c.setLayoutY(y);
-        c.setRadius(3);
+        c.setRadius(4);
         return c;
     }
 
     //Method for firing projectiles
     public void playerFiring(double x) {
-        playerProjectile.add(projectile((x + 25), 650));
+        playerProjectile.add(projectile((x + 25), 750));
         root.getChildren().add(playerProjectile.get(playerProjectile.size() - 1));
     }
 
@@ -293,7 +291,7 @@ public class SpaceInvaders extends Application implements Runnable {
     private void playerFiringUpdate() {
         if (!playerProjectile.isEmpty()) {
             for (int i = 0; i < playerProjectile.size(); i++) {
-                playerProjectile.get(i).setLayoutY(playerProjectile.get(i).getLayoutY() - 3);
+                playerProjectile.get(i).setLayoutY(playerProjectile.get(i).getLayoutY() - 4);
                 if (playerProjectile.get(i).getLayoutY() <= 0) {
                     root.getChildren().remove(playerProjectile.get(i));
                     playerProjectile.remove(i);
@@ -306,7 +304,7 @@ public class SpaceInvaders extends Application implements Runnable {
     private void invaderFiringUpdate() {
         if (!invaderProjectile.isEmpty()) {
             for (int i = 0; i < invaderProjectile.size(); i++) {
-                invaderProjectile.get(i).setLayoutY(invaderProjectile.get(i).getLayoutY() + 3);
+                invaderProjectile.get(i).setLayoutY(invaderProjectile.get(i).getLayoutY() + 4);
                 if (invaderProjectile.get(i).getLayoutY() <= 0) {
                     root.getChildren().remove(invaderProjectile.get(i));
                     invaderProjectile.remove(i);
@@ -327,8 +325,8 @@ public class SpaceInvaders extends Application implements Runnable {
                     invaders.remove(j);
                     root.getChildren().remove(playerProjectile.get(i));
                     playerProjectile.remove(i);
-                    numPoints += 50;
-                    points.setText("Points: " + numPoints);
+                    playerPoints += 50;
+                    points.setText("Points: " + playerPoints);
                 }
             }
         }
@@ -341,23 +339,27 @@ public class SpaceInvaders extends Application implements Runnable {
                     && ((invaderProjectile.get(i).getLayoutX() < player.getLayoutX() + 50))
                     && ((invaderProjectile.get(i).getLayoutY() > player.getLayoutY())
                     && ((invaderProjectile.get(i).getLayoutY() < player.getLayoutY() + 50))))) {
-                player.setLayoutX(225);
-                numLives -= 1;
-                lives.setText("Lives: " + numLives);
+                lifeLost();
             }
         }
+    }
+
+    private void lifeLost(){
+        player.setLayoutX(300);
+        playerLives--;
+        lives.setText("Lives: " + playerLives);
     }
 
     //Method for what happens when a player wins the game
     public void gameWon() {
         if (invaders.isEmpty()) {
-            Text text = new Text();
-            text.setFont(Font.font("JourneyPS3", FontWeight.BOLD, 100));
-            text.setX(225);
-            text.setY(300);
-            text.setFill(Color.YELLOW);
-            text.setText("WIN");
-            root.getChildren().add(text);
+            Text textWon = new Text();
+            textWon.setFont(Font.font("JourneyPS3", FontWeight.BOLD, 100));
+            textWon.setX(300);
+            textWon.setY(400);
+            textWon.setFill(Color.YELLOW);
+            textWon.setText("WIN");
+            root.getChildren().add(textWon);
             timer.stop();
             closeGame();
             printPoints();//Amir edit
@@ -366,33 +368,35 @@ public class SpaceInvaders extends Application implements Runnable {
 
     //Method for what happens when a game is lost
     public void gameLost() {
-        if (numLives <= 0) {
-            Text text = new Text();
-            text.setFont(Font.font("JourneyPS3", FontWeight.BOLD, 100));
-            text.setX(125);
-            text.setY(300);
-            text.setFill(Color.INDIANRED);
-            text.setText("LOST");
-            root.getChildren().add(text);
+        if (playerLives <= 0) {
+            Text textLost = new Text();
+            textLost.setFont(Font.font("JourneyPS3", FontWeight.BOLD, 100));
+            textLost.setX(300);
+            textLost.setY(400);
+            textLost.setFill(Color.INDIANRED);
+            textLost.setText("LOST");
+            root.getChildren().add(textLost);
             timer.stop();
             closeGame();
             printPoints();//Amir edit
         }
     }
 
+    //Method for closing the game when the invaders gets too close to the ship
     public void invadersWon() {
-        Text text = new Text();
-        text.setFont(Font.font("JourneyPS3", FontWeight.BOLD, 100));
-        text.setX(180);
-        text.setY(300);
-        text.setFill(Color.INDIANRED);
-        text.setText("LOST");
-        root.getChildren().add(text);
+        Text textInvaders = new Text();
+        textInvaders.setFont(Font.font("JourneyPS3", FontWeight.BOLD, 100));
+        textInvaders.setX(300);
+        textInvaders.setY(400);
+        textInvaders.setFill(Color.INDIANRED);
+        textInvaders.setText("LOST");
+        root.getChildren().add(textInvaders);
         timer.stop();
         closeGame();
         printPoints(); //Amir edit
     }
 
+    //Method for closing down the game automatically after two seconds
     public void closeGame() {
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {
@@ -409,21 +413,21 @@ public class SpaceInvaders extends Application implements Runnable {
     }
 
     //Amir edit
-    public void printPoints(){
+    public void printPoints() {
 
-        try{
+        try {
             //"False" makes sure that the file is overwritten if program run multiple times
             DataOutputStream out = new DataOutputStream(new FileOutputStream("src/resources/SpaceScore.txt", false));
-            out.writeInt(numPoints);
+            out.writeInt(playerPoints);
             out.flush();
             out.close();
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
 
-
+    //Method for running the game through the main class
     @Override
     public void run() {
         launch();
