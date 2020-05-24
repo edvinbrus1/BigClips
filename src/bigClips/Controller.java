@@ -85,7 +85,7 @@ public class Controller {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                new Control().run(); //Amir edit, men tror jag ändrade tbx
+                new Control().run();
             }
         });
     }
