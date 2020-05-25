@@ -14,12 +14,12 @@ public class Game {
     private int[][] board = {{0,0,0},{0,0,0},{0,0,0}};
     private Turn currentTurn;
 
-    public Game(){
+    protected Game(){
         rand = new Random();
     }
 
     //Randomises which player starts first
-    public void randomiseTurn(){
+    protected void randomiseTurn(){
         int turn = rand.nextInt(2)+1;       // 1 is player, 2 is Ai
         if (turn==1){
             currentTurn=Turn.Player;
@@ -29,7 +29,7 @@ public class Game {
     }
 
     //Changes turns
-    public void changeTurn(){
+    protected void changeTurn(){
         if (currentTurn==Turn.Ai){       //Change current turn from Ai to player
             currentTurn=Turn.Player;
         }
@@ -39,12 +39,12 @@ public class Game {
     }
 
     //Returns current turn
-    public Turn getTurn(){
+    protected Turn getTurn(){
         return currentTurn;
     }
 
     //Searches through the board to see if anyone has won by having 3 pieces in a row either vertically, horizontally or diagonally.
-    public Winner checkWin(){
+    protected Winner checkWin(){
 
     int a=0, b=0;
 
@@ -103,7 +103,7 @@ public class Game {
     }
 
     //Ändrar värden i board array beroende på vems tur det är
-    public void setBoard(int position){
+    protected void setBoard(int position){
 
             int value=1;
         //If its AI's turn
@@ -141,15 +141,14 @@ public class Game {
     }
 
     //Set method for Ai
-    public void setBoard(int row, int col, int value){
+    protected void setBoard(int row, int col, int value){
         board[row][col]=value;
     }
 
 
     //Randomises AI's turn
-    public double[] aiFirstMove(){
+    protected double[] aiFirstMove(){
         if (currentTurn==Turn.Player){
-            System.out.println("first move called when its players turn"); //debugg
             return null;
         }
         double[] move = new double[2];
@@ -170,7 +169,7 @@ public class Game {
     }
 
     //Checks if game is a draw
-    public Winner checkDraw() {
+    protected Winner checkDraw() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 //Checks for empty squares. If at least one is empty then the game can't be over yet
@@ -187,7 +186,7 @@ public class Game {
     }
 
 
-    public int[][] getBoard(){
+    protected int[][] getBoard(){
         return board;
     }
 

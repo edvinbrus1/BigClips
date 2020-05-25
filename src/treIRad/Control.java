@@ -31,12 +31,13 @@ public class Control implements Runnable {
 
     }
 
+
     public static void main(String[] args) {
         new Control();
     }
 
     //Resets the board and starts the game over, if less than 10 rounds have been played
-    public void resetGame() {
+    private void resetGame() {
         if (rounds < 3) {
             turn = 0;
             game = new Game();
@@ -56,16 +57,16 @@ public class Control implements Runnable {
     }
 
     //Method for closing the game - Edvin
-    public void closeGame() {
+    private void closeGame() {
         gui.dispose();
     }
 
-    public void randomize(int bound) {
+    private void randomize(int bound) {
         maxRandom = rand.nextInt(bound);
     }
 
     //Handles logic for first turn in the game. Randomises who starts. If Ai then calls Ai method for making a turn
-    public void firstTurn() {
+    private void firstTurn() {
 
         game.randomiseTurn();
         if (game.getTurn() == Turn.Ai) {
@@ -76,11 +77,12 @@ public class Control implements Runnable {
         }
     }
 
-    public void addScore(int score) {
+    //adds to the score
+    private void addScore(int score) {
         this.score += score;
     }
 
-    public void printScore() {
+    private void printScore() {
         try {
             //"false" makes sure the file is overwritten if program if run multiple times
             DataOutputStream out = new DataOutputStream(new FileOutputStream("src/resources/TreScore.txt", false));
@@ -94,7 +96,7 @@ public class Control implements Runnable {
     }
 
     //Checks if someone has won or if the game is a draw
-    public boolean checkResult() {
+    private boolean checkResult() {
         String str = "";
 
         if (game.checkWin() == Winner.None) {     //Checks if there is no winner
@@ -116,7 +118,7 @@ public class Control implements Runnable {
     }
 
     //Handles the players move.
-    public void playerMove(int i) {
+    protected void playerMove(int i) {
         gui.setJb(i, game.getTurn()); //Updates the GUI with the players turn
         game.setBoard(i);       //Updates the board with the players turn.
         game.changeTurn();      //Changes the current turn to Ai
@@ -129,7 +131,7 @@ public class Control implements Runnable {
 
 
     //Updates the GUI with the Ai's move
-    public void aiMove() {
+    private void aiMove() {
 
         double[] move;
 

@@ -28,7 +28,7 @@ public class GUI extends JFrame{
     private ImageIcon aiIcon;
 
 
-    public GUI (Control control){
+    protected GUI (Control control){
         
         this.control=control;
 
@@ -67,13 +67,9 @@ public class GUI extends JFrame{
 
     }
 
-    public void initGUI(){
-
-    }
-
 
     //Sets icons for each player
-    public void setIcons() {
+    private void setIcons() {
         try {
 
             Image playerImg = ImageIO.read(new File("images/spaceship.png"));
@@ -88,7 +84,7 @@ public class GUI extends JFrame{
 
 
     //Returns current players icon
-    public ImageIcon getImageIcon(Turn turn){
+    private ImageIcon getImageIcon(Turn turn){
         if (turn==Turn.Player){
             return playerIcon;
         }
@@ -96,14 +92,14 @@ public class GUI extends JFrame{
     }
 
     //Pop up window that displays an inputted message
-    public void winPopUp(String str){
+    protected void winPopUp(String str){
         JOptionPane.showMessageDialog(null,str);
     }
 
 
     //Takes an int value which represesnts a button and an enum which shows whos turn it is.
     // Then sets the current players imageicon on the button and then disables that button
-    public void setJb(int i, Turn turn){
+    protected void setJb(int i, Turn turn){
         JButton jb = new JButton();
 
         //int value is transformed to the matching JButton inside the switch statement
@@ -144,7 +140,7 @@ public class GUI extends JFrame{
     }
 
     //Resets the gui to its original, blank state
-    public void resetGui(){
+    protected void resetGui(){
         jb1.setIcon(null);
         jb2.setIcon(null);
         jb3.setIcon(null);

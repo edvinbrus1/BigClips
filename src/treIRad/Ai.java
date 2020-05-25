@@ -11,11 +11,11 @@ public class Ai {
     private Game game;
     private int[][] board;
 
-    public Ai(Game game){
+    protected Ai(Game game){
         this.game=game;
     }
 
-    public double[] bestMove(){
+    protected double[] bestMove(){
 
         double bestScore = Double.NEGATIVE_INFINITY;
         double move[]= new double[2];
@@ -46,7 +46,7 @@ public class Ai {
     }
 
 
-    public double minimax(int[][]board, int depth, Boolean isMaximizing){
+    private double minimax(int[][]board, int depth, Boolean isMaximizing){
 
         Winner result = game.checkWin();
 
