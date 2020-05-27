@@ -13,7 +13,7 @@ public class GUI extends JFrame{
 
     private Control control;
 
-    private JButton jb1 = new JButton("1");
+    private JButton jb1;
     private JButton jb2 = new JButton("2");
     private JButton jb3 = new JButton("3");
     private JButton jb4 = new JButton("4");
@@ -26,16 +26,25 @@ public class GUI extends JFrame{
 
     private ImageIcon playerIcon;
     private ImageIcon aiIcon;
+    private ImageIcon backgroundIcon;
 
 
     protected GUI (Control control){
+
         
         this.control=control;
+        setIcons();
 
-
+        jb1= new JButton(backgroundIcon);
+        jb1.setDisabledIcon(backgroundIcon);
+        jb1.setIcon(backgroundIcon);
+        jb1.setDisabledIcon(backgroundIcon);
+        jb1.setIcon(backgroundIcon);
 
         setLayout(new GridLayout(3,3));
 
+        jb1.setIcon(backgroundIcon);
+        jb1.setDisabledIcon(backgroundIcon);
 
         add(jb1);
         add(jb2);
@@ -46,6 +55,7 @@ public class GUI extends JFrame{
         add(jb7);
         add(jb8);
         add(jb9);
+
 
         Listener listener = new Listener();
         jb1.addActionListener(listener);
@@ -58,23 +68,32 @@ public class GUI extends JFrame{
         jb8.addActionListener(listener);
         jb9.addActionListener(listener);
 
-        setIcons();
         setSize(700,700);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Tre på i rad");
         setVisible(true);
 
+        setBackground();
 
     }
 
+
+    private void setBackground(){
+        jb1.setIcon(backgroundIcon);
+        jb1.setDisabledIcon(backgroundIcon);
+        jb2.setIcon(playerIcon);
+        jb3.setIcon(playerIcon);
+    }
 
     //Sets icons for each player
     private void setIcons() {
         try {
 
-            Image playerImg = ImageIO.read(new File("images/spaceship.png"));
-            Image aiImg = ImageIO.read(new File("images/ufo.png"));
+            Image backgroundImg = ImageIO.read(new File("src/resources/TreBackground.jpg"));
+            Image playerImg = ImageIO.read(new File("src/resources/TreShip.jpg"));
+            Image aiImg = ImageIO.read(new File("src/resources/TreInvader.jpg"));
 
+            backgroundIcon = new ImageIcon(backgroundImg);
             playerIcon = new ImageIcon(playerImg);
             aiIcon = new ImageIcon(aiImg);
         }catch (IOException e){
