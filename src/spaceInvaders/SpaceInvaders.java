@@ -263,7 +263,7 @@ public class SpaceInvaders extends Application implements Runnable {
             invaders.get(i).setLayoutX(invaders.get(i).getLayoutX() + velocity);
 
             //ends the game game if the invaders gets too close to the player
-            if (invaders.get(i).getLayoutY() == 660) {
+            if (invaders.get(i).getLayoutY() == 750) {
                 invadersWon();
             }
         }
