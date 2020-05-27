@@ -101,14 +101,14 @@ public class Control implements Runnable {
 
         if (game.checkWin() == Winner.None) {     //Checks if there is no winner
             if (game.checkDraw() == Winner.Draw) {      //Checks if game's a draw
-                str = "5 points";
+                str = "50 points";
                 addScore(50);  //If its a draw, adds points to total score
             } else return false;  //If no one has won yet, the method is stopped here
         } else if (game.checkWin() == Winner.Ai) {       //Checks if Ai won
-            str = "-1 points";
+            str = "-25 points";
             addScore(-25);    //If Ai won, points are reduced
         } else if (game.checkWin() == Winner.Player) {       //Checks if player has won
-            str = "10 points";
+            str = "100 points";
             addScore(100); //Adds points if player won
         }
         gui.winPopUp(str);

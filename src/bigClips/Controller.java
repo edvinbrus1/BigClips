@@ -127,13 +127,13 @@ public class Controller {
      */
     @FXML
     public void sgwContClicked(MouseEvent mouseEvent) throws IOException {
-        Parent resultWindow = FXMLLoader.load(getClass().getResource("resultWindow.fxml"));
+        //Parent resultWindow = FXMLLoader.load(getClass().getResource("resultWindow.fxml"));
 
-        Scene resultWindowScene = new Scene(resultWindow);
+       // Scene resultWindowScene = new Scene(resultWindow);
 
-        Stage window = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-        window.setScene(resultWindowScene);
-        window.show();
+       // Stage window = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+       // window.setScene(resultWindowScene);
+        //window.show();
 
         //Amir edit under
         //Reads the scores from spaceinvader and tre i rads textfiles
@@ -145,6 +145,26 @@ public class Controller {
 
         input.close();
         totalScore = SpaceScore + TreScore;
+
+        if(totalScore > 1350){
+            Parent resultWindow = FXMLLoader.load(getClass().getResource("resultWindow.fxml"));
+
+            Scene resultWindowScene = new Scene(resultWindow);
+
+            Stage window = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+            window.setScene(resultWindowScene);
+            window.show();
+        }
+
+        else if(totalScore < 1350){
+            Parent altResultWindow = FXMLLoader.load(getClass().getResource("altResultWindow.fxml"));
+
+            Scene altResultWindowScene = new Scene(altResultWindow);
+
+            Stage window = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+            window.setScene(altResultWindowScene);
+            window.show();
+        }
 
         // behövs kanske inte o visa alla poängen separat också men gjorde det för o se att allt funkade
 
@@ -222,5 +242,8 @@ public class Controller {
         textWindowPlayClicked(mouseEvent);
     }
 
-
+    @FXML
+    public void victoryPlayedAgain(MouseEvent mouseEvent) throws IOException {
+        playClicked(mouseEvent);
+    }
 }
