@@ -38,7 +38,7 @@ public class Control implements Runnable {
 
     //Resets the board and starts the game over, if less than 10 rounds have been played
     private void resetGame() {
-        if (rounds < 3) {
+        if (rounds < 5) {
             turn = 0;
             game = new Game();
             ai = new Ai(game);
