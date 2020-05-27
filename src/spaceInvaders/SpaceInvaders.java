@@ -417,10 +417,10 @@ public class SpaceInvaders extends Application implements Runnable {
         if (invaders.isEmpty()) {
             Text textWon = new Text();
             textWon.setFont(Font.font("JourneyPS3", FontWeight.BOLD, 100));
-            textWon.setX(300);
-            textWon.setY(400);
+            textWon.setX(100);
+            textWon.setY(300);
             textWon.setFill(Color.YELLOW);
-            textWon.setText("WIN");
+            textWon.setText("VICTORY");
             root.getChildren().add(textWon);
             timer.stop();
             closeGame();
@@ -436,11 +436,11 @@ public class SpaceInvaders extends Application implements Runnable {
     public void gameLost() {
         if (playerLives <= 0) {
             Text textLost = new Text();
-            textLost.setFont(Font.font("JourneyPS3", FontWeight.BOLD, 100));
-            textLost.setX(300);
-            textLost.setY(400);
+            textLost.setFont(Font.font("JourneyPS3", FontWeight.BOLD, 75));
+            textLost.setX(75);
+            textLost.setY(300);
             textLost.setFill(Color.INDIANRED);
-            textLost.setText("LOST");
+            textLost.setText("GAME OVER");
             root.getChildren().add(textLost);
             timer.stop();
             closeGame();
@@ -456,11 +456,11 @@ public class SpaceInvaders extends Application implements Runnable {
      */
     public void invadersWon() {
         Text textInvaders = new Text();
-        textInvaders.setFont(Font.font("JourneyPS3", FontWeight.BOLD, 100));
-        textInvaders.setX(300);
-        textInvaders.setY(400);
+        textInvaders.setFont(Font.font("JourneyPS3", FontWeight.BOLD, 75));
+        textInvaders.setX(75);
+        textInvaders.setY(300);
         textInvaders.setFill(Color.INDIANRED);
-        textInvaders.setText("LOST");
+        textInvaders.setText("GAME OVER");
         root.getChildren().add(textInvaders);
         timer.stop();
         closeGame();
