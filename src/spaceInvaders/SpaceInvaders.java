@@ -26,7 +26,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-//Created by Edvin
+/**
+ * Space Invaders mini-game created in JavaFx
+ * @author Edvin
+ */
 public class SpaceInvaders extends Application implements Runnable {
 
     AnimationTimer timer;
@@ -50,7 +53,11 @@ public class SpaceInvaders extends Application implements Runnable {
         StartGame.launch(args);
     }
 
-    //JavaFX method for creating the stage
+    /**
+     * start method for creating the stage the game will play on
+     * @param stage the stage for the game
+     * @throws Exception exception
+     */
     @Override
     public void start(Stage stage) throws Exception {
         lives = new Text("Lives: 3");
@@ -76,6 +83,7 @@ public class SpaceInvaders extends Application implements Runnable {
         addInvaders();
 
 
+        //timer for continuously updating the game
         timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
@@ -88,7 +96,7 @@ public class SpaceInvaders extends Application implements Runnable {
         };
         timer.start();
 
-        //Timeline for the invaders firing
+        //Timeline for making the invaders fire every 0.7 seconds
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.7), event -> {
             if (!invaders.isEmpty()) {
                 invadersFiring();
@@ -97,15 +105,15 @@ public class SpaceInvaders extends Application implements Runnable {
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
 
-        //Creating the map for the game
+        //Method for creating the scene and selecting the background of the game
         Scene scene = new Scene(root, 600, 800);
         Image img = new Image("https://3.bp.blogspot.com/-6xyJ92jKRjg/XD930UNULaI/AAAAAAAAAuM/jfz5tKgvmxYKj-YAtmhFM-s-JcGC1k7DQCKgBGAs/w1242-h2688-c/abstract-space-8-4k.jpg");
         scene.setFill(new ImagePattern(img));
 
-        //Testing smoother movement
+        //Method for smooth movement of the player
         moveShipTo(W / 2, 0);
 
-        //methods for moving the player
+        //method for moving the player when the user presses a key
         scene.setOnKeyPressed(e -> {
             switch (e.getCode()) {
                 case LEFT:
@@ -120,6 +128,7 @@ public class SpaceInvaders extends Application implements Runnable {
             }
         });
 
+        //method for releasing the key, needed for smooth movement of the ship
         scene.setOnKeyReleased(e -> {
             switch (e.getCode()) {
                 case LEFT:
@@ -134,6 +143,7 @@ public class SpaceInvaders extends Application implements Runnable {
         stage.setTitle("Space Invaders");
         stage.show();
 
+        //timer for the movement of the ship
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -185,19 +195,24 @@ public class SpaceInvaders extends Application implements Runnable {
         gameLost();
     }
 
-    //One of the methods for controlling when the monsters will fire
+    //One of the methods for controlling when the invaders will fire
     public int rand(int min, int max) {
         return (int) (Math.random() * max + min);
     }
 
-    //Method for the controlling the invaders projectiles
+    /**
+     * Method for controlling the invaders projectiles
+     */
     public void invadersFiring() {
         int getInvaderFiringIndex = rand(0, invaders.size() - 1);
         invaderProjectile.add(projectile(invaders.get(getInvaderFiringIndex).getLayoutX() + 25, invaders.get(getInvaderFiringIndex).getLayoutY() + 25));
         root.getChildren().add(invaderProjectile.get(invaderProjectile.size() - 1));
     }
 
-    //Method for adding invaders each for loop represents one line of invaders.
+    /**
+     * Method for adding invaders to the stage/scene
+     * each for loop adds one line of invaders
+     */
     public void addInvaders() {
         for (int i = 0, w = 40; i < 6; i++, w += 90) {
             invaders.add(invader(w, 60));
@@ -217,7 +232,13 @@ public class SpaceInvaders extends Application implements Runnable {
         }
     }
 
-    //Method for controlling the movement of invaders
+    /**
+     * Method for controlling the movement of the invaders,
+     * also contains an if statement that will execute if the invaders
+     * gets too close to the players ship and will then call the
+     * invadersWon method
+     * @throws InterruptedException interruptedException
+     */
     public void invadersMovement() throws InterruptedException {
 
         double velocity;
@@ -250,7 +271,10 @@ public class SpaceInvaders extends Application implements Runnable {
         projectile.setLayoutX(projectile.getLayoutX() + velocity);
     }
 
-    //Method for selecting the image of the players ship
+    /**
+     * Method for selecting the image of the players ship and the size of it
+     * @return the image of the players ship
+     */
     public ImageView player() {
         ImageView playerImg = new ImageView(new Image(getClass().getResourceAsStream("/resources/ship2.png")));
         playerImg.setLayoutX(300);
@@ -261,7 +285,12 @@ public class SpaceInvaders extends Application implements Runnable {
     }
 
 
-    //Method for selecting the image to be used for the invaders
+    /**
+     * Method for selecting the image of the invaders and the size of them
+     * @param x the x Layout position on the stage/scene
+     * @param y the y layout position on the stage/scene
+     * @return the image of the invaders
+     */
     public ImageView invader(double x, double y) {
         ImageView invaderImg = new ImageView(new Image(getClass().getResourceAsStream("/resources/inva.png")));
         invaderImg.setLayoutX(x);
@@ -271,7 +300,12 @@ public class SpaceInvaders extends Application implements Runnable {
         return invaderImg;
     }
 
-    //Method for creating the projectiles
+    /**
+     * Method for creating the projectile which consists of a Circle object
+     * @param x the x layout of the projectile
+     * @param y the y layout of the projectile
+     * @return the projectile
+     */
     public Circle projectile(double x, double y) {
         Circle c = new Circle();
         c.setFill(Color.LIGHTYELLOW);
@@ -281,13 +315,19 @@ public class SpaceInvaders extends Application implements Runnable {
         return c;
     }
 
-    //Method for firing projectiles
+    /**
+     * Method for controlling the players firing actions
+     * @param x the x layout of the projectile on the stage/scene
+     */
     public void playerFiring(double x) {
         playerProjectile.add(projectile((x + 25), 750));
         root.getChildren().add(playerProjectile.get(playerProjectile.size() - 1));
     }
 
-    //Method for updating the game when the player fires
+    /**
+     * Method for updating the game when the player fires a projectile
+     * adds and removes projectiles from an arrayList
+     */
     private void playerFiringUpdate() {
         if (!playerProjectile.isEmpty()) {
             for (int i = 0; i < playerProjectile.size(); i++) {
@@ -300,7 +340,10 @@ public class SpaceInvaders extends Application implements Runnable {
         }
     }
 
-    //Method for updating the game when an invader fires
+    /**
+     * Method for updating the game when the invaders fires a projectile
+     * adds and removes projectiles from an arrayList
+     */
     private void invaderFiringUpdate() {
         if (!invaderProjectile.isEmpty()) {
             for (int i = 0; i < invaderProjectile.size(); i++) {
@@ -313,7 +356,11 @@ public class SpaceInvaders extends Application implements Runnable {
         }
     }
 
-    //Method for what happens when a invader is killed
+    /**
+     * Method for controlling what happens when an invader gets killed
+     * if statement makes sure that the players projectile lines up with the invaders position
+     * after that it removes the invader and the projectile and updates the player score
+     */
     private void invaderKilled() {
         for (int i = 0; i < playerProjectile.size(); i++) {
             for (int j = 0; j < invaders.size(); j++) {
@@ -332,7 +379,11 @@ public class SpaceInvaders extends Application implements Runnable {
         }
     }
 
-    //Method for what happens when the player is killed
+    /**
+     * Method for controlling what happens when the player gets killed
+     * if statement makes sure that the invaders projectile lines up with the players position
+     * and if a projectile connects with the player it calls the lifeLost method
+     */
     private void playerKilled() {
         for (int i = 0; i < invaderProjectile.size(); i++) {
             if (((invaderProjectile.get(i).getLayoutX() > player.getLayoutX())
@@ -344,13 +395,24 @@ public class SpaceInvaders extends Application implements Runnable {
         }
     }
 
+    /**
+     * Method for controlling what happens when the player gets hit by an invaders projectile
+     * It first resets the players position to the middle of the scene/stage and then
+     * decrements the players amount of lives by one and finally updates the interface with
+     * the remaining amount of lives
+     */
     private void lifeLost(){
         player.setLayoutX(300);
         playerLives--;
         lives.setText("Lives: " + playerLives);
     }
 
-    //Method for what happens when a player wins the game
+    /**
+     * Method for controlling what happens when the player wins the game
+     * The condition for this to happen is when the arrayList of invaders is empty
+     * it then updates the interface to let the user know, stops the game timer, calls the
+     * closeGame method and the printPoints methods
+     */
     public void gameWon() {
         if (invaders.isEmpty()) {
             Text textWon = new Text();
@@ -366,7 +428,11 @@ public class SpaceInvaders extends Application implements Runnable {
         }
     }
 
-    //Method for what happens when a game is lost
+    /**
+     * Method for controlling what happens when the player loses the game through the loss of
+     * life. The method updates the interface to let the player know and then calls the closeGame
+     * and printPoints methods
+     */
     public void gameLost() {
         if (playerLives <= 0) {
             Text textLost = new Text();
@@ -382,7 +448,12 @@ public class SpaceInvaders extends Application implements Runnable {
         }
     }
 
-    //Method for closing the game when the invaders gets too close to the ship
+    /**
+     * Method for controlling what happens when the player loses the game when the invaders gets
+     * to close to the ship. The method updates the interface to let the player know of the result,
+     * it then stops the timer and calls the closeGame and printPoints methods
+     *
+     */
     public void invadersWon() {
         Text textInvaders = new Text();
         textInvaders.setFont(Font.font("JourneyPS3", FontWeight.BOLD, 100));
@@ -396,7 +467,11 @@ public class SpaceInvaders extends Application implements Runnable {
         printPoints(); //Amir edit
     }
 
-    //Method for closing down the game automatically after two seconds
+    /**
+     * This method controls the automatic closing of the game which is useful when playing the main game
+     * it uses a timer task and the Platform.runLater to access the stage of the game, it then
+     * closes the game/stage down after two seconds so that the user wont have to do this manually.
+     */
     public void closeGame() {
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {
@@ -412,7 +487,11 @@ public class SpaceInvaders extends Application implements Runnable {
         );
     }
 
-    //Amir edit
+    /**
+     * This method prints out the points to a text file so that it can be presented to the user
+     * in the result scene in the main game.
+     * @author Amir
+     */
     public void printPoints() {
 
         try {
@@ -427,7 +506,9 @@ public class SpaceInvaders extends Application implements Runnable {
     }
 
 
-    //Method for running the game through the main class
+    /**
+     * Method for running/launching the game through the main games controller.
+     */
     @Override
     public void run() {
         launch();
