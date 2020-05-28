@@ -15,7 +15,7 @@
             <Image url="@../resources/BCBackground.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="184.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VICTORY">
+      <Text fill="WHITE" layoutX="184.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VICTORY">
          <font>
             <Font name="JourneyPS3 Regular" size="100.0" />
          </font>
