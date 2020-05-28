@@ -4,4 +4,4 @@ Big-Clips is a game programmed in Java and JavaFX. The game contains a story whi
 
 So far two smaller games have been implemented, Space Invaders programmed in JavaFX and Tre i rad, programmed in Java. The main game is built with JavaFX in which the user interface is made in Scene Builder (FXML documents) and is controlled through a controller class. The game is designed to be scalable so that the story can be built upon and several other smaller games can be added without too much hassle. 
 
-IMPORTANT: If you are playing the game on a 144hz monitor, it is a good idea to turn it down to 60hz. In order to run the program you also need to have JavaFX installed. For instructions on how to do this visit: https://openjfx.io/
+IMPORTANT: If you are playing the game on a 144hz monitor, it is a good idea to turn it down to 60hz since the game was optimized for it. In order to run the program you also need to have JavaFX installed. For instructions on how to do this visit: https://openjfx.io/
