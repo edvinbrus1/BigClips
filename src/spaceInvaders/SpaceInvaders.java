@@ -276,7 +276,7 @@ public class SpaceInvaders extends Application implements Runnable {
      * @return the image of the players ship
      */
     public ImageView player() {
-        ImageView playerImg = new ImageView(new Image(getClass().getResourceAsStream("/resources/ship2.png")));
+        ImageView playerImg = new ImageView(new Image(getClass().getResourceAsStream("/resources/playerShip.png")));
         playerImg.setLayoutX(300);
         playerImg.setLayoutY(750);
         playerImg.setFitHeight(50);
@@ -292,7 +292,7 @@ public class SpaceInvaders extends Application implements Runnable {
      * @return the image of the invaders
      */
     public ImageView invader(double x, double y) {
-        ImageView invaderImg = new ImageView(new Image(getClass().getResourceAsStream("/resources/inva.png")));
+        ImageView invaderImg = new ImageView(new Image(getClass().getResourceAsStream("/resources/invader.png")));
         invaderImg.setLayoutX(x);
         invaderImg.setLayoutY(y);
         invaderImg.setFitHeight(50);

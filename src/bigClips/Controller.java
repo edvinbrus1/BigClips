@@ -127,13 +127,6 @@ public class Controller {
      */
     @FXML
     public void sgwContClicked(MouseEvent mouseEvent) throws IOException {
-        //Parent resultWindow = FXMLLoader.load(getClass().getResource("resultWindow.fxml"));
-
-       // Scene resultWindowScene = new Scene(resultWindow);
-
-       // Stage window = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-       // window.setScene(resultWindowScene);
-        //window.show();
 
         //Amir edit under
         //Reads the scores from spaceinvader and tre i rads textfiles
