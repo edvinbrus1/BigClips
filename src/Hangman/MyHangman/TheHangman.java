@@ -34,63 +34,63 @@ public class TheHangman extends Application {
         VBox vb = new VBox();
         TextField answer = new TextField();//Box to write in
         answer.setMaxWidth(30);
-        Button button = new Button("Go");
+        Button button = new Button("Guess");
         Label errorMessage = new Label();//Error message
         vb.getChildren().addAll(answer, button, errorMessage);
         vb.setAlignment(Pos.CENTER);
         root.setBottom(vb);
 
         //Hangman! All pictures are iterations of the hangman game process
-        Image stage0 = new Image("file:///C:\\Users\\ziade\\Desktop\\Snake\\src\\ImageHangman\\Logo.png");
+        Image stage0 = new Image("resources/Logo.png");
         ImageView v0 = new ImageView();
         v0.setImage(stage0);
         v0.setFitHeight(200);
         v0.setFitWidth(200);
         root.setCenter(v0);
 
-        Image stage1 = new Image("file:///C:\\Users\\ziade\\Desktop\\Snake\\src\\ImageHangman\\1.png");
+        Image stage1 = new Image("resources/1.png");
         ImageView v1 = new ImageView();
         v1.setImage(stage1);
         v1.setFitHeight(200);
         v1.setFitWidth(400);
 
-        Image stage2 = new Image("file:///C:\\Users\\ziade\\Desktop\\Snake\\src\\ImageHangman\\2.png");
+        Image stage2 = new Image("resources/2.png");
         ImageView v2 = new ImageView();
         v2.setImage(stage2);
         v2.setFitHeight(200);
         v2.setFitWidth(400);
 
-        Image stage3 = new Image("file:///C:\\Users\\ziade\\Desktop\\Snake\\src\\ImageHangman\\3.png");
+        Image stage3 = new Image("resources/3.png");
         ImageView v3 = new ImageView();
         v3.setImage(stage3);
         v3.setFitHeight(200);
         v3.setFitWidth(400);
 
-        Image stage4 = new Image("file:///C:\\Users\\ziade\\Desktop\\Snake\\src\\ImageHangman\\4.png");
+        Image stage4 = new Image("resources/4.png");
         ImageView v4 = new ImageView();
         v4.setImage(stage4);
         v4.setFitHeight(200);
         v4.setFitWidth(400);
 
-        Image stage5 = new Image("file:///C:\\Users\\ziade\\Desktop\\Snake\\src\\ImageHangman\\5.png");
+        Image stage5 = new Image("resources/5.png");
         ImageView v5 = new ImageView();
         v5.setImage(stage5);
         v5.setFitHeight(200);
         v5.setFitWidth(400);
 
-        Image stage6 = new Image("file:///C:\\Users\\ziade\\Desktop\\Snake\\src\\ImageHangman\\6.png");
+        Image stage6 = new Image("resources/6.png");
         ImageView v6 = new ImageView();
         v6.setImage(stage6);
         v6.setFitHeight(200);
         v6.setFitWidth(400);
 
-        Image stageLoss = new Image("file:///C:\\Users\\ziade\\Desktop\\Snake\\src\\ImageHangman\\Lose.png");
+        Image stageLoss = new Image("resources/Lose.png");
         ImageView Lose = new ImageView();
         Lose.setImage(stageLoss);
         Lose.setFitHeight(200);
         Lose.setFitWidth(400);
 
-        Image stageWin = new Image("file:///C:\\Users\\ziade\\Desktop\\Snake\\src\\ImageHangman\\WinHangman.png");
+        Image stageWin = new Image("resources/WinHangman.png");
         ImageView Win = new ImageView();
         Win.setImage(stageWin);
         Win.setFitHeight(200);
