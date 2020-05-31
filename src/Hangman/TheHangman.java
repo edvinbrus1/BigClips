@@ -1,5 +1,7 @@
 package Hangman;
 
+//Created by Nikola
+
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -13,6 +15,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -144,6 +149,7 @@ public class TheHangman extends Application {
                     }
                 }
                 if (carrier.equals(wordList)) {//Winning message
+                    saveResult();
                     button.setDisable(true);
                     root.setCenter(Win);
                     errorMessage.setText("Congratulations You won! You had only chances " + chance + " left!");
@@ -195,8 +201,24 @@ public class TheHangman extends Application {
 
     }
 
+    private void saveResult() {
+        try {
+            //"false" makes sure the file is overwritten if program if run multiple times
+            DataOutputStream out = new DataOutputStream(new FileOutputStream("src/resources/HangmanScore.txt", false));
+            out.writeInt(1200);
+            out.flush();
+            out.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
     public static void main(String[] args) {
         launch(args);
     }
 
 }
+

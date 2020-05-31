@@ -129,15 +129,24 @@ public class Controller {
     public void sgwContClicked(MouseEvent mouseEvent) throws IOException {
 
         //Amir edit under
-        //Reads the scores from spaceinvader and tre i rads textfiles
+        //Reads the scores from spaceinvader, hangman and tre i rads textfiles
         DataInputStream input = new DataInputStream(new FileInputStream("src/resources/TreScore.txt"));
         int TreScore = input.readInt();
 
         input = new DataInputStream(new FileInputStream("src/resources/SpaceScore.txt"));
         int SpaceScore = input.readInt();
 
+        input = new DataInputStream(new FileInputStream("src/resources/HangmanScore.txt"));
+        int hangmanScore = input.readInt();
+
         input.close();
-        totalScore = SpaceScore + TreScore;
+        totalScore = SpaceScore + TreScore + hangmanScore;
+
+
+
+
+
+
 
         if(totalScore > 1350){
             Parent resultWindow = FXMLLoader.load(getClass().getResource("resultWindow.fxml"));
@@ -162,7 +171,7 @@ public class Controller {
         // behövs kanske inte o visa alla poängen separat också men gjorde det för o se att allt funkade
 
         JOptionPane.showMessageDialog(null, "total: " + totalScore + "\nTre i rad: " + TreScore
-                + "\nSpace invader: " + SpaceScore);     // för o testa poängsystem
+                + "\nSpace invader: " + SpaceScore + "\nHangman: " + hangmanScore);     // för o testa poängsystem
 
     }
 
