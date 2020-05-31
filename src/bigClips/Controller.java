@@ -128,51 +128,13 @@ public class Controller {
      */
     @FXML
     public void sgwContClicked(MouseEvent mouseEvent) throws IOException {
+        Parent thirdTextWindow = FXMLLoader.load(getClass().getResource("thirdTextWindow.fxml"));
 
-        //Amir edit under
-        //Reads the scores from spaceinvader, hangman and tre i rads textfiles
-        DataInputStream input = new DataInputStream(new FileInputStream("src/resources/TreScore.txt"));
-        int TreScore = input.readInt();
+        Scene thirdTextScene = new Scene(thirdTextWindow);
 
-        input = new DataInputStream(new FileInputStream("src/resources/SpaceScore.txt"));
-        int SpaceScore = input.readInt();
-
-        input = new DataInputStream(new FileInputStream("src/resources/HangmanScore.txt"));
-        int hangmanScore = input.readInt();
-
-        input.close();
-        totalScore = SpaceScore + TreScore + hangmanScore;
-
-
-
-
-
-
-
-        if(totalScore > 1350){
-            Parent resultWindow = FXMLLoader.load(getClass().getResource("resultWindow.fxml"));
-
-            Scene resultWindowScene = new Scene(resultWindow);
-
-            Stage window = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-            window.setScene(resultWindowScene);
-            window.show();
-        }
-
-        else if(totalScore < 1350){
-            Parent altResultWindow = FXMLLoader.load(getClass().getResource("altResultWindow.fxml"));
-
-            Scene altResultWindowScene = new Scene(altResultWindow);
-
-            Stage window = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-            window.setScene(altResultWindowScene);
-            window.show();
-        }
-
-        // behövs kanske inte o visa alla poängen separat också men gjorde det för o se att allt funkade
-
-        JOptionPane.showMessageDialog(null, "total: " + totalScore + "\nTre i rad: " + TreScore
-                + "\nSpace invader: " + SpaceScore + "\nHangman: " + hangmanScore);     // för o testa poängsystem
+        Stage window = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        window.setScene(thirdTextScene);
+        window.show();
 
     }
 
@@ -280,6 +242,35 @@ public class Controller {
 
         input = new DataInputStream(new FileInputStream("src/resources/SpaceScore.txt"));
         int SpaceScore = input.readInt();
+
+        input = new DataInputStream(new FileInputStream("src/resources/HangmanScore.txt"));
+        int hangmanScore = input.readInt();
+
+        input.close();
+        totalScore = SpaceScore + TreScore + hangmanScore;
+
+        if(totalScore > 3000){
+            Parent resultWindow = FXMLLoader.load(getClass().getResource("resultWindow.fxml"));
+
+            Scene resultWindowScene = new Scene(resultWindow);
+
+            Stage window = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+            window.setScene(resultWindowScene);
+            window.show();
+        }
+
+        else if(totalScore < 3000){
+            Parent altResultWindow = FXMLLoader.load(getClass().getResource("altResultWindow.fxml"));
+
+            Scene altResultWindowScene = new Scene(altResultWindow);
+
+            Stage window = (Stage)  ((Node) mouseEvent.getSource()).getScene().getWindow();
+            window.setScene(altResultWindowScene);
+            window.show();
+        }
+
+        JOptionPane.showMessageDialog(null, "total: " + totalScore + "\nTre i rad: " + TreScore
+        + "\nSpace Invaders: " + SpaceScore + "\nHangman: " + hangmanScore);
 
         
     }
