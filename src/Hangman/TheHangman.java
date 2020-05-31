@@ -1,4 +1,4 @@
-package Hangman.MyHangman;
+package Hangman;
 
 import bigClips.StartGame;
 import javafx.application.Application;
@@ -31,8 +31,8 @@ public class TheHangman extends Application implements Runnable {
         //Getting the word and new game
         Random random = new Random();
         int r = random.nextInt(4);
-        String word = MyHangman.FindWord.lowerCaseWord(MyHangman.FindWord.selectWord(r));
-        ArrayList<String> wordList = MyHangman.FindWord.wordChar(word);
+        String word = FindWord.lowerCaseWord(FindWord.selectWord(r));
+        ArrayList<String> wordList = FindWord.wordChar(word);
         System.out.println(wordList); //ta bort sen
 
         BorderPane root = new BorderPane();

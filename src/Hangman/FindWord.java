@@ -1,4 +1,4 @@
-package MyHangman;
+package Hangman;
 
 import java.util.ArrayList;
 import java.util.Random;
