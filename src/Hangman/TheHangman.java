@@ -1,4 +1,4 @@
-package Hangman.MyHangman;
+package Hangman;
 
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -25,8 +25,8 @@ public class TheHangman extends Application {
         //Getting the word and new game
         Random random = new Random();
         int r = random.nextInt(4);
-        String word = MyHangman.FindWord.lowerCaseWord(MyHangman.FindWord.selectWord(r));
-        ArrayList<String> wordList = MyHangman.FindWord.wordChar(word);
+        String word = FindWord.lowerCaseWord(FindWord.selectWord(r));
+        ArrayList<String> wordList = FindWord.wordChar(word);
         System.out.println(wordList); //ta bort sen
 
         BorderPane root = new BorderPane();
