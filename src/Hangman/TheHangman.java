@@ -4,7 +4,9 @@ package Hangman;
 
 import bigClips.StartGame;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -29,6 +31,8 @@ public class TheHangman extends Application implements Runnable {
     public static void main(String[] args) {
         StartGame.launch(args);
     }
+
+    private Label guessingDocks; //Edit by Edvin, used to get access to the stage
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -115,7 +119,7 @@ public class TheHangman extends Application implements Runnable {
 
         //this is what presents at the top of the screen. "___" or letters if user guessed right.
         HBox hb = new HBox();
-        Label guessingDocks = new Label();
+        guessingDocks = new Label();
         ArrayList list = new ArrayList(); //for displaying the letters and "___".
         ArrayList<String> carrier = new ArrayList<>(); //for adding the correctly guessed letters
                                                         // so that we can compare two ArrayLists to see if the user won.
@@ -133,6 +137,7 @@ public class TheHangman extends Application implements Runnable {
                 button.setDisable(true);
                 root.setCenter(Lose);
                 errorMessage.setText("You lost! Better luck next time!");
+                closeGame(); //Edit by Edvin
             }
             else if (answer.getText().isEmpty()) {
                 errorMessage.setText("Please enter a letter!");
@@ -226,8 +231,30 @@ public class TheHangman extends Application implements Runnable {
         }
     }
 
+    /**
+     * Method for closing the game automatically after a loss
+     * @author Edvin - edit
+     *
+     */
+    public void closeGame(){
+        new java.util.Timer().schedule(
+                new java.util.TimerTask(){
+                    @Override
+                    public void run(){
+                        Platform.runLater(()->{
+                            Stage stage = (Stage) guessingDocks.getScene().getWindow();
+                            stage.close();
+                        });
+                    }
+                },
+                2000
+        );
+    }
 
-
+    /**
+     * @author Edvin - edit
+     * Used for launching the Hangman through the main game.
+     */
     @Override
     public void run(){
         launch();
