@@ -1,5 +1,6 @@
 package bigClips;
 
+import Hangman.MyHangman.TheHangman;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -247,5 +248,74 @@ public class Controller {
     @FXML
     public void victoryPlayedAgain(MouseEvent mouseEvent) throws IOException {
         playClicked(mouseEvent);
+    }
+
+    /**
+     * Method for controlling what happens when the user presses continue on the third game window
+     *
+     * @param mouseEvent mouse clicked
+     * @throws IOException IOException
+     */
+    @FXML
+    public void tgwContClicked(MouseEvent mouseEvent) throws IOException {
+        Parent finalText = FXMLLoader.load(getClass().getResource("finalTextWindow.fxml"));
+
+        Scene finalTextScene = new Scene(finalText);
+
+        Stage window = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        window.setScene(finalTextScene);
+        window.show();
+    }
+
+    /**
+     * Method for controlling what happens when the user presses continue in the final text window.
+     * @param mouseEvent mouse clicked
+     * @throws IOException IOException
+     */
+    @FXML
+    public void finalTWPClicked(MouseEvent mouseEvent) throws IOException {
+
+        DataInputStream input = new DataInputStream(new FileInputStream("src/resources/TreScore.txt"));
+        int TreScore = input.readInt();
+
+        input = new DataInputStream(new FileInputStream("src/resources/SpaceScore.txt"));
+        int SpaceScore = input.readInt();
+
+        
+    }
+
+    /**
+     * Method for controlling what happens when the user presses try again for the Hänga Gubbe game.
+     * @param mouseEvent mouse clicked
+     * @throws IOException IOException
+     */
+    @FXML
+    public void tgwTryAgainClicked(MouseEvent mouseEvent) throws IOException {
+        thirdTWPClicked(mouseEvent);
+    }
+
+    /**
+     * Method for controlling what happens when the user presses play on the third text window. It will launch the
+     * mini-game hänga gubbe in the same manner as Space Invaders.
+     * @param mouseEvent mouse clicked
+     * @throws IOException IOException
+     */
+    @FXML
+    public void thirdTWPClicked(MouseEvent mouseEvent) throws IOException {
+        Parent thirdGameView = FXMLLoader.load(getClass().getResource("thirdGameWindow.fxml"));
+
+        Scene thirdGameScene = new Scene(thirdGameView);
+
+        Stage window = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        window.setScene(thirdGameScene);
+        window.show();
+
+        Platform.runLater(() ->{
+            try{
+                new TheHangman().start(new Stage());
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        });
     }
 }

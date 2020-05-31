@@ -1,7 +1,11 @@
 package Hangman;
 
+<<<<<<< HEAD
 //Created by Nikola
 
+=======
+import bigClips.StartGame;
+>>>>>>> f1615a74b646c5368b6a7ffc4838d2144c0be9bd
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -24,6 +28,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class TheHangman extends Application {
+public class TheHangman extends Application implements Runnable {
+
+    public static void main(String[] args) {
+        StartGame.launch(args);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -201,6 +211,7 @@ public class TheHangman extends Application {
 
     }
 
+<<<<<<< HEAD
     private void saveResult() {
         try {
             //"false" makes sure the file is overwritten if program if run multiple times
@@ -218,6 +229,11 @@ public class TheHangman extends Application {
 
     public static void main(String[] args) {
         launch(args);
+=======
+    @Override
+    public void run(){
+        launch();
+>>>>>>> f1615a74b646c5368b6a7ffc4838d2144c0be9bd
     }
 
 }

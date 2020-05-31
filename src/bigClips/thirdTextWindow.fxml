@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bigClips.Controller">
+   <children>
+      <ImageView fitHeight="618.0" fitWidth="1093.0" layoutX="-292.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/BCBackground.png" />
+         </image>
+      </ImageView>
+      <TextFlow layoutX="15.0" layoutY="16.0" prefHeight="526.0" prefWidth="771.0">
+         <children>
+            <Text fill="LIME" strokeType="OUTSIDE" strokeWidth="0.0" text="This is the third text window that will contain the third part of the story and will be shown to the user after completing Tre i rad">
+               <font>
+                  <Font name="JourneyPS3 Regular" size="24.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" color="#000000b4" />
+               </effect>
+            </Text>
+         </children>
+      </TextFlow>
+      <Text fx:id="thirdBTWPlay" fill="LIME" layoutX="720.0" layoutY="589.0" onMouseClicked="#thirdTWPClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="PLAY&gt;">
+         <font>
+            <Font name="JourneyPS3 Regular" size="24.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
