@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bigClips.Controller">
+   <children>
+      <ImageView fitHeight="618.0" fitWidth="1093.0" layoutX="-292.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/BCBackground.png" />
+         </image>
+      </ImageView>
+      <TextFlow layoutX="15.0" layoutY="16.0" prefHeight="81.0" prefWidth="774.0">
+         <children>
+            <Text fill="LIME" strokeType="OUTSIDE" strokeWidth="0.0" text="The battle has ended and as you try to analyse the results, the sound of an incoming transmission disturbs you.">
+               <font>
+                  <Font name="JourneyPS3 Regular" size="22.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" color="#000000b4" />
+               </effect>
+            </Text>
+         </children>
+      </TextFlow>
+      <TextFlow layoutX="13.0" layoutY="116.0" prefHeight="0.0" prefWidth="776.0">
+         <children>
+            <Text fill="LIME" strokeType="OUTSIDE" strokeWidth="0.0" text="The technical division of Big-Clips that are stationed on earth think they have figured out how the invaders are communicating with each other. It appears that they are communicating in single english words that reveals their strategy for their next attack on earth. They are confident that this could change things around and give Earth the tactical advantage that is vital in order to win the war against the invaders. ">
+               <font>
+                  <Font name="JourneyPS3 Regular" size="22.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" color="#000000b4" />
+               </effect>
+            </Text>
+         </children>
+      </TextFlow>
+      <Text fx:id="thirdBTWPlay" fill="LIME" layoutX="720.0" layoutY="589.0" onMouseClicked="#thirdTWPClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="PLAY&gt;">
+         <font>
+            <Font name="JourneyPS3 Regular" size="24.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Text>
+      <TextFlow layoutX="12.0" layoutY="370.0" prefHeight="197.0" prefWidth="781.0">
+         <children>
+            <Text fill="LIME" strokeType="OUTSIDE" strokeWidth="0.0" text="It is now up to you to decipher these words, but you need to be careful. For each letter that is guessed incorrectly, the invaders will receive a transmission signal that can be traced back to its origin. If you guess the letter wrong 7 times the signal will become strong enough for the invaders to attack against the technical divisions headquarters and the war will be lost." wrappingWidth="778.9918823242188">
+               <font>
+                  <Font name="JourneyPS3 Regular" size="22.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" color="#000000b4" />
+               </effect>
+            </Text>
+         </children>
+      </TextFlow>
+   </children>
+</AnchorPane>
