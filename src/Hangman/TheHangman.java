@@ -62,11 +62,11 @@ public class TheHangman extends Application implements Runnable {
         root.setBottom(vb);
 
         //Hangman! All pictures are iterations of the hangman game process
-        Image stage0 = new Image("resources/Logo.png");
+        Image stage0 = new Image("resources/HackInit.png");
         ImageView v0 = new ImageView();
         v0.setImage(stage0);
-        v0.setFitHeight(200);
-        v0.setFitWidth(200);
+        v0.setFitHeight(300);
+        v0.setFitWidth(600);
         root.setCenter(v0);
 
         Image stage1 = new Image("resources/earth1.jpg");
@@ -111,7 +111,7 @@ public class TheHangman extends Application implements Runnable {
         Lose.setFitHeight(300);
         Lose.setFitWidth(600);
 
-        Image stageWin = new Image("resources/WinHangman.png");
+        Image stageWin = new Image("resources/HackComplete.png");
         ImageView Win = new ImageView();
         Win.setImage(stageWin);
         Win.setFitHeight(300);
