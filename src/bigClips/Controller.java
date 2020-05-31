@@ -1,5 +1,6 @@
 package bigClips;
 
+import Hangman.TheHangman;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -127,42 +128,13 @@ public class Controller {
      */
     @FXML
     public void sgwContClicked(MouseEvent mouseEvent) throws IOException {
+        Parent thirdTextWindow = FXMLLoader.load(getClass().getResource("thirdTextWindow.fxml"));
 
-        //Amir edit under
-        //Reads the scores from spaceinvader and tre i rads textfiles
-        DataInputStream input = new DataInputStream(new FileInputStream("src/resources/TreScore.txt"));
-        int TreScore = input.readInt();
+        Scene thirdTextScene = new Scene(thirdTextWindow);
 
-        input = new DataInputStream(new FileInputStream("src/resources/SpaceScore.txt"));
-        int SpaceScore = input.readInt();
-
-        input.close();
-        totalScore = SpaceScore + TreScore;
-
-        if(totalScore > 1350){
-            Parent resultWindow = FXMLLoader.load(getClass().getResource("resultWindow.fxml"));
-
-            Scene resultWindowScene = new Scene(resultWindow);
-
-            Stage window = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-            window.setScene(resultWindowScene);
-            window.show();
-        }
-
-        else if(totalScore < 1350){
-            Parent altResultWindow = FXMLLoader.load(getClass().getResource("altResultWindow.fxml"));
-
-            Scene altResultWindowScene = new Scene(altResultWindow);
-
-            Stage window = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-            window.setScene(altResultWindowScene);
-            window.show();
-        }
-
-        // behövs kanske inte o visa alla poängen separat också men gjorde det för o se att allt funkade
-
-        JOptionPane.showMessageDialog(null, "total: " + totalScore + "\nTre i rad: " + TreScore
-                + "\nSpace invader: " + SpaceScore);     // för o testa poängsystem
+        Stage window = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        window.setScene(thirdTextScene);
+        window.show();
 
     }
 
@@ -238,5 +210,103 @@ public class Controller {
     @FXML
     public void victoryPlayedAgain(MouseEvent mouseEvent) throws IOException {
         playClicked(mouseEvent);
+    }
+
+    /**
+     * Method for controlling what happens when the user presses continue on the third game window
+     *
+     * @param mouseEvent mouse clicked
+     * @throws IOException IOException
+     */
+    @FXML
+    public void tgwContClicked(MouseEvent mouseEvent) throws IOException {
+        Parent finalText = FXMLLoader.load(getClass().getResource("finalTextWindow.fxml"));
+
+        Scene finalTextScene = new Scene(finalText);
+
+        Stage window = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        window.setScene(finalTextScene);
+        window.show();
+    }
+
+    /**
+     * Method for controlling what happens when the user presses continue in the final text window.
+     * @param mouseEvent mouse clicked
+     * @throws IOException IOException
+     */
+    @FXML
+    public void finalTWPClicked(MouseEvent mouseEvent) throws IOException {
+
+        DataInputStream input = new DataInputStream(new FileInputStream("src/resources/TreScore.txt"));
+        int TreScore = input.readInt();
+
+        input = new DataInputStream(new FileInputStream("src/resources/SpaceScore.txt"));
+        int SpaceScore = input.readInt();
+
+        input = new DataInputStream(new FileInputStream("src/resources/HangmanScore.txt"));
+        int hangmanScore = input.readInt();
+
+        input.close();
+        totalScore = SpaceScore + TreScore + hangmanScore;
+
+        if(totalScore > 3000){
+            Parent resultWindow = FXMLLoader.load(getClass().getResource("resultWindow.fxml"));
+
+            Scene resultWindowScene = new Scene(resultWindow);
+
+            Stage window = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+            window.setScene(resultWindowScene);
+            window.show();
+        }
+
+        else if(totalScore < 3000){
+            Parent altResultWindow = FXMLLoader.load(getClass().getResource("altResultWindow.fxml"));
+
+            Scene altResultWindowScene = new Scene(altResultWindow);
+
+            Stage window = (Stage)  ((Node) mouseEvent.getSource()).getScene().getWindow();
+            window.setScene(altResultWindowScene);
+            window.show();
+        }
+
+        JOptionPane.showMessageDialog(null, "total: " + totalScore + "\nTre i rad: " + TreScore
+        + "\nSpace Invaders: " + SpaceScore + "\nHangman: " + hangmanScore);
+
+        
+    }
+
+    /**
+     * Method for controlling what happens when the user presses try again for the Hänga Gubbe game.
+     * @param mouseEvent mouse clicked
+     * @throws IOException IOException
+     */
+    @FXML
+    public void tgwTryAgainClicked(MouseEvent mouseEvent) throws IOException {
+        thirdTWPClicked(mouseEvent);
+    }
+
+    /**
+     * Method for controlling what happens when the user presses play on the third text window. It will launch the
+     * mini-game hänga gubbe in the same manner as Space Invaders.
+     * @param mouseEvent mouse clicked
+     * @throws IOException IOException
+     */
+    @FXML
+    public void thirdTWPClicked(MouseEvent mouseEvent) throws IOException {
+        Parent thirdGameView = FXMLLoader.load(getClass().getResource("thirdGameWindow.fxml"));
+
+        Scene thirdGameScene = new Scene(thirdGameView);
+
+        Stage window = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        window.setScene(thirdGameScene);
+        window.show();
+
+        Platform.runLater(() ->{
+            try{
+                new TheHangman().start(new Stage());
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        });
     }
 }

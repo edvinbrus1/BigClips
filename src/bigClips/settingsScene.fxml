@@ -47,9 +47,21 @@
             <DropShadow blurType="GAUSSIAN" color="#000000b2" />
          </effect>
       </Text>
-      <TextFlow layoutX="14.0" layoutY="240.0" prefHeight="187.0" prefWidth="759.0">
+      <TextFlow layoutX="14.0" layoutY="240.0" prefHeight="101.0" prefWidth="747.0">
          <children>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Space Invaders: To control the ship use the left and right arrow keys and to fire projectiles use SPACEBAR">
+               <font>
+                  <Font name="JourneyPS3 Regular" size="24.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" color="#000000b4" />
+               </effect>
+            </Text>
+         </children>
+      </TextFlow>
+      <TextFlow layoutX="14.0" layoutY="385.0" prefHeight="101.0" prefWidth="747.0">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hangman: To guess a word, press the box and type in a letter with the help of your keyboard, then left-click on the go button to guess a word">
                <font>
                   <Font name="JourneyPS3 Regular" size="24.0" />
                </font>

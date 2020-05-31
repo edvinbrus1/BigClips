@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,11 +16,11 @@
             <Image url="@../resources/BCBackground.png" />
          </image>
       </ImageView>
-      <TextFlow layoutX="15.0" layoutY="16.0" prefHeight="526.0" prefWidth="771.0">
+      <TextFlow layoutX="15.0" layoutY="16.0" prefHeight="252.0" prefWidth="770.0">
          <children>
-            <Text fill="LIME" strokeType="OUTSIDE" strokeWidth="0.0" text="This is the second text window which will contain further information about the story and the game. At this point the user will have beat the first game. And after clicking on play another game will start.">
+            <Text fill="LIME" strokeType="OUTSIDE" strokeWidth="0.0" text="Debris fills the nearby space as the aftermath of the battle unfolds. Shipwrecks float around aimlessly, hoping that one day scavengers find them, so that they are not cursed to endlessly drift. Gazing out toward the space, one can’t help but ponder on how insignificant this fighting must seem to the vastness of the universe. Your philosophical thoughts are suddenly interrupted by the sound of alarm systems going off. An alien ambush scatters your squadron as mayhem soon ensues. ">
                <font>
-                  <Font name="JourneyPS3 Regular" size="24.0" />
+                  <Font name="JourneyPS3 Regular" size="22.0" />
                </font>
                <effect>
                   <DropShadow blurType="GAUSSIAN" color="#000000b4" />
@@ -31,6 +32,24 @@
          <font>
             <Font name="JourneyPS3 Regular" size="24.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
       </Text>
+      <TextFlow layoutX="14.0" layoutY="302.0" prefHeight="252.0" prefWidth="770.0">
+         <children>
+            <Text fill="LIME" strokeType="OUTSIDE" strokeWidth="0.0" text="Commander! It seems that both sides are using jamming devices to interrupt communications. You must line up three of your ships in a line in order to re-establish comms, whilst the invaders attempt the same thing. The battlefield can be split into 10 parts, thus there will be 10 attempts. ">
+               <font>
+                  <Font name="JourneyPS3 Regular" size="22.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" color="#000000b4" />
+               </effect>
+            </Text>
+         </children>
+      </TextFlow>
    </children>
 </AnchorPane>
