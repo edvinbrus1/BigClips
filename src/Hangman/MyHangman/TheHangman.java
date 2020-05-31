@@ -1,5 +1,6 @@
 package Hangman.MyHangman;
 
+import bigClips.StartGame;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -18,7 +19,12 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-public class TheHangman extends Application {
+public class TheHangman extends Application implements Runnable {
+
+    public static void main(String[] args) {
+        StartGame.launch(args);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -195,8 +201,9 @@ public class TheHangman extends Application {
 
     }
 
-    public static void main(String[] args) {
-        launch(args);
+    @Override
+    public void run(){
+        launch();
     }
 
 }
