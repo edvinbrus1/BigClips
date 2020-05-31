@@ -1,6 +1,6 @@
 package bigClips;
 
-import Hangman.MyHangman.TheHangman;
+import Hangman.TheHangman;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
