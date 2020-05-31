@@ -33,12 +33,23 @@ public class TheHangman extends Application implements Runnable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+
+
         //Getting the word and new game
         Random random = new Random();
         int r = random.nextInt(4);
-        String word = FindWord.lowerCaseWord(FindWord.selectWord(r));
+        int wordAtLine = random.nextInt(84091);
+
+  //      String word = FindWord.lowerCaseWord(FindWord.selectWord(r));
+
+
+        String wordFromTxtfile = (FindWord.importWords(wordAtLine));
+        String word = FindWord.lowerCaseWord(wordFromTxtfile);
         ArrayList<String> wordList = FindWord.wordChar(word);
         System.out.println(wordList); //ta bort sen
+
+
+
 
         BorderPane root = new BorderPane();
         //This is used for the box user writes letter in and a error text underneath
