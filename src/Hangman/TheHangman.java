@@ -46,7 +46,6 @@ public class TheHangman extends Application implements Runnable {
 
 
 
-
         BorderPane root = new BorderPane();
         //This is used for the box user writes letter in and a error text underneath
         VBox vb = new VBox();
@@ -69,50 +68,50 @@ public class TheHangman extends Application implements Runnable {
         Image stage1 = new Image("resources/earth1.jpg");
         ImageView v1 = new ImageView();
         v1.setImage(stage1);
-        v1.setFitHeight(200);
-        v1.setFitWidth(400);
+        v1.setFitHeight(300);
+        v1.setFitWidth(600);
 
         Image stage2 = new Image("resources/earth2.jpg");
         ImageView v2 = new ImageView();
         v2.setImage(stage2);
-        v2.setFitHeight(200);
-        v2.setFitWidth(400);
+        v2.setFitHeight(300);
+        v2.setFitWidth(600);
 
         Image stage3 = new Image("resources/earth3.jpg");
         ImageView v3 = new ImageView();
         v3.setImage(stage3);
-        v3.setFitHeight(200);
-        v3.setFitWidth(400);
+        v3.setFitHeight(300);
+        v3.setFitWidth(600);
 
         Image stage4 = new Image("resources/earth4.jpg");
         ImageView v4 = new ImageView();
         v4.setImage(stage4);
-        v4.setFitHeight(200);
-        v4.setFitWidth(400);
+        v4.setFitHeight(300);
+        v4.setFitWidth(600);
 
         Image stage5 = new Image("resources/earth5.jpg");
         ImageView v5 = new ImageView();
         v5.setImage(stage5);
-        v5.setFitHeight(200);
-        v5.setFitWidth(400);
+        v5.setFitHeight(300);
+        v5.setFitWidth(600);
 
         Image stage6 = new Image("resources/earth6.jpg");
         ImageView v6 = new ImageView();
         v6.setImage(stage6);
-        v6.setFitHeight(200);
-        v6.setFitWidth(400);
+        v6.setFitHeight(300);
+        v6.setFitWidth(600);
 
         Image stageLoss = new Image("resources/earth7.jpg");
         ImageView Lose = new ImageView();
         Lose.setImage(stageLoss);
-        Lose.setFitHeight(200);
-        Lose.setFitWidth(400);
+        Lose.setFitHeight(300);
+        Lose.setFitWidth(600);
 
         Image stageWin = new Image("resources/WinHangman.png");
         ImageView Win = new ImageView();
         Win.setImage(stageWin);
-        Win.setFitHeight(200);
-        Win.setFitWidth(400);
+        Win.setFitHeight(300);
+        Win.setFitWidth(600);
 
         //this is what presents at the top of the screen. "___" or letters if user guessed right.
         HBox hb = new HBox();
@@ -207,7 +206,7 @@ public class TheHangman extends Application implements Runnable {
         root.setTop(hb);
 
 
-        Scene scene = new Scene(root, 400, 400);
+        Scene scene = new Scene(root, 600, 800);
         primaryStage.setTitle("Hangman");
         primaryStage.setScene(scene);
         primaryStage.show();
