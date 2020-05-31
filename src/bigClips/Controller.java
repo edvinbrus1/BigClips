@@ -113,9 +113,7 @@ public class Controller {
         window.setScene(secondGameWindowScene);
         window.show();
 
-        Platform.runLater(() -> {
-            new Control().run(); //Amir edit, men tror jag ändrade tbx
-        });
+        Platform.runLater(() -> new Control().run());
     }
 
     /**
@@ -281,7 +279,7 @@ public class Controller {
     }
 
     /**
-     * Method for controlling what happens when the user presses try again for the Hänga Gubbe game.
+     * Method for controlling what happens when the user presses try again for the Hangman game.
      *
      * @param mouseEvent mouse clicked
      * @throws IOException IOException
@@ -293,7 +291,7 @@ public class Controller {
 
     /**
      * Method for controlling what happens when the user presses play on the third text window. It will launch the
-     * mini-game hänga gubbe in the same manner as Space Invaders.
+     * mini-game Hangman in the same manner as Space Invaders.
      *
      * @param mouseEvent mouse clicked
      * @throws IOException IOException
