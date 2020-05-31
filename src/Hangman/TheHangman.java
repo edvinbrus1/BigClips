@@ -248,7 +248,7 @@ public class TheHangman extends Application implements Runnable {
                         });
                     }
                 },
-                2000
+                4000
         );
     }
 

@@ -207,6 +207,12 @@ public class Controller {
         textWindowPlayClicked(mouseEvent);
     }
 
+    /**
+     * Method for controlling what happens when the user presses play again on the result screen.
+     *
+     * @param mouseEvent mouseClicked
+     * @throws IOException IOException
+     */
     @FXML
     public void victoryPlayedAgain(MouseEvent mouseEvent) throws IOException {
         playClicked(mouseEvent);
@@ -231,6 +237,7 @@ public class Controller {
 
     /**
      * Method for controlling what happens when the user presses continue in the final text window.
+     *
      * @param mouseEvent mouse clicked
      * @throws IOException IOException
      */
@@ -249,7 +256,7 @@ public class Controller {
         input.close();
         totalScore = SpaceScore + TreScore + hangmanScore;
 
-        if(totalScore > 3000){
+        if (totalScore > 3000) {
             Parent resultWindow = FXMLLoader.load(getClass().getResource("resultWindow.fxml"));
 
             Scene resultWindowScene = new Scene(resultWindow);
@@ -257,26 +264,25 @@ public class Controller {
             Stage window = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
             window.setScene(resultWindowScene);
             window.show();
-        }
-
-        else if(totalScore < 3000){
+        } else if (totalScore < 3000) {
             Parent altResultWindow = FXMLLoader.load(getClass().getResource("altResultWindow.fxml"));
 
             Scene altResultWindowScene = new Scene(altResultWindow);
 
-            Stage window = (Stage)  ((Node) mouseEvent.getSource()).getScene().getWindow();
+            Stage window = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
             window.setScene(altResultWindowScene);
             window.show();
         }
 
         JOptionPane.showMessageDialog(null, "total: " + totalScore + "\nTre i rad: " + TreScore
-        + "\nSpace Invaders: " + SpaceScore + "\nHangman: " + hangmanScore);
+                + "\nSpace Invaders: " + SpaceScore + "\nHangman: " + hangmanScore);
 
-        
+
     }
 
     /**
      * Method for controlling what happens when the user presses try again for the Hänga Gubbe game.
+     *
      * @param mouseEvent mouse clicked
      * @throws IOException IOException
      */
@@ -288,6 +294,7 @@ public class Controller {
     /**
      * Method for controlling what happens when the user presses play on the third text window. It will launch the
      * mini-game hänga gubbe in the same manner as Space Invaders.
+     *
      * @param mouseEvent mouse clicked
      * @throws IOException IOException
      */
@@ -301,10 +308,10 @@ public class Controller {
         window.setScene(thirdGameScene);
         window.show();
 
-        Platform.runLater(() ->{
-            try{
+        Platform.runLater(() -> {
+            try {
                 new TheHangman().start(new Stage());
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         });

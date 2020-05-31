@@ -20,6 +20,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
 import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -28,6 +29,7 @@ import java.util.List;
 
 /**
  * Space Invaders mini-game created in JavaFx
+ *
  * @author Edvin
  */
 public class SpaceInvaders extends Application implements Runnable {
@@ -48,13 +50,14 @@ public class SpaceInvaders extends Application implements Runnable {
     boolean goLeft, goRight;
 
 
-    //Main method for starting the game
+    //Main method for starting the game individually
     public static void main(String[] args) {
         StartGame.launch(args);
     }
 
     /**
      * start method for creating the stage the game will play on
+     *
      * @param stage the stage for the game
      * @throws Exception exception
      */
@@ -237,9 +240,8 @@ public class SpaceInvaders extends Application implements Runnable {
      * also contains an if statement that will execute if the invaders
      * gets too close to the players ship and will then call the
      * invadersWon method
-     * @throws InterruptedException interruptedException
      */
-    public void invadersMovement() throws InterruptedException {
+    public void invadersMovement() {
 
         double velocity;
 
@@ -273,6 +275,7 @@ public class SpaceInvaders extends Application implements Runnable {
 
     /**
      * Method for selecting the image of the players ship and the size of it
+     *
      * @return the image of the players ship
      */
     public ImageView player() {
@@ -287,6 +290,7 @@ public class SpaceInvaders extends Application implements Runnable {
 
     /**
      * Method for selecting the image of the invaders and the size of them
+     *
      * @param x the x Layout position on the stage/scene
      * @param y the y layout position on the stage/scene
      * @return the image of the invaders
@@ -302,6 +306,7 @@ public class SpaceInvaders extends Application implements Runnable {
 
     /**
      * Method for creating the projectile which consists of a Circle object
+     *
      * @param x the x layout of the projectile
      * @param y the y layout of the projectile
      * @return the projectile
@@ -317,6 +322,7 @@ public class SpaceInvaders extends Application implements Runnable {
 
     /**
      * Method for controlling the players firing actions
+     *
      * @param x the x layout of the projectile on the stage/scene
      */
     public void playerFiring(double x) {
@@ -401,7 +407,7 @@ public class SpaceInvaders extends Application implements Runnable {
      * decrements the players amount of lives by one and finally updates the interface with
      * the remaining amount of lives
      */
-    private void lifeLost(){
+    private void lifeLost() {
         player.setLayoutX(300);
         playerLives--;
         lives.setText("Lives: " + playerLives);
@@ -452,7 +458,6 @@ public class SpaceInvaders extends Application implements Runnable {
      * Method for controlling what happens when the player loses the game when the invaders gets
      * to close to the ship. The method updates the interface to let the player know of the result,
      * it then stops the timer and calls the closeGame and printPoints methods
-     *
      */
     public void invadersWon() {
         Text textInvaders = new Text();
@@ -490,6 +495,7 @@ public class SpaceInvaders extends Application implements Runnable {
     /**
      * This method prints out the points to a text file so that it can be presented to the user
      * in the result scene in the main game.
+     *
      * @author Amir
      */
     public void printPoints() {

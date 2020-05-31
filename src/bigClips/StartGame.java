@@ -9,21 +9,25 @@ import spaceInvaders.SpaceInvaders;
 
 import java.io.IOException;
 
-//Created by Edvin, starts the main game.
+/**
+ * Used for starting the main game.
+ *
+ * @author Edvin
+ */
 public class StartGame extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        try{
+        try {
             Parent planner = FXMLLoader.load(getClass().getResource("startMenu.fxml"));
             primaryStage.setTitle("Big-Clips");
             primaryStage.setScene(new Scene(planner));
             primaryStage.show();
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         SpaceInvaders.launch(args);
     }
 }
