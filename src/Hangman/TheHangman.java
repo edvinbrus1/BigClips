@@ -66,43 +66,43 @@ public class TheHangman extends Application implements Runnable {
         v0.setFitWidth(200);
         root.setCenter(v0);
 
-        Image stage1 = new Image("resources/1.png");
+        Image stage1 = new Image("resources/earth1.jpg");
         ImageView v1 = new ImageView();
         v1.setImage(stage1);
         v1.setFitHeight(200);
         v1.setFitWidth(400);
 
-        Image stage2 = new Image("resources/2.png");
+        Image stage2 = new Image("resources/earth2.jpg");
         ImageView v2 = new ImageView();
         v2.setImage(stage2);
         v2.setFitHeight(200);
         v2.setFitWidth(400);
 
-        Image stage3 = new Image("resources/3.png");
+        Image stage3 = new Image("resources/earth3.jpg");
         ImageView v3 = new ImageView();
         v3.setImage(stage3);
         v3.setFitHeight(200);
         v3.setFitWidth(400);
 
-        Image stage4 = new Image("resources/4.png");
+        Image stage4 = new Image("resources/earth4.jpg");
         ImageView v4 = new ImageView();
         v4.setImage(stage4);
         v4.setFitHeight(200);
         v4.setFitWidth(400);
 
-        Image stage5 = new Image("resources/5.png");
+        Image stage5 = new Image("resources/earth5.jpg");
         ImageView v5 = new ImageView();
         v5.setImage(stage5);
         v5.setFitHeight(200);
         v5.setFitWidth(400);
 
-        Image stage6 = new Image("resources/6.png");
+        Image stage6 = new Image("resources/earth6.jpg");
         ImageView v6 = new ImageView();
         v6.setImage(stage6);
         v6.setFitHeight(200);
         v6.setFitWidth(400);
 
-        Image stageLoss = new Image("resources/Lose.png");
+        Image stageLoss = new Image("resources/earth7.jpg");
         ImageView Lose = new ImageView();
         Lose.setImage(stageLoss);
         Lose.setFitHeight(200);
