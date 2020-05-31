@@ -107,7 +107,7 @@ public class SpaceInvaders extends Application implements Runnable {
 
         //Method for creating the scene and selecting the background of the game
         Scene scene = new Scene(root, 600, 800);
-        Image img = new Image("/resources/SpaceBackground.jpg");
+        Image img = new Image("https://3.bp.blogspot.com/-6xyJ92jKRjg/XD930UNULaI/AAAAAAAAAuM/jfz5tKgvmxYKj-YAtmhFM-s-JcGC1k7DQCKgBGAs/w1242-h2688-c/abstract-space-8-4k.jpg");
         scene.setFill(new ImagePattern(img));
 
         //Method for smooth movement of the player

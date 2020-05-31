@@ -209,13 +209,7 @@ public class Controller {
 
     @FXML
     public void victoryPlayedAgain(MouseEvent mouseEvent) throws IOException {
-        Parent startMenu = FXMLLoader.load(getClass().getResource("startMenu.fxml"));
-
-        Scene startMenuScene = new Scene(startMenu);
-
-        Stage window = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-        window.setScene(startMenuScene);
-        window.show();
+        playClicked(mouseEvent);
     }
 
     /**
@@ -270,13 +264,15 @@ public class Controller {
 
             Scene altResultWindowScene = new Scene(altResultWindow);
 
-            Stage window = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+            Stage window = (Stage)  ((Node) mouseEvent.getSource()).getScene().getWindow();
             window.setScene(altResultWindowScene);
             window.show();
         }
-        JOptionPane.showMessageDialog(null, "total: " + totalScore + "\nTre i rad: " + TreScore
-                + "\nSpace Invaders: " + SpaceScore + "\nHangman: " + hangmanScore);
 
+        JOptionPane.showMessageDialog(null, "total: " + totalScore + "\nTre i rad: " + TreScore
+        + "\nSpace Invaders: " + SpaceScore + "\nHangman: " + hangmanScore);
+
+        
     }
 
     /**
