@@ -171,6 +171,7 @@ public class TheHangman extends Application implements Runnable {
                     button.setDisable(true);
                     root.setCenter(Win);
                     errorMessage.setText("Congratulations! You won! You had only " + chance + " chances left!");
+                    closeGame();
                 }
                 if (pass == false) { //When user guess is incorrect
                     chance.getAndDecrement(); //Chance--
