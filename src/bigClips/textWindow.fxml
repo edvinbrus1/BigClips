@@ -16,11 +16,11 @@
             <Image url="@../resources/BCBackground.png" />
          </image>
       </ImageView>
-      <TextFlow layoutX="15.0" layoutY="16.0" prefHeight="526.0" prefWidth="771.0">
+      <TextFlow layoutX="15.0" layoutY="16.0" prefHeight="247.0" prefWidth="773.0">
          <children>
-            <Text fill="LIME" strokeType="OUTSIDE" strokeWidth="0.0" text="This is a test text used for controlling how the layout of the first text window will look Later on this will contain information regarding the story for Big-Clips and will most likely cover the whole screen as far as it is possible. The font will match the sketches within the &quot;designdokument&quot;">
+            <Text fill="LIME" strokeType="OUTSIDE" strokeWidth="0.0" text="The year is 2222 and the world is under attack by aliens, all of Earths spaceships but one squadron have been annihilated. They are Earths most feared fighters, their identities shrouded in mystery and their current location known only by themselves. No one knows when they formed, under whose command they are and what their current mission is. All that is known is their name, Big-Clips. ">
                <font>
-                  <Font name="JourneyPS3 Regular" size="24.0" />
+                  <Font name="JourneyPS3 Regular" size="22.0" />
                </font>
                <effect>
                   <DropShadow blurType="GAUSSIAN" color="#000000b2" />
@@ -39,5 +39,17 @@
             <DropShadow blurType="GAUSSIAN" color="#000000b1" />
          </effect>
       </Text>
+      <TextFlow layoutX="14.0" layoutY="263.0" prefHeight="247.0" prefWidth="773.0">
+         <children>
+            <Text fill="LIME" strokeType="OUTSIDE" strokeWidth="0.0" text="It is now up to you to lead Big-Clips and the brave fighters to victory against the alien invaders. Your first task will be to defend against an incoming attack by the invaders, you will need to be quick to react as these invaders fire deadly projectiles that will destroy your ship if you are hit more than three times so be careful. This has to be carried out by one ship as the others are fighting in different parts of the solar system. ">
+               <font>
+                  <Font name="JourneyPS3 Regular" size="22.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" color="#000000b2" />
+               </effect>
+            </Text>
+         </children>
+      </TextFlow>
    </children>
 </AnchorPane>
