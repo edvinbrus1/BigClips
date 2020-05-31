@@ -11,21 +11,13 @@ import java.util.stream.Stream;
 
 public class FindWord {
 
-    public static String selectWord(int r) {
-        ArrayList<String> listOfWords = new ArrayList<>();
-        listOfWords.add("Sweden");
-        listOfWords.add("Norway");
-        listOfWords.add("Denmark");
-        listOfWords.add("Finland");
-        return listOfWords.get(r);
-    }
 
-    public static String lowerCaseWord(String word) {
+    protected static String lowerCaseWord(String word) {
         word = word.toUpperCase();
         return word;
     }
 
-    public static ArrayList<String> wordChar(String theWord) {
+    protected static ArrayList<String> wordChar(String theWord) {
         ArrayList<String> listOfChar = new ArrayList<>();
         for (int i = 0; i < theWord.length(); i++) {
             char a = theWord.charAt(i);
@@ -33,8 +25,6 @@ public class FindWord {
         }
         return listOfChar;
     }
-
-
 
     protected static String importWords(int line) {
 
@@ -49,7 +39,6 @@ public class FindWord {
             }
 
             return br.readLine();
-
 
         } catch (IOException e) {
             e.printStackTrace();

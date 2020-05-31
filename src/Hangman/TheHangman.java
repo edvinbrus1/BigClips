@@ -37,13 +37,9 @@ public class TheHangman extends Application implements Runnable {
 
         //Getting the word and new game
         Random random = new Random();
-        int r = random.nextInt(4);
-        int wordAtLine = random.nextInt(84091);
+        int skip = random.nextInt(84091);
 
-  //      String word = FindWord.lowerCaseWord(FindWord.selectWord(r));
-
-
-        String wordFromTxtfile = (FindWord.importWords(wordAtLine));
+        String wordFromTxtfile = (FindWord.importWords(skip));
         String word = FindWord.lowerCaseWord(wordFromTxtfile);
         ArrayList<String> wordList = FindWord.wordChar(word);
         System.out.println(wordList); //ta bort sen
@@ -134,6 +130,7 @@ public class TheHangman extends Application implements Runnable {
         button.setOnAction(e -> {
 
             if (chance.get() == 1) {//Losing message
+                saveResult(0); //score 0 if player loses
                 button.setDisable(true);
                 root.setCenter(Lose);
                 errorMessage.setText("You lost! Better luck next time!");
@@ -166,7 +163,7 @@ public class TheHangman extends Application implements Runnable {
                     }
                 }
                 if (carrier.equals(wordList)) {//Winning message
-                    saveResult();
+                    saveResult(1200);
                     button.setDisable(true);
                     root.setCenter(Win);
                     errorMessage.setText("Congratulations You won! You had only chances " + chance + " left!");
@@ -202,7 +199,6 @@ public class TheHangman extends Application implements Runnable {
 
                 temp += a;
             }
-            System.out.println(list + "  ,  " + wordList + "   ,  " + carrier); //Ta bort senare
             guessingDocks.setText(temp);
         });
 
@@ -218,13 +214,13 @@ public class TheHangman extends Application implements Runnable {
 
     }
 
-    private void saveResult() {
+    //Puts player result in textfile.
+    private void saveResult(int score) {
         try {
-            //"false" makes sure the file is overwritten if program if run multiple times
-            DataOutputStream out = new DataOutputStream(new FileOutputStream("src/resources/HangmanScore.txt", false));
-            out.writeInt(1200);
-            out.flush();
-            out.close();
+            DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream("src/resources/HangmanScore.txt", false));
+            dataOutputStream.writeInt(score);
+            dataOutputStream.flush();
+            dataOutputStream.close();
 
         } catch (IOException e) {
             e.printStackTrace();
