@@ -51,7 +51,7 @@
             </Text>
          </children>
       </TextFlow>
-      <Text fill="LIME" layoutX="15.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your hands shake ever so slightly, as you nervously press the button...Your hands shake ever so slightly, as you nervously press the button..." wrappingWidth="759.1680297851562">
+      <Text fill="LIME" layoutX="15.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your hands shake ever so slightly, as you nervously press the button..." wrappingWidth="759.1680297851562">
          <font>
             <Font name="JourneyPS3 Regular" size="22.0" />
          </font>
