@@ -46,7 +46,7 @@ public class TheHangman extends Application implements Runnable {
         String wordFromTxtfile = (FindWord.importWords(skip));
         String word = FindWord.lowerCaseWord(wordFromTxtfile);
         ArrayList<String> wordList = FindWord.wordChar(word);
-        System.out.println(wordList); //ta bort sen
+
 
 
 
