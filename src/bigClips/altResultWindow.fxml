@@ -15,7 +15,7 @@
             <Image url="@../resources/BCBackground.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="103.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GAME OVER">
+      <Text fill="WHITE" layoutX="212.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DEFEAT">
          <font>
             <Font name="JourneyPS3 Regular" size="100.0" />
          </font>
