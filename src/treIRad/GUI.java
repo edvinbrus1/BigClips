@@ -1,5 +1,7 @@
 package treIRad;
 
+import javafx.scene.layout.Border;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +15,7 @@ public class GUI extends JFrame{
 
     private Control control;
 
-    private JButton jb1;
+    private JButton jb1 = new JButton();
     private JButton jb2 = new JButton("2");
     private JButton jb3 = new JButton("3");
     private JButton jb4 = new JButton("4");
@@ -23,11 +25,16 @@ public class GUI extends JFrame{
     private JButton jb8 = new JButton("8");
     private JButton jb9 = new JButton("9");
 
-
     private ImageIcon playerIcon;
     private ImageIcon aiIcon;
     private ImageIcon backgroundIcon;
 
+    private JPanel pnlNorth = new JPanel(new GridLayout(1,3));
+    private JPanel pnlMain = new JPanel(new GridLayout(3,3));
+
+    private JLabel lblScore = new JLabel("Score: ");
+    private JLabel lblRoundsLeft = new JLabel("Remaining battles: ");
+    private JLabel lblResult = new JLabel("");
 
     protected GUI (Control control){
 
@@ -35,26 +42,24 @@ public class GUI extends JFrame{
         this.control=control;
         setIcons();
 
-        jb1= new JButton(backgroundIcon);
-        jb1.setDisabledIcon(backgroundIcon);
-        jb1.setIcon(backgroundIcon);
-        jb1.setDisabledIcon(backgroundIcon);
-        jb1.setIcon(backgroundIcon);
+        setLayout(new BorderLayout());
 
-        setLayout(new GridLayout(3,3));
+        pnlNorth.add(lblResult);
+        pnlNorth.add(lblScore);
+        pnlNorth.add(lblRoundsLeft);
 
-        jb1.setIcon(backgroundIcon);
-        jb1.setDisabledIcon(backgroundIcon);
+      pnlMain.add(jb1);
+      pnlMain.add(jb2);
+      pnlMain.add(jb3);
+      pnlMain.add(jb4);
+      pnlMain.add(jb5);
+      pnlMain.add(jb6);
+      pnlMain.add(jb7);
+      pnlMain.add(jb8);
+      pnlMain.add(jb9);
 
-        add(jb1);
-        add(jb2);
-        add(jb3);
-        add(jb4);
-        add(jb5);
-        add(jb6);
-        add(jb7);
-        add(jb8);
-        add(jb9);
+      add(pnlNorth,BorderLayout.NORTH);
+      add(pnlMain, BorderLayout.CENTER);
 
 
         Listener listener = new Listener();
@@ -77,6 +82,17 @@ public class GUI extends JFrame{
 
     }
 
+    protected void setRoundsLeft(int rounds){
+        lblRoundsLeft.setText("Remaining battles: " + rounds);
+    }
+
+    protected void setScore(int score){
+        lblScore.setText("Score: " + score);
+    }
+
+    protected void setLblResult(String result){
+        lblResult.setText("The last battle was a " + result);
+    }
 
     private void setBackground(){
         jb1.setIcon(backgroundIcon);

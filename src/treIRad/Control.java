@@ -20,13 +20,16 @@ public class Control implements Runnable {
     private int maxRandom;
     private int score;
     private int rounds;
+    private final int scoreLoss = -25;
+    private final int scoreDraw = 50;
+    private final int scoreWin = 100;
 
 
     public Control() {
         score = 0;
         rand = new Random();
         gui = new GUI(this);
-        rounds = 0;
+        rounds = 9;
         resetGame();
 
     }
@@ -38,13 +41,14 @@ public class Control implements Runnable {
 
     //Resets the board and starts the game over, if less than 10 rounds have been played
     private void resetGame() {
-        if (rounds < 10) {
+        if (rounds >= 0) {
             turn = 0;
             game = new Game();
             ai = new Ai(game);
             gui.resetGui();
             firstTurn();
-            rounds++;
+            gui.setRoundsLeft(rounds);
+            rounds--;
         } else {
             printScore();
             int input = JOptionPane.showOptionDialog(null, "game over", "Game complete", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);  //test syfte
@@ -101,16 +105,21 @@ public class Control implements Runnable {
 
         if (game.checkWin() == Winner.None) {     //Checks if there is no winner
             if (game.checkDraw() == Winner.Draw) {      //Checks if game's a draw
-                str = "50 points";
-                addScore(50);  //If its a draw, adds points to total score
+                str = scoreDraw + " points";
+                addScore(scoreDraw);  //If its a draw, adds points to total score
+
+
             } else return false;  //If no one has won yet, the method is stopped here
+
         } else if (game.checkWin() == Winner.Ai) {       //Checks if Ai won
-            str = "-25 points";
-            addScore(-25);    //If Ai won, points are reduced
+            str = scoreLoss + " points";
+            addScore(scoreLoss);    //If Ai won, points are reduced
+
         } else if (game.checkWin() == Winner.Player) {       //Checks if player has won
-            str = "100 points";
-            addScore(100); //Adds points if player won
+            str = scoreWin + " points";
+            addScore(scoreWin); //Adds points if player won
         }
+        gui.setScore(score);
         gui.winPopUp(str);
         resetGame();
         return true; //If someone won or it's a draw, returns true
