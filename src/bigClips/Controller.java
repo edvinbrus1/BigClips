@@ -262,6 +262,7 @@ public class Controller {
             Stage window = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
             window.setScene(resultWindowScene);
             window.show();
+
         } else if (totalScore < 3000) {
             Parent altResultWindow = FXMLLoader.load(getClass().getResource("altResultWindow.fxml"));
 
