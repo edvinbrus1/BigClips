@@ -254,7 +254,7 @@ public class Controller {
         input.close();
         totalScore = SpaceScore + TreScore + hangmanScore;
 
-        if (totalScore > 3000) {
+        if (totalScore > 2750) {
             Parent resultWindow = FXMLLoader.load(getClass().getResource("resultWindow.fxml"));
 
             Scene resultWindowScene = new Scene(resultWindow);
@@ -263,7 +263,7 @@ public class Controller {
             window.setScene(resultWindowScene);
             window.show();
 
-        } else if (totalScore < 3000) {
+        } else if (totalScore < 2750) {
             Parent altResultWindow = FXMLLoader.load(getClass().getResource("altResultWindow.fxml"));
 
             Scene altResultWindowScene = new Scene(altResultWindow);
