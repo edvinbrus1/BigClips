@@ -41,7 +41,7 @@ public class TheHangman extends Application implements Runnable {
 
         //Getting the word and new game
         Random random = new Random();
-        int skip = random.nextInt(84091);
+        int skip = random.nextInt(9889);
 
         String wordFromTxtfile = (FindWord.importWords(skip));
         String word = FindWord.lowerCaseWord(wordFromTxtfile);

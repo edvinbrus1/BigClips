@@ -65,6 +65,8 @@ public class Control implements Runnable {
         gui.dispose();
     }
 
+
+    //Randomises for how many turns the ai should make a random move.
     private void randomize(int bound) {
         maxRandom = rand.nextInt(bound);
     }
