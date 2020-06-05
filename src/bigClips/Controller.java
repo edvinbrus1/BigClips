@@ -26,7 +26,7 @@ import java.io.IOException;
  */
 public class Controller {
 
-    private int totalScore = 0; //Amir edit
+    private int totalScore = 0;
 
     /**
      * Method for controlling what happens when the user clicks play on the start menu,

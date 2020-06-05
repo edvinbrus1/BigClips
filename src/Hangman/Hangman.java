@@ -1,12 +1,15 @@
 package Hangman;
 
-//Created by Nikola
+/**
+ * Class that handles gui and logic for hangman game
+ *
+ * @author Nikola Najdanovic
+ */
 
 import bigClips.StartGame;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -34,9 +37,14 @@ public class Hangman extends Application implements Runnable {
 
     private Label guessingDocks; //Edit by Edvin, used to get access to the stage
 
+    /**
+     * Start method for hangman. Handles gui and logic.
+     *
+     * @param primaryStage
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
-
 
 
         //Getting the word and new game
@@ -46,8 +54,6 @@ public class Hangman extends Application implements Runnable {
         String wordFromTxtfile = (FindWord.importWords(skip));
         String word = FindWord.lowerCaseWord(wordFromTxtfile);
         ArrayList<String> wordList = FindWord.wordChar(word);
-
-
 
 
         BorderPane root = new BorderPane();
@@ -122,7 +128,7 @@ public class Hangman extends Application implements Runnable {
         guessingDocks = new Label();
         ArrayList list = new ArrayList(); //for displaying the letters and "___".
         ArrayList<String> carrier = new ArrayList<>(); //for adding the correctly guessed letters
-                                                        // so that we can compare two ArrayLists to see if the user won.
+        // so that we can compare two ArrayLists to see if the user won.
         for (int i = 0; i < wordList.size(); i++) {
             list.add("___\t"); //adding for correct index input later
             carrier.add("");//adding for correct index  input later
@@ -138,17 +144,13 @@ public class Hangman extends Application implements Runnable {
                 root.setCenter(Lose);
                 errorMessage.setText("You lost! Better luck next time!");
                 closeGame(); //Edit by Edvin
-            }
-            else if (answer.getText().isEmpty()) {
+            } else if (answer.getText().isEmpty()) {
                 errorMessage.setText("Please enter a letter!");
-            }
-            else if (answer.getText().length() > 1) {
+            } else if (answer.getText().length() > 1) {
                 errorMessage.setText("Only enter one letter at a time please!");
-            }
-            else if (answer.getText().matches("[0-9,\"[!@#$%&*()_+=|<>?{}\\\\[\\\\]~-]\"]+")) {
+            } else if (answer.getText().matches("[0-9,\"[!@#$%&*()_+=|<>?{}\\\\[\\\\]~-]\"]+")) {
                 errorMessage.setText("No numbers/special characters are allowed only letters from A-Z/a-z!");
-            }
-            else {
+            } else {
                 boolean pass = false; //Used so we know when player guesses wrong or right.
                 for (int i = 0; i < wordList.size(); i++) {
                     String temp = wordList.get(i); //Letter from the wordList
@@ -219,7 +221,12 @@ public class Hangman extends Application implements Runnable {
 
     }
 
-    //Puts player result in textfile.
+
+    /**
+     * Method for saving the score to a textfile
+     *
+     * @param score
+     */
     private void saveResult(int score) {
         try {
             DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream("src/resources/HangmanScore.txt", false));

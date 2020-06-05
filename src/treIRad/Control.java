@@ -9,7 +9,6 @@ import java.util.Random;
 import static javafx.application.Application.launch;
 
 
-
 /**
  * Controller class for tre i rad
  *
@@ -19,16 +18,16 @@ import static javafx.application.Application.launch;
 public class Control implements Runnable {
 
     private final GUI gui;
-    private Game game;
-    private Ai ai;
-    private int turn;
     private final Random rand;
-    private int maxRandom;
-    private int score;
-    private int rounds;
     private final int scoreLoss = -25;
     private final int scoreDraw = 50;
     private final int scoreWin = 100;
+    private Game game;
+    private Ai ai;
+    private int turn;
+    private int maxRandom;
+    private int score;
+    private int rounds;
 
 
     /**
@@ -84,7 +83,8 @@ public class Control implements Runnable {
 
 
     /**
-     *  Randomly sets how many turns the Ai should make random moves from within a given range
+     * Randomly sets how many turns the Ai should make random moves from within a given range
+     *
      * @param bound the bound for the nextInt function
      */
     private void randomize(int bound) {
@@ -106,9 +106,9 @@ public class Control implements Runnable {
     }
 
 
-
     /**
      * Adds score from the previous round to the total score for tre i rad.
+     *
      * @param score the players score from the finished rund
      */
     private void addScore(int score) {
@@ -135,6 +135,7 @@ public class Control implements Runnable {
     /**
      * Checks if round is over and if the player won/lost/drew. Sets appropriate message and calls on popup-window method.
      * Calls method to add to player score. Also calls on method to update score on gui.
+     *
      * @return true if round is finished, false if its ongoing.
      */
     private boolean checkResult() {
@@ -165,6 +166,7 @@ public class Control implements Runnable {
 
     /**
      * Handles logic for the players move.
+     *
      * @param i which button (square on the board) that the player pressed.
      */
     protected void playerMove(int i) {
@@ -233,8 +235,8 @@ public class Control implements Runnable {
 
     /**
      * Method for starting the game from Controller in main game.
-     * @throws RuntimeException
      *
+     * @throws RuntimeException
      * @author Edvin
      */
     @Override
