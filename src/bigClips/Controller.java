@@ -238,6 +238,8 @@ public class Controller {
      *
      * @param mouseEvent mouse clicked
      * @throws IOException IOException
+     *
+     * @author Edvin, Amir
      */
     @FXML
     public void finalTWPClicked(MouseEvent mouseEvent) throws IOException {
@@ -252,6 +254,7 @@ public class Controller {
         int hangmanScore = input.readInt();
 
         input.close();
+
         totalScore = SpaceScore + TreScore + hangmanScore;
 
         if (totalScore > 2750) {

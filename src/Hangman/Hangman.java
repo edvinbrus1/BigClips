@@ -241,7 +241,7 @@ public class Hangman extends Application implements Runnable {
 
     /**
      * Method for closing the game automatically after a loss
-     * @author Edvin - edit
+     * @author Edvin
      *
      */
     public void closeGame(){
@@ -260,7 +260,7 @@ public class Hangman extends Application implements Runnable {
     }
 
     /**
-     * @author Edvin - edit
+     * @author Edvin
      * Used for launching the Hangman through the main game.
      */
     @Override
