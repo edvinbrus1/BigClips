@@ -10,12 +10,16 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
-//Created by Amir
+/**
+ * Class that handles the graphical user interface of tre i rad
+ *
+ * @author Amir
+ */
 public class GUI extends JFrame{
 
     private Control control;
 
-    private JButton jb1 = new JButton();
+    private JButton jb1 = new JButton("1");
     private JButton jb2 = new JButton("2");
     private JButton jb3 = new JButton("3");
     private JButton jb4 = new JButton("4");
@@ -36,6 +40,10 @@ public class GUI extends JFrame{
     private JLabel lblRoundsLeft = new JLabel("Remaining battles: ");
     private JLabel lblResult = new JLabel("");
 
+    /**
+     * Constructor that sets up the GUI
+     * @param control a control object so that the class can communicate with the control class.
+     */
     protected GUI (Control control){
 
         
@@ -78,22 +86,36 @@ public class GUI extends JFrame{
         setTitle("Tre på i rad");
         setVisible(true);
 
-        setBackground();
 
     }
 
+    /**
+     * Method to show how many rounds there are remaining
+     * @param rounds how many rounds remaining
+     */
     protected void setRoundsLeft(int rounds){
         lblRoundsLeft.setText("Remaining battles: " + rounds);
     }
 
+    /**
+     * Method to update the GUI with the current score
+     * @param score value for the players score
+     */
     protected void setScore(int score){
         lblScore.setText("Score: " + score);
     }
 
+    /**
+     * Not yet implemented method. To show the results of the previous battle.
+     * @param result Shows if the last battle was a win/draw/loss.
+     */
     protected void setLblResult(String result){
         lblResult.setText("The last battle was a " + result);
     }
 
+    /**
+     *
+     */
     private void setBackground(){
         jb1.setIcon(backgroundIcon);
         jb1.setDisabledIcon(backgroundIcon);
@@ -101,7 +123,9 @@ public class GUI extends JFrame{
         jb3.setIcon(playerIcon);
     }
 
-    //Sets icons for each player
+    /**
+     * Method for reading in and setting the background imageicon, the player and the ai imageicons.
+     */
     private void setIcons() {
         try {
 
@@ -118,7 +142,11 @@ public class GUI extends JFrame{
     }
 
 
-    //Returns current players icon
+    /**
+     * Returns the imageicon for player or ai, based on whos turn it currently is.
+     * @param turn Enum that shows if its player or ai turn
+     * @return imageicon that represents the player or Ai.
+     */
     private ImageIcon getImageIcon(Turn turn){
         if (turn==Turn.Player){
             return playerIcon;
@@ -126,14 +154,20 @@ public class GUI extends JFrame{
         return aiIcon;
     }
 
-    //Pop up window that displays an inputted message
+    /**
+     * Method for displaying a popup window
+     * @param str the text that the popup shows.
+     */
     protected void winPopUp(String str){
         JOptionPane.showMessageDialog(null,str);
     }
 
 
-    //Takes an int value which represesnts a button and an enum which shows whos turn it is.
-    // Then sets the current players imageicon on the button and then disables that button
+    /**
+     * Method for placing the player or ai's imageicon on a JButton on the gui. Then disables that button.
+     * @param i represents a button/square on the board
+     * @param turn whos turn it currently is
+     */
     protected void setJb(int i, Turn turn){
         JButton jb = new JButton();
 
@@ -174,7 +208,10 @@ public class GUI extends JFrame{
 
     }
 
-    //Resets the gui to its original, blank state
+
+    /**
+     * Method for resetting the board, removing all imageicons and setting all buttons enabled.
+     */
     protected void resetGui(){
         jb1.setIcon(null);
         jb2.setIcon(null);
@@ -210,8 +247,17 @@ public class GUI extends JFrame{
     }
 
 
+    /**
+     * Actionlistener class for the GUI
+     *
+     * @author Amir
+     */
     private class Listener implements ActionListener{
 
+        /**
+         * Method for relaying to the control class that a button has been pressed
+         * @param e
+         */
         public void actionPerformed(ActionEvent e) {
             if (e.getSource()==jb1){
                 control.playerMove( 1);

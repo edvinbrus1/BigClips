@@ -26,7 +26,7 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-public class TheHangman extends Application implements Runnable {
+public class Hangman extends Application implements Runnable {
 
     public static void main(String[] args) {
         StartGame.launch(args);

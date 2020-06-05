@@ -8,7 +8,13 @@ import java.util.Random;
 
 import static javafx.application.Application.launch;
 
-//Created by Amir
+
+
+/**
+ * Controller class for tre i rad
+ *
+ * @author Amir Khodabakhshi
+ */
 
 public class Control implements Runnable {
 
@@ -25,12 +31,15 @@ public class Control implements Runnable {
     private final int scoreWin = 100;
 
 
+    /**
+     * Constructor which creates the gui and a new random object. Also initializes score and rounds values.
+     */
     public Control() {
         score = 0;
         rand = new Random();
         gui = new GUI(this);
         rounds = 9;
-        resetGame();
+        newRound();
 
     }
 
@@ -39,8 +48,12 @@ public class Control implements Runnable {
         new Control();
     }
 
-    //Resets the board and starts the game over, if less than 10 rounds have been played
-    private void resetGame() {
+    /**
+     * Method for starting a new round. Ends the game after 10 rounds have been played.
+     *
+     * @author Amir & Edvin
+     */
+    private void newRound() {
         if (rounds >= 0) {
             turn = 0;
             game = new Game();
@@ -51,7 +64,7 @@ public class Control implements Runnable {
             rounds--;
         } else {
             printScore();
-            int input = JOptionPane.showOptionDialog(null, "game over", "Game complete", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);  //test syfte
+            int input = JOptionPane.showOptionDialog(null, "Game Over!", "Game complete", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
             //Method for closing the game - Edvin
             if (input == JOptionPane.OK_OPTION) {
@@ -60,18 +73,27 @@ public class Control implements Runnable {
         }
     }
 
-    //Method for closing the game - Edvin
+    /**
+     * Closes the gui for tre i rad
+     *
+     * @author Edvin
+     */
     private void closeGame() {
         gui.dispose();
     }
 
 
-    //Randomises for how many turns the ai should make a random move.
+    /**
+     *  Randomly sets how many turns the Ai should make random moves from within a given range
+     * @param bound the bound for the nextInt function
+     */
     private void randomize(int bound) {
         maxRandom = rand.nextInt(bound);
     }
 
-    //Handles logic for first turn in the game. Randomises who starts. If Ai then calls Ai method for making a turn
+    /**
+     * Handles logic for the first turn in the game. Calls method to randomise who starts, if Ai calls on ai to move.
+     */
     private void firstTurn() {
 
         game.randomiseTurn();
@@ -83,14 +105,22 @@ public class Control implements Runnable {
         }
     }
 
-    //adds to the score
+
+
+    /**
+     * Adds score from the previous round to the total score for tre i rad.
+     * @param score the players score from the finished rund
+     */
     private void addScore(int score) {
         this.score += score;
     }
 
+    /**
+     * Writes the totalscore of the player to TreScore.txt, overwriting any previous data saved there.
+     */
     private void printScore() {
         try {
-            //"false" makes sure the file is overwritten if program if run multiple times
+            //"false" makes sure the data is not appended, thus overwriting previously stored data.
             DataOutputStream out = new DataOutputStream(new FileOutputStream("src/resources/TreScore.txt", false));
             out.writeInt(score);
             out.flush();
@@ -101,20 +131,25 @@ public class Control implements Runnable {
         }
     }
 
-    //Checks if someone has won or if the game is a draw
+
+    /**
+     * Checks if round is over and if the player won/lost/drew. Sets appropriate message and calls on popup-window method.
+     * Calls method to add to player score. Also calls on method to update score on gui.
+     * @return true if round is finished, false if its ongoing.
+     */
     private boolean checkResult() {
         String str = "";
 
         if (game.checkWin() == Winner.None) {     //Checks if there is no winner
             if (game.checkDraw() == Winner.Draw) {      //Checks if game's a draw
-                str = scoreDraw + " points";
+                str = "Draw! You gain " + scoreDraw + " points";
                 addScore(scoreDraw);  //If its a draw, adds points to total score
 
 
             } else return false;  //If no one has won yet, the method is stopped here
 
         } else if (game.checkWin() == Winner.Ai) {       //Checks if Ai won
-            str = scoreLoss + " points";
+            str = "Victory! " + scoreLoss + " points";
             addScore(scoreLoss);    //If Ai won, points are reduced
 
         } else if (game.checkWin() == Winner.Player) {       //Checks if player has won
@@ -123,12 +158,15 @@ public class Control implements Runnable {
         }
         gui.setScore(score);
         gui.winPopUp(str);
-        resetGame();
+        newRound();
         return true; //If someone won or it's a draw, returns true
 
     }
 
-    //Handles the players move.
+    /**
+     * Handles logic for the players move.
+     * @param i which button (square on the board) that the player pressed.
+     */
     protected void playerMove(int i) {
         gui.setJb(i, game.getTurn()); //Updates the GUI with the players turn
         game.setBoard(i);       //Updates the board with the players turn.
@@ -141,14 +179,16 @@ public class Control implements Runnable {
     }
 
 
-    //Updates the GUI with the Ai's move
+    /**
+     * Updates GUI with ai move. Handles some logic for ai move as well
+     */
     private void aiMove() {
 
         double[] move;
 
-        //If its the Ais first turn, calls on the firstmove method to randomise it
+        //If its the Ais first turn, calls on the aiRandomMove method to randomise it
         if (turn < maxRandom) {
-            move = game.aiFirstMove();
+            move = game.aiRandomMove();
             turn++;
         }
         //Calls method which calculates which is the best move to make
@@ -191,6 +231,12 @@ public class Control implements Runnable {
     }
 
 
+    /**
+     * Method for starting the game from Controller in main game.
+     * @throws RuntimeException
+     *
+     * @author Edvin
+     */
     @Override
     public void run() throws RuntimeException {
         launch();

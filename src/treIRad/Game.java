@@ -7,18 +7,29 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
-//Created by Amir
+/**
+ * Model class for tre i rad
+ *
+ * @author Amir
+ */
+
 public class Game {
 
     private Random rand;
     private int[][] board = {{0,0,0},{0,0,0},{0,0,0}};
     private Turn currentTurn;
 
+    /**
+     * Constructor that initializes the random class variable.
+     */
     protected Game(){
         rand = new Random();
     }
 
-    //Randomises which player starts first
+
+    /**
+     * Method that randomises which player starts
+     */
     protected void randomiseTurn(){
         int turn = rand.nextInt(2)+1;       // 1 is player, 2 is Ai
         if (turn==1){
@@ -28,7 +39,11 @@ public class Game {
             currentTurn=Turn.Ai;
     }
 
-    //Changes turns
+
+
+    /**
+     * Method for changing whos turn it is currently
+     */
     protected void changeTurn(){
         if (currentTurn==Turn.Ai){       //Change current turn from Ai to player
             currentTurn=Turn.Player;
@@ -38,12 +53,21 @@ public class Game {
         }
     }
 
-    //Returns current turn
+
+
+    /**
+     * Method that returns whos turn it currently is
+     * @return enum that says whos turn it currently is
+     */
     protected Turn getTurn(){
         return currentTurn;
     }
 
-    //Searches through the board to see if anyone has won by having 3 pieces in a row either vertically, horizontally or diagonally.
+
+    /**
+     * Method that searches the board to see if anyone got three in a row vertically/horizontally/diagonally.
+     * @return tells if play or ai won, or no one.
+     */
     protected Winner checkWin(){
 
     int a=0, b=0;
@@ -102,11 +126,17 @@ public class Game {
     return Winner.None;
     }
 
-    //Ändrar värden i board array beroende på vems tur det är
+
+
+    /**
+     * Changes the value in the board array for players move.
+     * @param position represents the square that the player pressed to place his marker in.
+     */
     protected void setBoard(int position){
 
-            int value=1;
+        int value=1;
         //If its AI's turn
+        //Can probably be deleted.
         if (getTurn()==Turn.Ai){
             value=10;
         }
@@ -140,14 +170,24 @@ public class Game {
         }
     }
 
-    //Set method for Ai
+    /**
+     *
+     * @param row which row the ai wants to place his marker in
+     * @param col  which column the ai wants to place his marker in
+     * @param value the value that represents the AI's markers
+     */
     protected void setBoard(int row, int col, int value){
         board[row][col]=value;
     }
 
 
     //Randomises AI's turn
-    protected double[] aiFirstMove(){
+
+    /**
+     * Method for making the ai place his marker randomly on an empty square.
+     * @return an array with row and column position for ai move.
+     */
+    protected double[] aiRandomMove(){
         if (currentTurn==Turn.Player){
             return null;
         }
@@ -168,7 +208,10 @@ public class Game {
         return move;
     }
 
-    //Checks if game is a draw
+    /**
+     * Method for checking if the game has ended in a draw.
+     * @return Draw if its a draw, None if game is not over.
+     */
     protected Winner checkDraw() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -186,6 +229,10 @@ public class Game {
     }
 
 
+    /**
+     * Method for getting the board array
+     * @return the board array
+     */
     protected int[][] getBoard(){
         return board;
     }

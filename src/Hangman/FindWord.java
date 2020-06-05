@@ -30,7 +30,8 @@ public class FindWord {
 
 
         try {
-            //reads in the textfile
+            //Words downloaded from https://github.com/first20hours/google-10000-english/blob/master/google-10000-english-no-swears.txt
+
             BufferedReader br = new BufferedReader(new FileReader("src/resources/wordList.txt"));
 
             //skips as many lines as int line decides

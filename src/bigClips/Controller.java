@@ -1,6 +1,6 @@
 package bigClips;
 
-import Hangman.TheHangman;
+import Hangman.Hangman;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -309,7 +309,7 @@ public class Controller {
 
         Platform.runLater(() -> {
             try {
-                new TheHangman().start(new Stage());
+                new Hangman().start(new Stage());
             } catch (Exception e) {
                 e.printStackTrace();
             }
