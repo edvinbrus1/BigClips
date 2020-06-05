@@ -236,7 +236,6 @@ public class Control implements Runnable {
     /**
      * Method for starting the game from Controller in main game.
      *
-     * @throws RuntimeException
      * @author Edvin
      */
     @Override
