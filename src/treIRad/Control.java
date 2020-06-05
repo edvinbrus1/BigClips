@@ -240,7 +240,7 @@ public class Control implements Runnable {
      * @author Edvin
      */
     @Override
-    public void run() throws RuntimeException {
+    public void run(){
         launch();
     }
 }
