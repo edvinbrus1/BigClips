@@ -39,9 +39,9 @@
             <DropShadow />
          </effect>
       </Text>
-      <TextFlow layoutX="15.0" layoutY="262.0" prefHeight="109.0" prefWidth="759.0">
+      <TextFlow layoutX="15.0" layoutY="302.0" prefHeight="109.0" prefWidth="759.0">
          <children>
-            <Text fill="LIME" strokeType="OUTSIDE" strokeWidth="0.0" text="You awake from your slumber to see that the AI is done with its task. The results are in and if your score is above 3000, then Earth will win the war.You awake from your slumber to see that the AI is done with its task. The results are in and if your score is above 2750, then Earth will win the war." wrappingWidth="759.1680297851562">
+            <Text fill="LIME" strokeType="OUTSIDE" strokeWidth="0.0" text="You awake from your slumber to see that the AI is done with its task. The results are in and if your score is above 2750, then Earth will win the war." wrappingWidth="759.1680297851562">
                <font>
                   <Font name="JourneyPS3 Regular" size="22.0" />
                </font>
