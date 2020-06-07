@@ -65,7 +65,6 @@ public class Control implements Runnable {
             printScore();
             int input = JOptionPane.showOptionDialog(null, "Game Over!", "Game complete", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
-            //Method for closing the game - Edvin
             if (input == JOptionPane.OK_OPTION) {
                 closeGame();
             }
