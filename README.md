@@ -15,5 +15,7 @@ Utförligare instruktioner för detta finns i länken ovan, och under Release RS
 
 Sedan kan man starta Big-Clips från antingen Launcher klassen eller StartGame klassen i bigClips mappen.
 
+Länk till GitHub repository: https://github.com/edvinbrus1/BigClips
+
 
 
